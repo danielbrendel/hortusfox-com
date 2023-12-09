@@ -90,13 +90,13 @@
             document.addEventListener('DOMContentLoaded', function() {
                 window.vue.initNavbar();
                 
-                window.onscroll = function() {
+                document.body.addEventListener('scroll', function() {
                     if ((document.body.scrollTop > document.getElementsByClassName('navbar')[0].offsetHeight + 10) || (document.documentElement.scrollTop > document.getElementsByClassName('navbar')[0].offsetHeight + 10)) {
-                        document.getElementsByClassName('navbar')[0].classList.add('navbar-background-color');
+                        document.getElementsByClassName('navbar')[0].classList.add('navbar-background-color');  
                     } else {
                         document.getElementsByClassName('navbar')[0].classList.remove('navbar-background-color');
                     }
-                };
+                });
             });
         </script>
     </body>

@@ -10,6 +10,7 @@ html, body {
 }
 
 body {
+    overflow-x: hidden;
 }
 
 .navbar {
@@ -289,7 +290,7 @@ div.page-downloads {
 .faq-item {
     position: relative;
     width: 100%;
-    border: 1px solid rgb(200, 200, 200);
+    border: 1px solid rgb(67, 67, 67);
     border-radius: 4px;
     text-align: left;
     margin-bottom: 35px;
@@ -301,6 +302,8 @@ div.page-downloads {
     color: rgb(200, 200, 200);
     background-color: rgb(59, 59, 59);
     padding: 10px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
 }
 
 .faq-item small {
