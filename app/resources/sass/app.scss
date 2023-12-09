@@ -280,6 +280,35 @@ div.page-downloads {
     }
 }
 
+.faq {
+    position: relative;
+    width: 100%;
+    margin-top: 55px;
+}
+
+.faq-item {
+    position: relative;
+    width: 100%;
+    border: 1px solid rgb(200, 200, 200);
+    border-radius: 4px;
+    text-align: left;
+    margin-bottom: 35px;
+}
+
+.faq-item strong {
+    position: relative;
+    display: block;
+    color: rgb(200, 200, 200);
+    background-color: rgb(59, 59, 59);
+    padding: 10px;
+}
+
+.faq-item small {
+    position: relative;
+    display: block;
+    padding: 20px;
+}
+
 .page-footer {
     position: relative;
     bottom: 0;
