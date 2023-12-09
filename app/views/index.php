@@ -1,4 +1,6 @@
 <div class="page-content">
+	<a name="info"></a>
+
 	<h2>Welcome to HortusFox</h2>
 
 	<p>
@@ -77,4 +79,35 @@
 	<p>
 		<a class="button is-link button-stretched" href="{{ url('/screenshots') }}">View more</a>
 	</p>
+
+	<hr/>
+
+	<h2>Download HortusFox</h2>
+
+	<a name="downloads"></a>
+
+	<p class="is-font-medium">
+		Download the latest version here.
+	</p>
+
+	<div class="page-downloads">
+		<table>
+			<thead>
+				<tr>
+					<td>Type</td>
+					<td>Version</td>
+					<td class="is-centered">Download</td>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach ($downloads as $download)
+				<tr>
+					<td><strong>{{ $download['name'] }}</strong></td>
+					<td>Version: {{ $download['version'] }}</td>
+					<td class="is-centered"><a class="button is-link" href="{{ $download['file'] }}"><i class="fas fa-download"></i>&nbsp;Download</a></td>
+				</tr>
+				@endforeach
+			</tbody>
+		</table>
+	</div>
 </div>

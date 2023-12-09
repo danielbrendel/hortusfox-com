@@ -31,6 +31,35 @@ class IndexController extends BaseController {
 	public function index($request)
 	{
 		//Generate and return a view by using the helper
-		return parent::view(['content', 'index'], ['show_header' => true]);
+		return parent::view(['content', 'index'], [
+			'show_header' => true,
+			'downloads' => config('downloads')
+		]);
+	}
+
+	/**
+	 * Handles URL: /screenshots
+	 * 
+	 * @param Asatru\Controller\ControllerArg $request
+	 * @return Asatru\View\ViewHandler
+	 */
+	public function screenshots($request)
+	{
+		//Generate and return a view by using the helper
+		return parent::view(['content', 'screenshots'], [
+		]);
+	}
+
+	/**
+	 * Handles URL: /faq
+	 * 
+	 * @param Asatru\Controller\ControllerArg $request
+	 * @return Asatru\View\ViewHandler
+	 */
+	public function faq($request)
+	{
+		//Generate and return a view by using the helper
+		return parent::view(['content', 'faq'], [
+		]);
 	}
 }

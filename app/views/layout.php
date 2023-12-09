@@ -56,7 +56,7 @@
                         <div>
                             HortusFox is open-sourced software licensed under the MIT license. 
                             Feel free to support the project via <a href="{{ env('LINK_GITHUB') }}">GitHub</a>.
-                            Please <a href="">contact our support</a> for any issues or feedback.
+                            Please <a href="mailto:{{ env('APP_CONTACT') }}">contact our support</a> for any issues or feedback.
                         </div>
                     </div>
 

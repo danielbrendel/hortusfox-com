@@ -217,6 +217,50 @@ a.navbar-burger:hover {
     padding-right: 100px;
 }
 
+div.page-downloads {
+    overflow-x: auto;
+}
+
+.page-downloads table {
+    width: 100%;
+    margin-top: 15px;
+    margin-bottom: 35px;
+}
+
+.page-downloads thead, .page-downloads thead td {
+    background-color: rgb(91, 103, 115);
+    color: rgb(200, 200, 200) !important;
+}
+
+.page-downloads tbody {
+    color: rgb(195, 195, 195);
+    border: 1px solid #ccc;
+}
+
+.page-downloads tbody strong {
+    color: rgb(195, 195, 195);
+}
+
+.page-downloads td {
+    border: 1px solid #ccc !important;
+    padding: 0.5em 0.75em;
+}
+
+.page-downloads tbody td {
+    vertical-align: middle;
+}
+
+.is-centered {
+    text-align: center;
+}
+
+.margin-fix {
+    margin-top: 50px;
+    @media screen and (min-width: 1089px) {
+        margin-top: 120px;
+    }
+}
+
 .page-footer {
     position: relative;
     bottom: 0;

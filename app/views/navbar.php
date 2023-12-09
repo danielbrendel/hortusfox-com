@@ -13,23 +13,19 @@
 
     <div id="navbarBasicExample" class="navbar-menu">
         <div class="navbar-end">
-            <a class="navbar-item" href="{{ url('/') }}">
-                Download
-            </a>
-
-            <a class="navbar-item" href="{{ url('/') }}">
+            <a class="navbar-item" href="{{ url('/screenshots') }}">
                 Screenshots
             </a>
 
-            <a class="navbar-item" href="{{ url('/') }}">
+            <a class="navbar-item" href="{{ env('LINK_DOCUMENTATION') }}">
                 Documentation
             </a>
 
-            <a class="navbar-item" href="{{ url('/') }}">
+            <a class="navbar-item" href="{{ url('/faq') }}">
                 FAQ
             </a>
 
-            <a class="navbar-item" href="{{ url('/') }}">
+            <a class="navbar-item" href="{{ env('LINK_GITHUB') }}">
                 GitHub
             </a>
         </div>

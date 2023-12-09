@@ -13,11 +13,11 @@
 
             <div class="page-header-buttons">
                 <div>
-                    <a class="button is-success" href="">Download</a>
+                    <a class="button is-success" href="javascript:void(0);" onclick="window.vue.scrollTo('a[name=downloads]');">Download</a>
                 </div>
 
                 <div>
-                    <a class="button is-link" href="">Read more</a>
+                    <a class="button is-link" href="javascript:void(0);" onclick="window.vue.scrollTo('a[name=info]');">Read more</a>
                 </div>
             </div>
         </div>
