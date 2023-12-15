@@ -103,7 +103,7 @@
 				@foreach ($downloads as $download)
 				<tr>
 					<td><strong>{{ $download['name'] }}</strong></td>
-					<td>Version: {{ $download['version'] }}</td>
+					<td>{{ $download['version'] }}</td>
 					<td class="is-centered"><a class="button is-link" href="{{ $download['file'] }}"><i class="fas fa-download"></i>&nbsp;Download</a></td>
 				</tr>
 				@endforeach

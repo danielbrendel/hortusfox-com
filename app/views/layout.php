@@ -13,7 +13,7 @@
         <meta name="og:url" property="og:url" content="{{ url('/') }}">
         <meta name="og:image" property="og:image" content="{{ asset('img/logo.png') }}">
 		
-        <title>{{ env('APP_NAME') }}</title>
+        <title>{{ env('APP_NAME') }} {{ (isset($_meta_title)) ? ' - ' . $_meta_title : '' }}</title>
 
         <link rel="icon" type="image/png" href="{{ asset('img/logo.png') }}"/>
         <link rel="stylesheet" type="text/css" href="{{ asset('css/bulma.css') }}"/>
