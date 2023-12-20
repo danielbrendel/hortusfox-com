@@ -19,5 +19,6 @@ return [
     array('/', 'GET', 'index@index'),
     array('/screenshots', 'GET', 'index@screenshots'),
     array('/faq', 'GET', 'index@faq'),
+    array('/software/version', 'GET', 'version@get_version'),
     array('$404', 'ANY', 'error404@index')
 ];
