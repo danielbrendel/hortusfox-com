@@ -1,3 +1,3 @@
 <?php
 
-return '1.3';
+return env('APP_SOFTWARE_VERSION', null);
