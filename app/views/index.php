@@ -44,9 +44,9 @@
 			<div class="page-feature-item"><i class="fas fa-star"></i>&nbsp;Profile management</div>
 			<div class="page-feature-item"><i class="fas fa-star"></i>&nbsp;Tags system</div>
 			<div class="page-feature-item"><i class="fas fa-star"></i>&nbsp;Search feature</div>
+			<div class="page-feature-item"><i class="fas fa-star"></i>&nbsp;Plants history</div>
 			<div class="page-feature-item"><i class="fas fa-star"></i>&nbsp;Log history</div>
 			<div class="page-feature-item"><i class="fas fa-star"></i>&nbsp;Admin section</div>
-			<div class="page-feature-item"><i class="fas fa-star"></i>&nbsp;All for free</div>
 		</div>
 	</div>
 
