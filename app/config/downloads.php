@@ -3,7 +3,13 @@
 return [
     [
         'name' => 'HortusFox Source',
-        'version' => '1.4 (latest)',
+        'version' => '1.5 (latest)',
+        'file' => 'https://github.com/danielbrendel/hortusfox-web/releases/tag/v1.5'
+    ],
+
+    [
+        'name' => 'HortusFox Source',
+        'version' => '1.4',
         'file' => 'https://github.com/danielbrendel/hortusfox-web/releases/tag/v1.4'
     ],
 
