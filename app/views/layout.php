@@ -68,6 +68,12 @@
                         </span>
 
                         <span>
+                            <a href="{{ env('LINK_REDDIT') }}" target="_blank">
+                                <i class="fab fa-reddit fa-2x"></i>
+                            </a>
+                        </span>
+
+                        <span>
                             <a href="{{ env('LINK_INSTAGRAM') }}" target="_blank">
                                 <i class="fab fa-instagram fa-2x"></i>
                             </a>
