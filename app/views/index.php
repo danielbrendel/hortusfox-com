@@ -110,4 +110,14 @@
 			</tbody>
 		</table>
 	</div>
+
+	@if (env('DEMO_ENABLE'))
+		<p class="is-font-medium">
+			Do you want to try the app before installing?
+		</p>
+
+		<p>
+			<a class="button is-success" href="{{ url('/demo') }}">Try Live Demo</a>
+		</p>
+	@endif
 </div>

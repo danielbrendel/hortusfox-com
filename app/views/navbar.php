@@ -13,6 +13,14 @@
 
     <div id="navbarBasicExample" class="navbar-menu">
         <div class="navbar-end">
+            @if (env('DEMO_ENABLE'))
+            <div class="navbar-item">
+                <a class="button is-success" href="{{ url('/demo') }}">
+                    Live Demo
+                </a>
+            </div>
+            @endif 
+
             <a class="navbar-item" href="{{ url('/screenshots') }}">
                 Screenshots
             </a>

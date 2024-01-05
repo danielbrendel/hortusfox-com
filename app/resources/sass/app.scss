@@ -312,6 +312,28 @@ div.page-downloads {
     padding: 20px;
 }
 
+.demo-list {
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.demo-list h3 {
+    font-size: 1.2em;
+}
+
+.demo-list ul {
+    list-style: none;
+}
+
+.demo-list ul li::before {
+    content: "\25CF";
+    margin-left: 20px;
+    font-weight: bold;
+    display: inline-block; 
+    width: 20px;
+    color: rgb(150, 150, 150);
+}
+
 .page-footer {
     position: relative;
     bottom: 0;

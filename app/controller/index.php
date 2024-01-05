@@ -65,4 +65,22 @@ class IndexController extends BaseController {
 			'_meta_title' => 'Frequently Asked Questions'
 		]);
 	}
+
+	/**
+	 * Handles URL: /demo
+	 * 
+	 * @param Asatru\Controller\ControllerArg $request
+	 * @return Asatru\View\ViewHandler|Asatru\View\RedirectHandler
+	 */
+	public function demo($request)
+	{
+		if (!env('DEMO_ENABLE')) {
+			return redirect('/');
+		}
+
+		//Generate and return a view by using the helper
+		return parent::view(['content', 'demo'], [
+			'_meta_title' => 'Live Demo'
+		]);
+	}
 }
