@@ -28,6 +28,6 @@ return [
 
     [
         'question' => 'What are the system requirements?',
-        'answer' => 'The system runs on PHP 8.2 using a custom framework and MySQL as database. Please see the installation notes for a detailed system requirements list'
+        'answer' => 'The system runs on PHP 8.2 using a custom framework and MySQL as database. An SMTP mail server access is highly recommended. Please see the installation notes for a detailed system requirements list'
     ],
 ];

@@ -98,12 +98,12 @@
     <h3>Comfortable administration</h3>
 
     <p class="is-font-mild">
-        Admins can also manage the app and users
+        Admins can also manage the app, users, locations, media and check for new versions.
     </p>
 
     <div class="page-screenshots is-clickable">
         <div class="page-screenshot-item screenshot-desktop">
-            <img src="{{ asset('img/screenshots/Screenshot 2023-12-03 221626.png') }}" alt="screenshot" onclick="window.open(this.getAttribute('src'));"/>
+            <img src="{{ asset('img/screenshots/Screenshot 2024-01-05 143912.png') }}" alt="screenshot" onclick="window.open(this.getAttribute('src'));"/>
         </div>
     </div>
 </div>
