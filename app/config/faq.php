@@ -18,7 +18,7 @@ return [
 
     [
         'question' => 'How does the system run?',
-        'answer' => 'It is a self-hosted system, so you need to run a web service in order to use the product. You can either run a server in your home or rent a server online.'
+        'answer' => 'It is a self-hosted system, so you need to run a web service in order to use the product. You can either run a server in your home or rent a server online. It is both ready for shared hosting as well as a docker environment.'
     ],
 
     [
