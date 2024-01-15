@@ -21,5 +21,8 @@ return [
     array('/faq', 'GET', 'index@faq'),
     array('/demo', 'GET', 'index@demo'),
     array('/software/version', 'GET', 'version@get_version'),
+    array('/api/photo/share', 'POST', 'api@share_photo'),
+    array('/api/photo/remove', 'ANY', 'api@remove_photo'),
+    array('/p/{slug}', 'GET', 'api@get_photo'),
     array('$404', 'ANY', 'error404@index')
 ];
