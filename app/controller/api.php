@@ -53,13 +53,24 @@ class ApiController extends BaseController {
     {
         try {
             $ident = $request->params()->query('ident', null);
+            $ret = $request->params()->query('ret', null);
 
             PhotoModel::rem($ident);
+
+            if ((is_string($ret)) && ($ret === 'home')) {
+                FlashMessage::setMsg('success', 'Your photo has been successfully removed');
+                return redirect('/');
+            }
 
             return json([
                 'code' => 200
             ]);
         } catch (\Exception $e) {
+            if ((isset($ret)) && (is_string($ret)) && ($ret === 'home')) {
+                FlashMessage::setMsg('error', $e->getMessage());
+                return redirect('/');
+            }
+
             return json([
                 'code' => 500,
                 'msg' => $e->getMessage()

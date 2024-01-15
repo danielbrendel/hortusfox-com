@@ -1,6 +1,8 @@
 <div class="page-content">
 	<a name="info"></a>
 
+	@include('flashmsg.php')
+
 	<h2>Welcome to HortusFox</h2>
 
 	<p>
