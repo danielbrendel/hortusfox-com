@@ -281,6 +281,44 @@ div.page-downloads {
     }
 }
 
+.tutorials {
+    position: relative;
+    margin-top: 30px;
+}
+
+.tutorial-section {
+    position: relative;
+}
+
+.tutorial-section h3 {
+    color: rgb(150, 150, 150);
+}
+
+.tutorial-section-item {
+    position: relative;
+    display: inline-block;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+}
+
+.tutorial-section-item h4 {
+    @media screen and (min-width: 768px) {
+        display: none;
+    }
+    margin-bottom: 10px;
+}
+
+.tutorial-section-item iframe {
+    @media screen and (min-width: 534px) {
+        width: 385px;
+        height: 263px;
+    }
+    @media screen and (max-width: 532px) {
+        width: 100%;
+    }
+}
+
 .faq {
     position: relative;
     width: 100%;

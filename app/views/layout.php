@@ -74,6 +74,12 @@
                         </span>
 
                         <span>
+                            <a href="{{ env('LINK_YOUTUBE') }}" target="_blank">
+                                <i class="fab fa-youtube fa-2x"></i>
+                            </a>
+                        </span>
+
+                        <span>
                             <a href="{{ env('LINK_INSTAGRAM') }}" target="_blank">
                                 <i class="fab fa-instagram fa-2x"></i>
                             </a>

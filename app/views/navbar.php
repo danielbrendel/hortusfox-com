@@ -29,6 +29,10 @@
                 Documentation
             </a>
 
+            <a class="navbar-item" href="{{ url('/tutorials') }}">
+                Tutorials
+            </a>
+
             <a class="navbar-item" href="{{ url('/faq') }}">
                 FAQ
             </a>

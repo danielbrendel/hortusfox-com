@@ -52,6 +52,25 @@ class IndexController extends BaseController {
 	}
 
 	/**
+	 * Handles URL: /tutorials
+	 * 
+	 * @param Asatru\Controller\ControllerArg $request
+	 * @return Asatru\View\ViewHandler
+	 */
+	public function tutorials($request)
+	{
+		$videos = [];
+		$videos['install'] = TutorialsModel::getTutorials('install');
+		$videos['usage'] = TutorialsModel::getTutorials('usage');
+
+		//Generate and return a view by using the helper
+		return parent::view(['content', 'tutorials'], [
+			'_meta_title' => 'Tutorials',
+			'videos' => $videos
+		]);
+	}
+
+	/**
 	 * Handles URL: /faq
 	 * 
 	 * @param Asatru\Controller\ControllerArg $request
