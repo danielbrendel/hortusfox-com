@@ -31,6 +31,7 @@ class DownloadsModel_Migration {
         $this->database->add('name VARCHAR(512) NOT NULL');
         $this->database->add('version VARCHAR(512) NOT NULL');
         $this->database->add('resource VARCHAR(512) NOT NULL');
+        $this->database->add('active BOOLEAN NOT NULL DEFAULT 1');
         $this->database->add('created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP');
         $this->database->create();
     }

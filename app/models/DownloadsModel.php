@@ -12,9 +12,9 @@ class DownloadsModel extends \Asatru\Database\Model {
     {
         try {
             if ($limit > 0) {
-                return static::raw('SELECT * FROM `@THIS` ORDER BY `version` DESC LIMIT ' . $limit);
+                return static::raw('SELECT * FROM `@THIS` WHERE active = 1 ORDER BY `version` DESC LIMIT ' . $limit);
             } else {
-                return static::raw('SELECT * FROM `@THIS` ORDER BY `version` DESC');
+                return static::raw('SELECT * FROM `@THIS` WHERE active = 1 ORDER BY `version` DESC');
             } 
         } catch (\Exception $e) {
             throw $e;
