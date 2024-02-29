@@ -59,7 +59,7 @@ class ApiController extends BaseController {
 
             if ((is_string($ret)) && ($ret === 'home')) {
                 FlashMessage::setMsg('success', 'Your photo has been successfully removed');
-                return redirect('/');
+                return redirect('/#info');
             }
 
             return json([
