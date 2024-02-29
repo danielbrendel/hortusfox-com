@@ -79,7 +79,7 @@ class ApiController extends BaseController {
     }
 
     /**
-	 * Handles URL: /img/{slug}
+	 * Handles URL: /p/{slug}
 	 * 
 	 * @param Asatru\Controller\ControllerArg $request
 	 * @return Asatru\View\RedirectHandler
@@ -90,6 +90,9 @@ class ApiController extends BaseController {
             $slug = $request->arg('slug');
 
             $item = PhotoModel::getPhoto($slug);
+            if (!$item) {
+                throw new \Exception('No item found: ' . $slug);
+            }
 
             return redirect('/img/photos/' . $item->get('thumb'));
         } catch (\Exception $e) {
