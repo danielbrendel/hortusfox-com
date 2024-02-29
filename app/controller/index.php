@@ -97,9 +97,19 @@ class IndexController extends BaseController {
 			return redirect('/');
 		}
 
+		$accounts = [];
+
+		for ($i = 0; $i < 10; $i++) {
+			$accounts[] = [
+				'email' => 'test' . strval($i + 1) . '@gmail.com',
+				'password' => 'test'
+			];
+		}
+
 		//Generate and return a view by using the helper
 		return parent::view(['content', 'demo'], [
-			'_meta_title' => 'Live Demo'
+			'_meta_title' => 'Live Demo',
+			'accounts' => $accounts
 		]);
 	}
 }

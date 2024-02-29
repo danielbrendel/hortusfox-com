@@ -2,7 +2,7 @@
     <h2>Live Demo</h2>
 
     <p class="is-font-medium">
-        Do you want to try HortusFox in order to get an impression of the app?
+        <strong>Do you want to try HortusFox in order to get an impression of the app?</strong>
     </p>
 
     <p><i>No Problem!</i></p>
@@ -25,12 +25,23 @@
     </div>
 
     <div class="demo-list">
-        <h3>You can log in via the following three users:</h3>
+        <h3>You can login via the following {{ count($accounts) }} users:</h3>
 
-        <ul>
-            <li>E-Mail: test1@gmail.com, password: test</li>
-            <li>E-Mail: test2@gmail.com, password: test</li>
-            <li>E-Mail: test3@gmail.com, password: test</li>
-        </ul>
+        <table>
+			<thead>
+				<tr>
+					<td>Login</td>
+					<td>Password</td>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach ($accounts as $account)
+				<tr>
+					<td><strong>{{ $account['email'] }}</strong></td>
+					<td>{{ $account['password'] }}</td>
+				</tr>
+				@endforeach
+			</tbody>
+		</table>
     </div>
 </div>

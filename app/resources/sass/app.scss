@@ -197,6 +197,10 @@ a.navbar-burger:hover {
     color: rgb(150, 150, 150);
 }
 
+.is-font-medium strong {
+    color: rgb(200, 200, 200);
+}
+
 .is-font-mild {
     font-size: 1.2em;
     color: rgb(150, 150, 150);
@@ -370,6 +374,35 @@ div.page-downloads {
     display: inline-block; 
     width: 20px;
     color: rgb(150, 150, 150);
+}
+
+.demo-list table {
+    width: 100%;
+    margin-top: 15px;
+    margin-bottom: 35px;
+}
+
+.demo-list thead, .demo-list thead td {
+    background-color: rgb(91, 103, 115);
+    color: rgb(200, 200, 200) !important;
+}
+
+.demo-list tbody {
+    color: rgb(195, 195, 195);
+    border: 1px solid #ccc;
+}
+
+.demo-list tbody strong {
+    color: rgb(195, 195, 195);
+}
+
+.demo-list td {
+    border: 1px solid #ccc !important;
+    padding: 0.5em 0.75em;
+}
+
+.demo-list tbody td {
+    vertical-align: middle;
 }
 
 .page-footer {
