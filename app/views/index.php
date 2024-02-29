@@ -22,6 +22,25 @@
 		done or what needs to be done. 
 	</p>
 
+	@if (env('APP_ENABLENEWSLETTER'))
+		<div class="newsletter">
+			<strong>Want to stay up-to-date? Subscribe to our newsletter!</strong>
+
+			<form method="POST" action="{{ url('/newsletter/subscribe') }}" id="frmNewsletter">
+				@csrf 
+
+				<div class="field has-addons newsletter-prompt">
+					<div class="control newsletter-prompt">
+						<input class="input" type="email" name="email" placeholder="Enter your E-Mail address...">
+					</div>
+					<div class="control">
+						<a class="button is-info" href="javascript:void(0);" onclick="document.querySelector('#frmNewsletter').submit();">Subscribe</a>
+					</div>
+				</div>
+			</form>
+		</div>
+	@endif
+
 	<hr/>
 
 	<h2>Lightweight But Effective Features</h2>

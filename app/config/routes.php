@@ -25,5 +25,6 @@ return [
     array('/api/photo/share', 'POST', 'api@share_photo'),
     array('/api/photo/remove', 'ANY', 'api@remove_photo'),
     array('/p/{slug}', 'GET', 'api@get_photo'),
+    array('/newsletter/subscribe', 'POST', 'newsletter@subscribe'),
     array('$404', 'ANY', 'error404@index')
 ];

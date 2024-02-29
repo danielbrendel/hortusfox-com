@@ -407,3 +407,33 @@ div.page-downloads {
 .is-margin-bottom-10 {
     margin-bottom: 10px;
 }
+
+.newsletter {
+    position: relative;
+}
+
+.newsletter strong {
+    color: rgb(200, 200, 200);
+}
+
+.newsletter div.field {
+    margin-top: 20px;
+}
+
+.newsletter-prompt {
+    width: 76%;
+    margin-left: auto;
+    margin-right: auto;
+    @media screen and (max-width: 768px) {
+        width: 90%;
+    }
+}
+
+.newsletter-prompt input {
+    background-color: rgb(50, 50, 50);
+    color: rgb(200, 200, 200);
+}
+
+.newsletter-prompt input::placeholder {
+    color: rgb(150, 150, 150);
+}
