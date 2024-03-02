@@ -80,7 +80,7 @@ class IndexController extends BaseController {
 	{
 		//Generate and return a view by using the helper
 		return parent::view(['content', 'faq'], [
-			'faqs' => config('faq'),
+			'faqs' => FaqModel::getEntries(),
 			'_meta_title' => 'Frequently Asked Questions'
 		]);
 	}
