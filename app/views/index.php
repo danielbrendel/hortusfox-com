@@ -22,6 +22,12 @@
 		done or what needs to be done. 
 	</p>
 
+	@if (env('APP_ENABLESPONSORING'))
+	<p class="sponsoring">
+		<a href='https://ko-fi.com/C0C7V2ESD' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://storage.ko-fi.com/cdn/kofi2.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
+	</p>
+	@endif
+
 	@if (env('APP_ENABLENEWSLETTER'))
 		<div class="newsletter">
 			<strong>Want to stay up-to-date? Subscribe to our newsletter!</strong>
@@ -139,6 +145,18 @@
 
 		<p>
 			<a class="button is-success" href="{{ url('/demo') }}">Try Live Demo</a>
+		</p>
+	@endif
+
+	@if (env('APP_ENABLESPONSORING'))
+		<hr/>
+
+		<p class="is-font-medium">
+			Your support is greatly appreciated
+		</p>
+
+		<p class="sponsoring">
+			<a href='https://ko-fi.com/C0C7V2ESD' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://storage.ko-fi.com/cdn/kofi2.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
 		</p>
 	@endif
 </div>
