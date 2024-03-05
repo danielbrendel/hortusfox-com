@@ -64,16 +64,18 @@
 			<div class="page-feature-item"><i class="fas fa-star"></i>&nbsp;Thumbnails & Gallery</div>
 			<div class="page-feature-item"><i class="fas fa-star"></i>&nbsp;Tasks system</div>
 			<div class="page-feature-item"><i class="fas fa-star"></i>&nbsp;Inventory management</div>
+			<div class="page-feature-item"><i class="fas fa-star"></i>&nbsp;Group Chat</div>
 		</div>
 
 		<div class="page-features-block page-features-block-fix">
-			<div class="page-feature-item"><i class="fas fa-star"></i>&nbsp;Group Chat</div>
 			<div class="page-feature-item"><i class="fas fa-star"></i>&nbsp;Profile management</div>
 			<div class="page-feature-item"><i class="fas fa-star"></i>&nbsp;Tags system</div>
 			<div class="page-feature-item"><i class="fas fa-star"></i>&nbsp;Search feature</div>
 			<div class="page-feature-item"><i class="fas fa-star"></i>&nbsp;Plants history</div>
 			<div class="page-feature-item"><i class="fas fa-star"></i>&nbsp;Log history</div>
+			<div class="page-feature-item"><i class="fas fa-star"></i>&nbsp;Theme system</div>
 			<div class="page-feature-item"><i class="fas fa-star"></i>&nbsp;Admin section</div>
+			<div class="page-feature-item"><i class="fas fa-star"></i>&nbsp;Docker ready</div>
 		</div>
 	</div>
 
@@ -85,21 +87,21 @@
 		Get an impression from screenshots
 	</p>
 
-	<div class="page-screenshots">
+	<div class="page-screenshots is-clickable">
 		<div class="page-screenshot-item screenshot-desktop">
-			<img src="{{ asset('img/screenshots/screenshot-desktop.png') }}" alt="screenshot"/>
+			<img src="{{ asset('img/screenshots/screenshot-desktop.png') }}" alt="screenshot" onclick="window.vue.showImagePreview(this.getAttribute('src'), 'is-5by3');"/>
 		</div>
 
 		<div class="page-screenshot-item screenshot-mobile">
-			<img src="{{ asset('img/screenshots/Screenshot_20231023_123009_HortusFox.jpg') }}" alt="screenshot"/>
+			<img src="{{ asset('img/screenshots/Screenshot 2024-03-05 180231.png') }}" alt="screenshot" onclick="window.vue.showImagePreview(this.getAttribute('src'));"/>
 		</div>
 
 		<div class="page-screenshot-item screenshot-mobile">
-			<img src="{{ asset('img/screenshots/Screenshot_20231023_123202_HortusFox.jpg') }}" alt="screenshot"/>
+			<img src="{{ asset('img/screenshots/Screenshot 2024-03-05 180919.png') }}" alt="screenshot" onclick="window.vue.showImagePreview(this.getAttribute('src'));"/>
 		</div>
 
 		<div class="page-screenshot-item screenshot-mobile">
-			<img src="{{ asset('img/screenshots/Screenshot_20231023_123229_HortusFox.jpg') }}" alt="screenshot"/>
+			<img src="{{ asset('img/screenshots/Screenshot 2024-03-05 181025.png') }}" alt="screenshot" onclick="window.vue.showImagePreview(this.getAttribute('src'));"/>
 		</div>
 	</div>
 

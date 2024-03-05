@@ -13,6 +13,8 @@ window.vue = new Vue({
     el: '#app',
 
     data: {
+        bShowPreviewImageModal: false,
+        clsLastImagePreviewAspect: '',
     },
 
     methods: {
@@ -70,6 +72,22 @@ window.vue = new Vue({
             let elem = document.querySelector(target);
             if (elem) {
                 elem.scrollIntoView({ behavior: 'smooth' });
+            }
+        },
+
+        showImagePreview: function(asset, aspect = 'is-1by2') {
+            let img = document.getElementById('preview-image-modal-img');
+            if (img) {
+                img.src = asset;
+
+                if (window.vue.clsLastImagePreviewAspect.length > 0) {
+                    img.parentNode.classList.remove(window.vue.clsLastImagePreviewAspect);
+                }
+
+                window.vue.clsLastImagePreviewAspect = aspect;
+                img.parentNode.classList.add(window.vue.clsLastImagePreviewAspect);
+
+                window.vue.bShowPreviewImageModal = true;
             }
         },
     }

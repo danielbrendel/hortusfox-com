@@ -231,6 +231,10 @@ a.navbar-burger:hover {
     cursor: pointer;
 }
 
+.is-clickable img {
+    box-shadow: 0 0 4px 0 rgba(55, 55, 55, 0.95);
+}
+
 .is-clickable img:hover {
     box-shadow: 0 0 20px 0 rgba(105, 165, 85, 0.95);
 }

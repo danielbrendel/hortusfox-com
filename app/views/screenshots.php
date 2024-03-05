@@ -15,15 +15,15 @@
 
     <div class="page-screenshots is-clickable">
         <div class="page-screenshot-item screenshot-mobile">
-            <img src="{{ asset('img/screenshots/Screenshot_20231023_123009_HortusFox.jpg') }}" alt="screenshot" onclick="window.open(this.getAttribute('src'));"/>
+            <img src="{{ asset('img/screenshots/Screenshot 2024-03-05 182932.png') }}" alt="screenshot" onclick="window.vue.showImagePreview(this.getAttribute('src'));"/>
         </div>
 
         <div class="page-screenshot-item screenshot-mobile">
-            <img src="{{ asset('img/screenshots/Screenshot_20231023_123017_HortusFox.jpg') }}" alt="screenshot" onclick="window.open(this.getAttribute('src'));"/>
+            <img src="{{ asset('img/screenshots/Screenshot 2024-03-05 182953.png') }}" alt="screenshot" onclick="window.vue.showImagePreview(this.getAttribute('src'));"/>
         </div>
 
         <div class="page-screenshot-item screenshot-mobile">
-            <img src="{{ asset('img/screenshots/Screenshot_20231023_123027_HortusFox.jpg') }}" alt="screenshot" onclick="window.open(this.getAttribute('src'));"/>
+            <img src="{{ asset('img/screenshots/Screenshot 2024-03-05 182856.png') }}" alt="screenshot" onclick="window.vue.showImagePreview(this.getAttribute('src'));"/>
         </div>
     </div>
 
@@ -37,15 +37,15 @@
 
     <div class="page-screenshots is-clickable">
         <div class="page-screenshot-item screenshot-mobile">
-            <img src="{{ asset('img/screenshots/Screenshot_20231023_123202_HortusFox.jpg') }}" alt="screenshot" onclick="window.open(this.getAttribute('src'));"/>
+            <img src="{{ asset('img/screenshots/Screenshot 2024-03-05 180919.png') }}" alt="screenshot" onclick="window.vue.showImagePreview(this.getAttribute('src'));"/>
         </div>
 
         <div class="page-screenshot-item screenshot-mobile">
-            <img src="{{ asset('img/screenshots/Screenshot_20231023_123229_HortusFox.jpg') }}" alt="screenshot" onclick="window.open(this.getAttribute('src'));"/>
+            <img src="{{ asset('img/screenshots/Screenshot 2024-03-05 181025.png') }}" alt="screenshot" onclick="window.vue.showImagePreview(this.getAttribute('src'));"/>
         </div>
 
         <div class="page-screenshot-item screenshot-mobile">
-            <img src="{{ asset('img/screenshots/Screenshot_20231023_123439_HortusFox.jpg') }}" alt="screenshot" onclick="window.open(this.getAttribute('src'));"/>
+            <img src="{{ asset('img/screenshots/Screenshot 2024-03-05 183724.png') }}" alt="screenshot" onclick="window.vue.showImagePreview(this.getAttribute('src'));"/>
         </div>
     </div>
 
@@ -54,20 +54,20 @@
     <h3>Tasks, Search & Inventory</h3>
 
     <p class="is-font-mild">
-        Manage required tasks, search the database and maintain your inventory
+        Manage required tasks, maintain your inventory and search through your database 
     </p>
 
     <div class="page-screenshots is-clickable">
         <div class="page-screenshot-item screenshot-mobile">
-            <img src="{{ asset('img/screenshots/Screenshot_20231023_123512_HortusFox.jpg') }}" alt="screenshot" onclick="window.open(this.getAttribute('src'));"/>
+            <img src="{{ asset('img/screenshots/Screenshot 2024-03-05 183931.png') }}" alt="screenshot" onclick="window.vue.showImagePreview(this.getAttribute('src'));"/>
         </div>
 
         <div class="page-screenshot-item screenshot-mobile">
-            <img src="{{ asset('img/screenshots/Screenshot_20231023_123530_HortusFox.jpg') }}" alt="screenshot" onclick="window.open(this.getAttribute('src'));"/>
+            <img src="{{ asset('img/screenshots/Screenshot 2024-03-05 184339.png') }}" alt="screenshot" onclick="window.vue.showImagePreview(this.getAttribute('src'));"/>
         </div>
 
         <div class="page-screenshot-item screenshot-mobile">
-            <img src="{{ asset('img/screenshots/Screenshot_20231023_123548_HortusFox.jpg') }}" alt="screenshot" onclick="window.open(this.getAttribute('src'));"/>
+            <img src="{{ asset('img/screenshots/Screenshot 2024-03-05 184408.png') }}" alt="screenshot" onclick="window.vue.showImagePreview(this.getAttribute('src'));"/>
         </div>
     </div>
 
@@ -81,15 +81,15 @@
 
     <div class="page-screenshots is-clickable">
         <div class="page-screenshot-item screenshot-mobile">
-            <img src="{{ asset('img/screenshots/Screenshot_20231023_123600_HortusFox.jpg') }}" alt="screenshot" onclick="window.open(this.getAttribute('src'));"/>
+            <img src="{{ asset('img/screenshots/Screenshot 2024-03-05 184845.png') }}" alt="screenshot" onclick="window.vue.showImagePreview(this.getAttribute('src'));"/>
         </div>
 
         <div class="page-screenshot-item screenshot-mobile">
-            <img src="{{ asset('img/screenshots/Screenshot_20231023_124151_HortusFox.jpg') }}" alt="screenshot" onclick="window.open(this.getAttribute('src'));"/>
+            <img src="{{ asset('img/screenshots/Screenshot 2024-03-05 185120.png') }}" alt="screenshot" onclick="window.vue.showImagePreview(this.getAttribute('src'));"/>
         </div>
 
         <div class="page-screenshot-item screenshot-mobile">
-            <img src="{{ asset('img/screenshots/Screenshot_20231023_124304_HortusFox.jpg') }}" alt="screenshot" onclick="window.open(this.getAttribute('src'));"/>
+            <img src="{{ asset('img/screenshots/Screenshot 2024-03-05 185232.png') }}" alt="screenshot" onclick="window.vue.showImagePreview(this.getAttribute('src'));"/>
         </div>
     </div>
 
@@ -98,12 +98,12 @@
     <h3>Comfortable administration</h3>
 
     <p class="is-font-mild">
-        Admins can also manage the app, users, locations, media and check for new versions.
+        As an admin you can also manage many things around the app to fit your personal needs
     </p>
 
     <div class="page-screenshots is-clickable">
         <div class="page-screenshot-item screenshot-desktop">
-            <img src="{{ asset('img/screenshots/Screenshot 2024-01-05 143912.png') }}" alt="screenshot" onclick="window.open(this.getAttribute('src'));"/>
+            <img src="{{ asset('img/screenshots/Screenshot 2024-03-05 185643.png') }}" alt="screenshot" onclick="window.vue.showImagePreview(this.getAttribute('src'), 'is-5by3');"/>
         </div>
     </div>
 </div>
