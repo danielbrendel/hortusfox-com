@@ -79,13 +79,14 @@ window.vue = new Vue({
             let img = document.getElementById('preview-image-modal-img');
             if (img) {
                 img.src = asset;
+                img.parentNode.href = asset;
 
                 if (window.vue.clsLastImagePreviewAspect.length > 0) {
-                    img.parentNode.classList.remove(window.vue.clsLastImagePreviewAspect);
+                    img.parentNode.parentNode.classList.remove(window.vue.clsLastImagePreviewAspect);
                 }
 
                 window.vue.clsLastImagePreviewAspect = aspect;
-                img.parentNode.classList.add(window.vue.clsLastImagePreviewAspect);
+                img.parentNode.parentNode.classList.add(window.vue.clsLastImagePreviewAspect);
 
                 window.vue.bShowPreviewImageModal = true;
             }

@@ -19,14 +19,8 @@
 		and many more! The system also provides you with the opportunity to manage your inventory that is needed to care for
 		your beloved plants. The tasks feature helps you to keep track of what you have to do in order to care about your 
 		plants. Also there is a collaborative group chat for your users to exchange important hints about what someone has
-		done or what needs to be done. 
+		done or what needs to be done. Of course there are many more features!
 	</p>
-
-	@if (env('APP_ENABLESPONSORING'))
-	<p class="sponsoring">
-		<a href='https://ko-fi.com/C0C7V2ESD' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://storage.ko-fi.com/cdn/kofi2.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
-	</p>
-	@endif
 
 	@if (env('APP_ENABLENEWSLETTER'))
 		<div class="newsletter">
@@ -155,6 +149,10 @@
 
 		<p class="is-font-medium">
 			Your support is greatly appreciated
+		</p>
+
+		<p>
+			Your support helps to continue working on the project and providing the required infrastructure.
 		</p>
 
 		<p class="sponsoring">

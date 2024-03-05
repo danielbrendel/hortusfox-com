@@ -11,7 +11,7 @@
         <meta name="og:title" property="og:title" content="{{ env('APP_NAME') }}">
         <meta name="og:description" property="og:description" content="{{ env('APP_DESCRIPTION') }}">
         <meta name="og:url" property="og:url" content="{{ url('/') }}">
-        <meta name="og:image" property="og:image" content="{{ asset('img/logo.png') }}">
+        <meta name="og:image" property="og:image" content="{{ asset('img/screenshots/screenshot-desktop.png') }}">
 		
         <title>{{ env('APP_NAME') }} {{ (isset($_meta_title)) ? ' - ' . $_meta_title : '' }}</title>
 
@@ -61,29 +61,45 @@
                     </div>
 
                     <div class="column is-3 is-desktop-right">
+                        @if (env('LINK_GITHUB'))
                         <span>
                             <a href="{{ env('LINK_GITHUB') }}" target="_blank">
                                 <i class="fab fa-github fa-2x"></i>
                             </a>
                         </span>
+                        @endif
 
+                        @if (env('LINK_DISCORD'))
+                        <span>
+                            <a href="{{ env('LINK_DISCORD') }}" target="_blank">
+                                <i class="fab fa-discord fa-2x"></i>
+                            </a>
+                        </span>
+                        @endif
+
+                        @if (env('LINK_REDDIT'))
                         <span>
                             <a href="{{ env('LINK_REDDIT') }}" target="_blank">
                                 <i class="fab fa-reddit fa-2x"></i>
                             </a>
                         </span>
+                        @endif
 
+                        @if (env('LINK_YOUTUBE'))
                         <span>
                             <a href="{{ env('LINK_YOUTUBE') }}" target="_blank">
                                 <i class="fab fa-youtube fa-2x"></i>
                             </a>
                         </span>
+                        @endif
 
+                        @if (env('LINK_INSTAGRAM'))
                         <span>
                             <a href="{{ env('LINK_INSTAGRAM') }}" target="_blank">
                                 <i class="fab fa-instagram fa-2x"></i>
                             </a>
                         </span>
+                        @endif
 
                         <span>
                             <a href="mailto:{{ env('APP_CONTACT') }}" target="_blank">
@@ -101,7 +117,9 @@
 
                 <div class="modal-content">
                     <p class="image">
-                        <img id="preview-image-modal-img" alt="image">
+                        <a href="#">
+                            <img id="preview-image-modal-img" alt="image">
+                        </a>
                     </p>
                 </div>
 
