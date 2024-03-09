@@ -52,6 +52,24 @@ class IndexController extends BaseController {
 	}
 
 	/**
+	 * Handles URL: /themes
+	 * 
+	 * @param Asatru\Controller\ControllerArg $request
+	 * @return Asatru\View\ViewHandler|Asatru\View\RedirectHandler
+	 */
+	public function themes($request)
+	{
+		if (!env('APP_ENABLETHEMES')) {
+			return redirect('/');
+		}
+
+		return parent::view(['content', 'themes'], [
+			'_meta_title' => 'Themes - The extra spice for your workspace',
+			'themes' => ThemeModel::getThemes()
+		]);
+	}
+
+	/**
 	 * Handles URL: /tutorials
 	 * 
 	 * @param Asatru\Controller\ControllerArg $request

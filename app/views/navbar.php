@@ -25,6 +25,12 @@
                 Screenshots
             </a>
 
+            @if (env('APP_ENABLETHEMES'))
+                <a class="navbar-item" href="{{ url('/themes') }}">
+                    Themes
+                </a>
+            @endif
+
             <a class="navbar-item" href="{{ env('LINK_DOCUMENTATION') }}">
                 Documentation
             </a>
