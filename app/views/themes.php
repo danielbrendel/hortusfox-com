@@ -20,4 +20,10 @@
             </a>
         @endforeach
    </div>
+
+   <p class="is-font-medium margin-top-gap">Made a cool theme that you want to share?</p>
+
+    <p>
+        <a class="button is-link button-stretched" href="mailto:{{ env('APP_CONTACT') }}">Contact Us</a>
+    </p>
 </div>
