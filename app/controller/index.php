@@ -130,4 +130,24 @@ class IndexController extends BaseController {
 			'accounts' => $accounts
 		]);
 	}
+
+	/**
+	 * Handles URL: /sitemap
+	 * 
+	 * @param Asatru\Controller\ControllerArg $request
+	 * @return mixed
+	 */
+	public function sitemap($request)
+	{
+		try {
+			$sitemap = SitemapModule::generate();
+			
+			header('Content-Type: text/xml');
+			echo $sitemap;
+
+			exit(0);
+		} catch (\Exception $e) {
+			return abort(500);
+		}
+	}
 }
