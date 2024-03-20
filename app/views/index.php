@@ -23,6 +23,7 @@
 	</p>
 
 	@if (env('APP_ENABLENEWSLETTER'))
+		<a name="newsletter"></a>
 		<div class="newsletter">
 			<strong>Want to stay updated? Subscribe to our newsletter!</strong>
 
