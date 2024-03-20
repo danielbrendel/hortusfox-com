@@ -8,54 +8,83 @@
 		<style>
 			html, body {
 				width: 100%;
+				max-width: 800px;
 				background-color: rgb(31, 31, 31);
 				color: rgb(150, 150, 150);
 				margin: 0 auto;
 				overflow-x: hidden;
-                font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+				font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 			}
-			
+
 			.headline {
 				width: 100%;
 				padding: 10px;
 				color: rgb(230, 230, 230);
 				background-color: rgb(55, 55, 55);
 			}
-			
-			.content {
-				width: 93%;
-				padding: 10px;
-				color: rgb(200, 200, 200);
-                background-color: rgb(31, 31, 31);
+
+			.headline img {
+				width: 32px;
+				height: 32px;
 			}
 
-            .content a {
-                color: rgb(105, 159, 202);
-                text-decoration: none;
-            }
+			.headline a {
+				position: relative;
+				top: -5px;
+				font-size: 2.0em;
+				text-decoration: none;
+				color: rgb(111, 205, 132);
+				font-family: Gabriola;
+				font-weight: bold;
+			}
 
-            .content a:hover {
-                color: rgb(105, 159, 202);
-                text-decoration: underline;
-            }
-			
-			.footer {
+			.headline a:hover {
+				text-decoration: none;
+				color: rgb(111, 205, 132);
+			}
+
+			.content {
+				width: 100%;
+				padding: 10px;
+				color: rgb(200, 200, 200);
+				background-color: rgb(31, 31, 31);
+			}
+
+			.content p {
 				width: 93%;
+			}
+
+			.content a {
+				color: rgb(105, 159, 202);
+				text-decoration: none;
+			}
+
+			.content a:hover {
+				color: rgb(105, 159, 202);
+				text-decoration: underline;
+			}
+
+			.footer {
+				width: 100%;
 				padding: 10px;
 				color: rgb(150, 150, 150);
 				background-color: rgb(55, 55, 55);
-                font-size: 0.76em;
+				font-size: 0.76em;
 			}
 
-            .footer a {
-                color: rgb(150, 135, 73);
-                text-decoration: none;
-            }
+			.footer p {
+				width: 93%;
+			}
 
-            .footer a:hover {
-                color: rgb(150, 135, 73);
-                text-decoration: underline;
-            }
+			.footer a {
+				color: rgb(150, 135, 73);
+				text-decoration: none;
+			}
+
+			.footer a:hover {
+				color: rgb(150, 135, 73);
+				text-decoration: underline;
+			}
 		</style>
 
         <title>Welcome to the HortusFox Newsletter</title>
@@ -63,6 +92,8 @@
 
     <body>
 		<div class="headline">
+			<span><img src="{{ asset('img/logo.png') }}"/>&nbsp;&nbsp;<a href="{{ url('/') }}">hortusfox.com</a></span>
+
 			<h1>Welcome to the HortusFox Newsletter</h1>
 		</div>
 		
