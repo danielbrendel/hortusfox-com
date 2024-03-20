@@ -24,7 +24,7 @@
 
 	@if (env('APP_ENABLENEWSLETTER'))
 		<div class="newsletter">
-			<strong>Want to stay up-to-date? Subscribe to our newsletter!</strong>
+			<strong>Want to stay updated? Subscribe to our newsletter!</strong>
 
 			<form method="POST" action="{{ url('/newsletter/subscribe') }}" id="frmNewsletter">
 				@csrf 

@@ -27,6 +27,7 @@ return [
     array('/api/photo/remove', 'ANY', 'api@remove_photo'),
     array('/p/{slug}', 'GET', 'api@get_photo'),
     array('/newsletter/subscribe', 'POST', 'newsletter@subscribe'),
+    array('/newsletter/unsubscribe/{token}', 'GET', 'newsletter@unsubscribe'),
     array('/sitemap', 'GET', 'index@sitemap'),
     array('$404', 'ANY', 'error404@index')
 ];

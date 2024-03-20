@@ -6,18 +6,41 @@
 class NewsletterModel extends \Asatru\Database\Model {
     /**
      * @param $email
-     * @return void
+     * @return string
      * @throws \Exception
      */
     public static function subscribe($email)
     {
         try {
             $count = static::where('email', '=', $email)->count()->get();
-            if ($count == 0) {
-                static::raw('INSERT INTO `@THIS` (email) VALUES(?)', [$email]);
-            } else {
+            if ($count != 0) {
                 throw new \Exception('You have already subscribed to our newsletter!');
             }
+
+            $token = md5(random_bytes(55) . date('Y-m-d H:i:s') . $email);
+
+            static::raw('INSERT INTO `@THIS` (email, token) VALUES(?, ?)', [$email, $token]);
+
+            return $token;
+        } catch (\Exception $e) {
+            throw $e;
+        }
+    }
+
+    /**
+     * @param $token
+     * @return void
+     * @throws \Exception
+     */
+    public static function unsubscribe($token)
+    {
+        try {
+            $item = static::raw('SELECT * FROM `@THIS` WHERE token = ?', [$token])->first();
+            if (!$item) {
+                throw new \Exception('Subscription not found.');
+            }
+
+            static::raw('DELETE FROM `@THIS` WHERE token = ?', [$token]);
         } catch (\Exception $e) {
             throw $e;
         }
