@@ -6,9 +6,9 @@
             <h2>Collaborative self-hosted plant tracking & management</h2>
 
             <div class="page-header-badges">
-                <img src="https://img.shields.io/badge/language-php-orange" alt="language-php"/>
-                <img src="https://img.shields.io/badge/license-MIT-blue" alt="license-mit"/>
-                <img src="https://img.shields.io/badge/maintained-yes-green" alt="maintained-yes"/>
+                <img src="https://img.shields.io/github/stars/{{ env('LINK_REPOSITORY') }}?style=flat&color=green" alt="repository-stars"/>
+                <img src="https://img.shields.io/github/forks/{{ env('LINK_REPOSITORY') }}?style=flat&color=blue" alt="repository-forks"/>
+                <img src="https://img.shields.io/github/watchers/{{ env('LINK_REPOSITORY') }}?style=flat&color=orange" alt="repository-watchers"/>
             </div>
 
             <div class="page-header-buttons">
