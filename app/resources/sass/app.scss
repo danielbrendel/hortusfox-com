@@ -75,6 +75,17 @@ a.navbar-burger:hover {
     color: rgb(200, 200, 200);
 }
 
+.admin-area a.newsletter-preview {
+    position: relative;
+    top: 4px;
+    color: rgb(100, 152, 223);
+}
+
+.admin-area a.newsletter-preview:hover {
+    color: rgb(100, 152, 223);
+    text-decoration: underline;
+}
+
 .page-header {
     position: relative;
     width: 100%;

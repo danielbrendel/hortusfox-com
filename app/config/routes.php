@@ -33,5 +33,6 @@ return [
     array('/admin/softver/save', 'POST', 'admin@save_software_version'),
     array('/admin/newsletter/go', 'POST', 'admin@send_newsletter'),
     array('/admin/newsletter/process', 'ANY', 'admin@process_newsletter'),
+    array('/admin/newsletter/preview', 'POST', 'admin@preview_newsletter'),
     array('$404', 'ANY', 'error404@index')
 ];

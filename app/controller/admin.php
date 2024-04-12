@@ -92,4 +92,18 @@ class AdminController extends BaseController {
             ]);
         }
     }
+
+    /**
+	 * Handles URL: /admin/newsletter/preview
+	 * 
+	 * @param Asatru\Controller\ControllerArg $request
+	 * @return Asatru\View\RedirectHandler
+	 */
+    public function preview_newsletter($request)
+    {
+        $subject = $request->params()->query('subject');
+        $content = $request->params()->query('content');
+
+        return view('mail/newsletter_base', [], ['subject' => $subject, 'content' => $content]);
+    }
 }

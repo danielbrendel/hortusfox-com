@@ -34,19 +34,20 @@
 
         <div class="field">
             <div class="control">
-                <input type="text" class="input" name="subject" value="{{ ($app_settings->get('newsletter_subject')) ?? '' }}"/>
+                <input type="text" class="input" name="subject" id="newsletter-subject" value="{{ ($app_settings->get('newsletter_subject')) ?? '' }}"/>
             </div>
         </div>
 
         <div class="field">
             <div class="control">
-                <textarea class="textarea" name="content">{{ ($app_settings->get('newsletter_content')) ?? '' }}</textarea>
+                <textarea class="textarea" name="content" id="newsletter-content">{{ ($app_settings->get('newsletter_content')) ?? '' }}</textarea>
             </div>
         </div>
 
         <div class="field">
             <div class="control">
                 <input type="submit" class="button is-success" value="Go"/>
+                &nbsp;<a class="newsletter-preview" href="javascript:void(0);" onclick="window.vue.previewNewsletter(document.getElementById('newsletter-subject'), document.getElementById('newsletter-content'), '{{ $_GET['token'] }}');">Preview</a>
             </div>
         </div>
     </form>

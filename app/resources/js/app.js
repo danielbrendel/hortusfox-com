@@ -91,5 +91,28 @@ window.vue = new Vue({
                 window.vue.bShowPreviewImageModal = true;
             }
         },
+
+        previewNewsletter: function(subject, content, token) {
+            const form = document.createElement('form');
+            form.method = 'POST';
+            form.action = window.location.origin + '/admin/newsletter/preview?token=' + token;
+            form.target = '_blank';
+
+            const inpSubject = document.createElement('input');
+            inpSubject.type = 'text';
+            inpSubject.name = 'subject';
+            inpSubject.value = subject.value;
+            inpSubject.style.display = 'none';
+            form.appendChild(inpSubject);
+
+            const inpContent = document.createElement('textarea');
+            inpContent.name = 'content';
+            inpContent.value = content.value;
+            inpContent.style.display = 'none';
+            form.appendChild(inpContent);
+
+            document.body.appendChild(form);
+            form.submit();
+        },
     }
 });
