@@ -1,3 +1,3 @@
 <?php
 
-return env('APP_SOFTWARE_VERSION', null);
+return app('software_version', null);

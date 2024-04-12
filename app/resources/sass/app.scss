@@ -70,6 +70,11 @@ a.navbar-burger:hover {
     }
 }
 
+.admin-area input, .admin-area textarea {
+    background-color: rgba(50, 50, 50, 0.5);
+    color: rgb(200, 200, 200);
+}
+
 .page-header {
     position: relative;
     width: 100%;

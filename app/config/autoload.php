@@ -15,5 +15,6 @@
 */
 
 return [
+    '/helper/AppHelper.php',
     '/helper/MailHelper.php'
 ];

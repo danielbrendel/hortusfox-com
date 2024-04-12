@@ -1,13 +1,13 @@
 <?php
 
 /*
-    Asatru PHP - Migration for NewsletterModel
+    Asatru PHP - Migration for AppModel
 */
 
 /**
  * This class specifies a migration
  */
-class NewsletterModel_Migration {
+class AppModel_Migration {
     private $database = null;
     private $connection = null;
 
@@ -29,12 +29,13 @@ class NewsletterModel_Migration {
      */
     public function up()
     {
-        $this->database = new Asatru\Database\Migration('NewsletterModel', $this->connection);
+        $this->database = new Asatru\Database\Migration('AppModel', $this->connection);
         $this->database->drop();
         $this->database->add('id INT NOT NULL AUTO_INCREMENT PRIMARY KEY');
-        $this->database->add('email VARCHAR(512) NOT NULL');
-        $this->database->add('token VARCHAR(512) NOT NULL');
-        $this->database->add('process VARCHAR(512) NULL');
+        $this->database->add('software_version VARCHAR(512) NOT NULL');
+        $this->database->add('newsletter_token VARCHAR(512) NULL');
+        $this->database->add('newsletter_subject VARCHAR(512) NULL');
+        $this->database->add('newsletter_content TEXT NULL');
         $this->database->add('created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP');
         $this->database->create();
     }

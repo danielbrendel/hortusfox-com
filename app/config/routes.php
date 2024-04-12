@@ -29,5 +29,9 @@ return [
     array('/newsletter/subscribe', 'POST', 'newsletter@subscribe'),
     array('/newsletter/unsubscribe/{token}', 'GET', 'newsletter@unsubscribe'),
     array('/sitemap', 'GET', 'index@sitemap'),
+    array('/admin', 'GET', 'admin@index'),
+    array('/admin/softver/save', 'POST', 'admin@save_software_version'),
+    array('/admin/newsletter/go', 'POST', 'admin@send_newsletter'),
+    array('/admin/newsletter/process', 'ANY', 'admin@process_newsletter'),
     array('$404', 'ANY', 'error404@index')
 ];

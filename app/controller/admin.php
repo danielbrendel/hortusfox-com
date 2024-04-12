@@ -1,0 +1,95 @@
+<?php
+
+/**
+ * This class represents your controller
+ */
+class AdminController extends BaseController {
+    /**
+     * @return void
+     */
+    public function __construct()
+    {
+        parent::__construct();
+
+        if ((!isset($_GET['token'])) || ($_GET['token'] !== env('APP_ACCESSTOKEN'))) {
+            http_response_code(403);
+            exit('Access denied.');
+        }
+    }
+
+    /**
+	 * Handles URL: /admin
+	 * 
+	 * @param Asatru\Controller\ControllerArg $request
+	 * @return Asatru\View\ViewHandler
+	 */
+    public function index($request)
+    {
+        $app_settings = AppModel::getSettings();
+
+        return parent::view(['content', 'admin'], [
+			'app_settings' => $app_settings
+		]);;
+    }
+
+    /**
+	 * Handles URL: /admin/softver/save
+	 * 
+	 * @param Asatru\Controller\ControllerArg $request
+	 * @return Asatru\View\RedirectHandler
+	 */
+    public function save_software_version($request)
+    {
+        $software_version = $request->params()->query('software_version');
+
+        AppModel::saveSetting('software_version', $software_version);
+
+        FlashMessage::setMsg('success', 'Software version was updated!');
+
+        return redirect('/admin?token=' . $_GET['token']);
+    }
+
+    /**
+	 * Handles URL: /admin/newsletter/go
+	 * 
+	 * @param Asatru\Controller\ControllerArg $request
+	 * @return Asatru\View\RedirectHandler
+	 */
+    public function send_newsletter($request)
+    {
+        $subject = $request->params()->query('subject');
+        $content = $request->params()->query('content');
+
+        $newsletter_token = md5(random_bytes(55) . date('Y-m-d H:i:s'));
+
+        AppModel::saveSetting('newsletter_token', $newsletter_token);
+        AppModel::saveSetting('newsletter_subject', $subject);
+        AppModel::saveSetting('newsletter_content', $content);
+
+        FlashMessage::setMsg('success', 'Newsletter is now in progress!');
+
+        return redirect('/admin?token=' . $_GET['token']);
+    }
+
+    /**
+	 * Handles URL: /admin/newsletter/process
+	 * 
+	 * @param Asatru\Controller\ControllerArg $request
+	 * @return Asatru\View\JsonHandler
+	 */
+    public function process_newsletter($request)
+    {
+        try {
+            AppModel::processNewsletter();
+
+            return json([
+                'code' => 200
+            ]);
+        } catch (\Exception $e) {
+            return json([
+                'code' => 500,
+                'msg' => $e->getMessage()
+            ]);
+        }
+    }
+}

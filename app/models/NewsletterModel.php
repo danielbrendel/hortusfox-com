@@ -45,4 +45,33 @@ class NewsletterModel extends \Asatru\Database\Model {
             throw $e;
         }
     }
+
+    /**
+     * @param $process
+     * @return mixed
+     * @throws \Exception
+     */
+    public static function getProcessUsers($process, $limit = 5)
+    {
+        try {
+            return static::raw('SELECT * FROM `@THIS` WHERE process <> ? OR process IS NULL LIMIT ' . $limit, [$process]);
+        } catch (\Exception $e) {
+            throw $e;
+        }
+    }
+
+    /**
+     * @param $id
+     * @param $process
+     * @return void
+     * @throws \Exception
+     */
+    public static function updateUserProcess($id, $process)
+    {
+        try {
+            static::raw('UPDATE `@THIS` SET process = ? WHERE id = ?', [$process, $id]);
+        } catch (\Exception $e) {
+            throw $e;
+        }
+    }
 }
