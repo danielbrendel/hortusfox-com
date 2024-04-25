@@ -51,4 +51,12 @@
             </div>
         </div>
     </form>
+
+    <hr/>
+
+    <p>Toggle Newsletter process</p>
+
+    <p>
+        <a href="{{ url('/admin/newsletter/toggle?token=' . $_GET['token']) }}" class="button {{ ((app('newsletter_enable')) ? 'is-danger' : 'is-success') }}">{{ ((app('newsletter_enable')) ? 'Disable' : 'Enable') }}</a>
+    </p>
 </div>

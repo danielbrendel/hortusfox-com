@@ -33,6 +33,7 @@ class AppModel_Migration {
         $this->database->drop();
         $this->database->add('id INT NOT NULL AUTO_INCREMENT PRIMARY KEY');
         $this->database->add('software_version VARCHAR(512) NOT NULL');
+        $this->database->add('newsletter_enable BOOLEAN NOT NULL DEFAULT 1');
         $this->database->add('newsletter_token VARCHAR(512) NULL');
         $this->database->add('newsletter_subject VARCHAR(512) NULL');
         $this->database->add('newsletter_content TEXT NULL');

@@ -57,6 +57,10 @@ class AppModel extends \Asatru\Database\Model {
     public static function processNewsletter($id = 1)
     {
         try {
+            if (!app('newsletter_enable')) {
+                throw new \Exception('Newsletter is not enabled.');
+            }
+
             $token = static::querySetting('newsletter_token', $id);
             $subject = static::querySetting('newsletter_subject', $id);
             $content = static::querySetting('newsletter_content', $id);

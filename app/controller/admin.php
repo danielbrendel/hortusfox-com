@@ -50,6 +50,25 @@ class AdminController extends BaseController {
     }
 
     /**
+	 * Handles URL: /admin/newsletter/toggle
+	 * 
+	 * @param Asatru\Controller\ControllerArg $request
+	 * @return Asatru\View\RedirectHandler
+	 */
+    public function toggle_newsletter($request)
+    {
+        $newsletter_enable = (bool)AppModel::querySetting('newsletter_enable');
+
+        $newsletter_enable = !$newsletter_enable;
+
+        AppModel::saveSetting('newsletter_enable', $newsletter_enable);
+
+        FlashMessage::setMsg('success', (($newsletter_enable) ? 'Newsletter is now enabled!' : 'Newsletter is now disabled!'));
+
+        return redirect('/admin?token=' . $_GET['token']);
+    }
+
+    /**
 	 * Handles URL: /admin/newsletter/go
 	 * 
 	 * @param Asatru\Controller\ControllerArg $request

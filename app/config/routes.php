@@ -31,6 +31,7 @@ return [
     array('/sitemap', 'GET', 'index@sitemap'),
     array('/admin', 'GET', 'admin@index'),
     array('/admin/softver/save', 'POST', 'admin@save_software_version'),
+    array('/admin/newsletter/toggle', 'ANY', 'admin@toggle_newsletter'),
     array('/admin/newsletter/go', 'POST', 'admin@send_newsletter'),
     array('/admin/newsletter/process', 'ANY', 'admin@process_newsletter'),
     array('/admin/newsletter/preview', 'POST', 'admin@preview_newsletter'),
