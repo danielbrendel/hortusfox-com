@@ -48,6 +48,7 @@ class NewsletterModel extends \Asatru\Database\Model {
 
     /**
      * @param $process
+     * @param $limit
      * @return mixed
      * @throws \Exception
      */
