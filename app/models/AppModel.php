@@ -70,7 +70,7 @@ class AppModel extends \Asatru\Database\Model {
                 $mail = new Asatru\SMTPMailer\SMTPMailer();
                 $mail->setRecipient($user->get('email'));
                 $mail->setSubject($subject);
-                $mail->setView('mail/newsletter_base', [], ['subject' => $subject, 'content' => $content]);
+                $mail->setView('mail/newsletter_base', [], ['subject' => $subject, 'content' => $content, 'token' => $user->get('token')]);
                 $mail->setProperties(mail_properties());
                 $mail->send();
 
