@@ -77,10 +77,8 @@ class IndexController extends BaseController {
 	 */
 	public function tutorials($request)
 	{
-		$videos = [];
-		$videos['install'] = TutorialsModel::getTutorials('install');
-		$videos['usage'] = TutorialsModel::getTutorials('usage');
-
+		$videos = TutorialsModel::getAll();
+		
 		//Generate and return a view by using the helper
 		return parent::view(['content', 'tutorials'], [
 			'_meta_title' => 'Tutorials',

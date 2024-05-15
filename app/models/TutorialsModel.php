@@ -17,4 +17,17 @@ class TutorialsModel extends \Asatru\Database\Model {
             throw $e;
         }
     }
+
+    /**
+     * @return mixed
+     * @throws \Exception
+     */
+    public static function getAll()
+    {
+        try {
+            return static::raw('SELECT * FROM `@THIS` ORDER BY category ASC');
+        } catch (\Exception $e) {
+            throw $e;
+        }
+    }
 }

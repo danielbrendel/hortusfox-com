@@ -6,31 +6,27 @@
     </p>
 
     <div class="tutorials">
-        <div class="tutorial-section">
-            <h3>Setup</h3>
+        <?php $lastCat = ''; ?>
 
-            @foreach ($videos['install'] as $install_video)
+        @foreach ($videos as $install_video)
+            <?php 
+                if ($lastCat !== $install_video->get('category')) {
+                    if ($lastCat !== '') {
+                        echo '</div>';
+                    }
+
+                    $lastCat = $install_video->get('category');
+
+                    echo '<div class="tutorial-section"><h3>' . ucfirst($install_video->get('category')) . '</h3>';
+                }
+            ?>
+
             <div class="tutorial-section-item">
                 <h4>{{ $install_video->get('title') }}</h4>
 
                 <iframe src="{{ $install_video->get('url') }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
-            @endforeach
-        </div>
-        
-        <hr/>
-
-        <div class="tutorial-section">
-            <h3>Usage</h3>
-
-            @foreach ($videos['usage'] as $usage_video)
-            <div class="tutorial-section-item">
-                <h4>{{ $usage_video->get('title') }}</h4>
-
-                <iframe src="{{ $usage_video->get('url') }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-            </div>
-            @endforeach
-        </div>
+        @endforeach
     </div>
 
     
