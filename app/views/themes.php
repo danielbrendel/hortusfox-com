@@ -2,7 +2,7 @@
     <h2>Themes</h2>
 
     <p class="is-font-medium">
-        Download additional themes to customize your workspace to fit your personal need.<br/><br/>
+        Download additional themes to personalize your workspace.<br/><br/>
     </p>
 
    <div class="themes">

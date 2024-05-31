@@ -66,6 +66,7 @@ class IndexController extends BaseController {
 
 		return parent::view(['content', 'themes'], [
 			'_meta_title' => 'Themes - The extra spice for your workspace',
+			'_meta_description' => 'Download additional themes to personalize your workspace',
 			'themes' => ThemeModel::getThemes()
 		]);
 	}
@@ -83,6 +84,7 @@ class IndexController extends BaseController {
 		//Generate and return a view by using the helper
 		return parent::view(['content', 'tutorials'], [
 			'_meta_title' => 'Tutorials',
+			'_meta_description' => 'Get familiar with the app',
 			'videos' => $videos
 		]);
 	}
@@ -98,7 +100,8 @@ class IndexController extends BaseController {
 		//Generate and return a view by using the helper
 		return parent::view(['content', 'faq'], [
 			'faqs' => FaqModel::getEntries(),
-			'_meta_title' => 'Frequently Asked Questions'
+			'_meta_title' => 'Frequently Asked Questions',
+			'_meta_description' => 'Get answers to frequently asked questions',
 		]);
 	}
 
@@ -126,6 +129,7 @@ class IndexController extends BaseController {
 		//Generate and return a view by using the helper
 		return parent::view(['content', 'demo'], [
 			'_meta_title' => 'Live Demo',
+			'_meta_description' => 'Try the app before installing',
 			'accounts' => $accounts
 		]);
 	}
