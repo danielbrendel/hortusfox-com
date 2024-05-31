@@ -47,7 +47,8 @@ class IndexController extends BaseController {
 	{
 		//Generate and return a view by using the helper
 		return parent::view(['content', 'screenshots'], [
-			'_meta_title' => 'Screenshots'
+			'_meta_title' => 'Screenshots',
+			'_meta_description' => 'Get a visual impression of the app'
 		]);
 	}
 
