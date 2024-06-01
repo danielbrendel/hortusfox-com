@@ -24,6 +24,9 @@
         <script src="{{ asset('js/vue.min.js') }}"></script>
         @endif
         <script src="{{ asset('js/fontawesome.js') }}"></script>
+        @if (env('HELPREALM_WIDGET_ENABLE'))
+        <script src="{{ env('HELPREALM_URL') . '/js/widget.js' }}"></script>
+        @endif
     </head>
 
     <body>
@@ -125,6 +128,10 @@
 
                 <button class="modal-close is-large" aria-label="close" onclick="window.vue.bShowPreviewImageModal = false;"></button>
             </div>
+
+            @if (env('HELPREALM_WIDGET_ENABLE'))
+                <div id="support-widget"></div>
+            @endif
         </div>
 
         <script src="{{ asset('js/app.js', true) }}"></script>
@@ -139,6 +146,33 @@
                         document.getElementsByClassName('navbar')[0].classList.remove('navbar-background-color');
                     }
                 });
+
+                @if (env('HELPREALM_WIDGET_ENABLE'))
+                    let widget = new HelpRealmWidget({
+                        elem: '#support-widget',
+                        workspace: '{{ env('HELPREALM_WORKSPACE') }}',
+                        apiKey: '{{ env('HELPREALM_WIDGET_TOKEN') }}',
+                        header: '{{ asset('img/background.jpg') }}',
+                        logo: '{{ asset('img/logo_black_bg.png') }}',
+                        button: null,
+                        fileUpload: false,
+                        lang: {
+                            title: 'Support',
+                            lblInputName: 'Enter your name',
+                            lblInputEmail: 'Enter your E-Mail',
+                            lblInputSubject: 'What is your topic?',
+                            lblInputMessage: 'What is on your mind?',
+                            lblInputFile: 'Attachment (optional)',
+                            btnSubmit: 'Submit',
+                            error: 'Elem {elem} is invalid or missing',
+                            access: 'Access denied!',
+                        },
+                        ticket: {
+                            type: {{ env('HELPREALM_TICKET_TYPE') }},
+                            prio: {{ SupportModule::TICKET_PRIORITY_LOW }}
+                        },
+                    });
+                @endif
             });
         </script>
     </body>
