@@ -96,6 +96,14 @@
                         </span>
                         @endif
 
+                        @if (env('LINK_MASTODON'))
+                        <span>
+                            <a href="{{ env('LINK_MASTODON') }}" target="_blank">
+                                <i class="fab fa-mastodon fa-2x"></i>
+                            </a>
+                        </span>
+                        @endif
+
                         @if (env('LINK_INSTAGRAM'))
                         <span>
                             <a href="{{ env('LINK_INSTAGRAM') }}" target="_blank">
