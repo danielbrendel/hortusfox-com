@@ -22,6 +22,8 @@ return [
     array('/tutorials', 'GET', 'index@tutorials'),
     array('/faq', 'GET', 'index@faq'),
     array('/demo', 'GET', 'index@demo'),
+    array('/support', 'GET', 'index@support'),
+    array('/support', 'POST', 'index@support_request'),
     array('/software/version', 'GET', 'version@get_version'),
     array('/api/photo/share', 'POST', 'api@share_photo'),
     array('/api/photo/remove', 'ANY', 'api@remove_photo'),

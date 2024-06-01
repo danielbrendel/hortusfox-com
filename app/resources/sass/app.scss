@@ -435,6 +435,24 @@ div.page-downloads {
     padding: 20px;
 }
 
+.support {
+    position: relative;
+    margin-top: 50px;
+}
+
+.support label {
+    color: rgb(150, 150, 150);
+}
+
+.support input, .support textarea {
+    background-color: rgba(50, 50, 50, 0.5);
+    color: rgb(150, 150, 150);
+}
+
+.support div.control {
+    margin-bottom: 20px;
+}
+
 .demo-list {
     margin-bottom: 40px;
     text-align: center;

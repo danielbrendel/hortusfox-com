@@ -140,6 +140,56 @@ class IndexController extends BaseController {
 	}
 
 	/**
+	 * Handles URL: /support
+	 * 
+	 * @param Asatru\Controller\ControllerArg $request
+	 * @return Asatru\View\ViewHandler
+	 */
+	public function support($request)
+	{
+		//Generate and return a view by using the helper
+		return parent::view(['content', 'support'], [
+			'faqs' => FaqModel::getEntries(),
+			'_meta_title' => 'Get Support',
+			'_meta_description' => 'Are you having problems? Something is not working? Contact us!',
+			'_meta_url' => url('/support'),
+		]);
+	}
+
+	/**
+	 * Handles URL: POST /support
+	 * 
+	 * @param Asatru\Controller\ControllerArg $request
+	 * @return Asatru\View\ViewHandler
+	 */
+	public function support_request($request)
+	{
+		try {
+			if (!env('HELPREALM_RESTAPI_ENABLE')) {
+				throw new \Exception('This feature is currently disabled.');
+			}
+
+			$name = $request->params()->query('name');
+			$email = $request->params()->query('email');
+			$subject = $request->params()->query('subject');
+			$message = $request->params()->query('message');
+			$consent = (bool)$request->params()->query('consent', 0);
+			
+			if (!$consent) {
+				throw new \Exception('Please consent to our support conditions.');
+			}
+
+			SupportModule::request($name, $email, $subject, $message);
+
+			FlashMessage::setMsg('success', 'Your support request was submitted. We will get back to you as soon as possible.');
+			return redirect('/support');
+		} catch (\Exception $e) {
+			FlashMessage::setMsg('error', $e->getMessage());
+			return redirect('/support');
+		}
+	}
+
+	/**
 	 * Handles URL: /sitemap
 	 * 
 	 * @param Asatru\Controller\ControllerArg $request

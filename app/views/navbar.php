@@ -46,6 +46,12 @@
             <a class="navbar-item" href="{{ env('LINK_GITHUB') }}">
                 GitHub
             </a>
+
+            @if (env('HELPREALM_RESTAPI_ENABLE'))
+            <a class="navbar-item" href="{{ url('/support') }}">
+                <i class="fas fa-headset"></i>&nbsp;Support
+            </a>
+            @endif
         </div>
     </div>
 </nav>
