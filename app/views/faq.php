@@ -17,6 +17,6 @@
     <p class="is-font-medium">Still having questions?</p>
 
     <p>
-        <a class="button is-link button-stretched" href="mailto:{{ env('APP_CONTACT') }}">Contact Us</a>
+        <a class="button is-link button-stretched" href="{{ ((env('HELPREALM_RESTAPI_ENABLE')) ? url('/support') : 'mailto:' . env('APP_CONTACT')) }}">Contact Us</a>
     </p>
 </div>
