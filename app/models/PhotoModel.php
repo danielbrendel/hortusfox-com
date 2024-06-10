@@ -41,7 +41,8 @@ class PhotoModel extends \Asatru\Database\Model {
 
             return [
                 'ident' => $ident,
-                'url' => url('/p/' . $slug)
+                'url' => url('/p/' . $slug),
+                'asset' => asset('img/photos/' . $file_name . '_thumb.' . $file_ext)
             ];
         } catch (Exception $e) {
             throw $e;
