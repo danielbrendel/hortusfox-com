@@ -2,7 +2,9 @@
     <h2>Video Tutorials</h2>
 
     <p class="is-font-medium">
-        Here you can find video tutorials around HortusFox.
+        Here you can find video tutorials around HortusFox. 
+        Want to get to know how to setup the product? Want to learn more about the usage? 
+        We got you covered!
     </p>
 
     <div class="tutorials">

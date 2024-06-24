@@ -2,7 +2,7 @@
     <h2>Screenshots</h2>
 
     <p class="is-font-medium">
-        Get an impression of the software.
+        Get a visual impression of the software. View screenshots about various sections of the app.
     </p>
 
     <div><br/><br/></div>

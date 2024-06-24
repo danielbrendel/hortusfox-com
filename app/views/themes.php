@@ -2,7 +2,8 @@
     <h2>Themes</h2>
 
     <p class="is-font-medium">
-        Download additional themes to personalize your workspace.<br/><br/>
+        Download additional themes to personalize your workspace. Themes are useful to give your workspace a more personal appearience.
+        Feel free to create and submit your own themes.<br/><br/>
     </p>
 
    <div class="themes">

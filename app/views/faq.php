@@ -3,6 +3,7 @@
 
     <p class="is-font-medium">
         Here you can find the most asked questions with answers.
+        If you don't find an answer here, feel free to contact us.
     </p>
 
     <div class="faq">
