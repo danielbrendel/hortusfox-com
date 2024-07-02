@@ -140,6 +140,13 @@
                     &nbsp;|&nbsp;
 				@endif
 
+				@if (env('LINK_MASTODON'))
+					<a href="{{ env('LINK_MASTODON') }}" target="_blank">
+						Mastodon
+					</a>
+					&nbsp;|&nbsp;
+				@endif
+
 				@if (env('LINK_INSTAGRAM'))
 					<a href="{{ env('LINK_INSTAGRAM') }}" target="_blank">
 						Instagram
