@@ -103,7 +103,7 @@
 
     <div class="page-screenshots is-clickable">
         <div class="page-screenshot-item screenshot-desktop">
-            <img src="{{ asset('img/screenshots/Screenshot 2024-03-05 185643.png') }}" alt="screenshot" onclick="window.vue.showImagePreview(this.getAttribute('src'), 'is-5by3');"/>
+            <img src="{{ asset('img/screenshots/Screenshot 2024-07-10 123008.png') }}" alt="screenshot" onclick="window.vue.showImagePreview(this.getAttribute('src'), 'is-5by3');"/>
         </div>
     </div>
 </div>
