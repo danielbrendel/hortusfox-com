@@ -54,7 +54,13 @@
                     <div class="column is-3"></div>
 
                     <div class="column is-3">
-                        <div class="is-margin-bottom-10">&copy; {{ date('Y') }} by {{ env('APP_AUTHOR') }}.</div>
+                        <div class="is-margin-bottom-10">
+                            @if (env('LINK_PERSONAL'))
+                            &copy; {{ date('Y') }} by <a href="{{ env('LINK_PERSONAL') }}">{{ env('APP_AUTHOR') }}</a>.
+                            @else
+                            &copy; {{ date('Y') }} by {{ env('APP_AUTHOR') }}.
+                            @endif
+                        </div>
 
                         <div>
                             HortusFox is open-sourced software licensed under the MIT license. 
