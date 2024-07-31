@@ -157,6 +157,10 @@
 		</p>
 
 		<p class="sponsoring">
+			<iframe src="https://github.com/sponsors/danielbrendel/button" title="Sponsor danielbrendel" height="32" width="114" style="border: 0; border-radius: 6px;"></iframe>
+		</p>
+
+		<p class="sponsoring">
 			<a href='https://ko-fi.com/C0C7V2ESD' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://storage.ko-fi.com/cdn/kofi2.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
 		</p>
 	@endif
