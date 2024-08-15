@@ -35,6 +35,7 @@ class PhotoModel_Migration {
         $this->database->add('ident VARCHAR(512) NOT NULL');
         $this->database->add('slug VARCHAR(512) NOT NULL');
         $this->database->add('title VARCHAR(512) NOT NULL');
+        $this->database->add('workspace VARCHAR(512) NOT NULL');
         $this->database->add('thumb VARCHAR(1024) NOT NULL');
         $this->database->add('full VARCHAR(1024) NOT NULL');
         $this->database->add('created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP');

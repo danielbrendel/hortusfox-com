@@ -28,8 +28,9 @@ class ApiController extends BaseController {
     {
         try {
             $title = $request->params()->query('title', 'Untitled Photo');
+            $workspace = $request->params()->query('workspace', 'Unnamed workspace');
 
-            $data = PhotoModel::store($title);
+            $data = PhotoModel::store($title, $workspace);
 
             return json([
                 'code' => 200,

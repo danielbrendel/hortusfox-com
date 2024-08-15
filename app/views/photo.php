@@ -6,7 +6,7 @@
 
         <title>{{ $photo->get('title') }}</title>
 
-        <meta name="og:title" property="og:title" content="Personal workspace photo">
+        <meta name="og:title" property="og:title" content="{{ $photo->get('workspace') }}">
         <meta name="og:description" property="og:description" content="{{ $photo->get('title') }}">
         <meta name="og:url" property="og:url" content="{{ url('/p/' . $photo->get('slug')) }}">
         <meta name="og:image" property="og:image" content="{{ asset('img/photos/' . $photo->get('thumb')) }}">

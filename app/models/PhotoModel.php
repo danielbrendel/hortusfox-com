@@ -8,10 +8,11 @@ class PhotoModel extends \Asatru\Database\Model {
 
     /**
      * @param $title
+     * @param $workspace
      * @return array
      * @throws \Exception
      */
-    public static function store($title)
+    public static function store($title, $workspace)
     {
         try {
             if ((!isset($_FILES[self::FILE_IDENT])) || ($_FILES[self::FILE_IDENT]['error'] !== UPLOAD_ERR_OK)) {
@@ -35,8 +36,8 @@ class PhotoModel extends \Asatru\Database\Model {
                 throw new \Exception('createThumbFile failed');
             }
 
-            static::raw('INSERT INTO `@THIS` (title, ident, slug, thumb, full) VALUES(?, ?, ?, ?, ?)', [
-                $title, $ident, $slug, $file_name . '_thumb.' . $file_ext, $file_name . '.' . $file_ext
+            static::raw('INSERT INTO `@THIS` (title, workspace, ident, slug, thumb, full) VALUES(?, ?, ?, ?, ?, ?)', [
+                $title, $workspace, $ident, $slug, $file_name . '_thumb.' . $file_ext, $file_name . '.' . $file_ext
             ]);
 
             return [
