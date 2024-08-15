@@ -69,7 +69,7 @@
                         </div>
                     </div>
 
-                    <div class="column is-3 is-desktop-right">
+                    <div class="column is-3 is-desktop-right is-span-margin-bottom">
                         @if (env('LINK_GITHUB'))
                         <span>
                             <a href="{{ env('LINK_GITHUB') }}" target="_blank">
@@ -98,6 +98,14 @@
                         <span>
                             <a href="{{ env('LINK_YOUTUBE') }}" target="_blank">
                                 <i class="fab fa-youtube fa-2x"></i>
+                            </a>
+                        </span>
+                        @endif
+
+                        @if (env('LINK_FOSSVIDEO'))
+                        <span>
+                            <a href="{{ env('LINK_FOSSVIDEO') }}" target="_blank">
+                                <i class="fas fa-video fa-2x"></i>
                             </a>
                         </span>
                         @endif
