@@ -169,6 +169,13 @@
                     }
                 });
 
+                @if (env('APP_ENABLE_PHOTO_SHARE'))
+                let elCommunity = document.getElementById('community-content');
+                if (elCommunity) {
+                    window.vue.fetchCommunityPhotos(elCommunity);
+                }
+                @endif
+
                 @if (env('HELPREALM_WIDGET_ENABLE'))
                     let widget = new HelpRealmWidget({
                         elem: '#support-widget',

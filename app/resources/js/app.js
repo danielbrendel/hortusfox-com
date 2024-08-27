@@ -6,8 +6,8 @@
 
 import './../sass/app.scss';
 
-/*window.axios = require('axios');
-window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';*/
+window.axios = require('axios');
+window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 window.vue = new Vue({
     el: '#app',
@@ -15,6 +15,7 @@ window.vue = new Vue({
     data: {
         bShowPreviewImageModal: false,
         clsLastImagePreviewAspect: '',
+        communityPhotoPaginate: null,
     },
 
     methods: {
@@ -113,6 +114,63 @@ window.vue = new Vue({
 
             document.body.appendChild(form);
             form.submit();
+        },
+
+        fetchCommunityPhotos: function(target) {
+            target.innerHTML += '<div id="spinner"><i class="fas fa-spinner fa-spin"></i></div>';
+
+            window.vue.ajaxRequest('post', window.location.origin + '/community/fetch', { paginate: window.vue.communityPhotoPaginate }, function(response) {
+                if (response.code == 200) {
+                    let spinner = document.getElementById('spinner');
+                    if (spinner) {
+                        spinner.remove();
+                    }
+
+                    response.data.forEach(function(elem, index) {
+                        target.innerHTML += `
+                            <div class="community-item">
+                                <div class="community-item-title">` + elem.title + `</div>
+                                
+                                <div class="community-item-photo" style="background-image: url('` + window.location.origin + '/img/photos/' + elem.thumb + `');"></div>
+
+                                <div class="community-item-description">
+                                     ` + ((elem.description) ? elem.description : '<i>No description provided</i>') + `
+                                </div>
+
+                                <div class="community-item-keywords">
+                                     ` + window.vue.formattedKeywords(elem.keywords) + `
+                                </div>
+                            </div>
+                        `;
+                    });
+
+                    window.vue.communityPhotoPaginate = response.data[response.data.length - 1].id; 
+
+                    if (window.vue.communityPhotoPaginate > response.first) {
+                        target.innerHTML += '<div id="loadmore"><a class="is-default-link" href="javascript:void(0);" onclick="window.vue.fetchCommunityPhotos(document.getElementById(\'' + target.id + '\')); document.getElementById(\'loadmore\').remove();">Load more</a></div>';
+                    }
+                } else {
+                    console.error(response.msg);
+                }
+            });
+        },
+
+        formattedKeywords: function(keywords) {
+            let result = '';
+
+            if (!Array.isArray(keywords)) {
+                return result;
+            }
+
+            keywords.forEach(function(elem, index) {
+                result += `
+                    <div class="community-item-keywords-tag">
+                        <a href="` + window.location.origin + '/community?tag=' + elem + `">` + elem + `</a>
+                    </div>
+                `;
+            });
+
+            return result;
         },
     }
 });

@@ -9,10 +9,13 @@ class PhotoModel extends \Asatru\Database\Model {
     /**
      * @param $title
      * @param $workspace
+     * @param $public
+     * @param $description
+     * @param $keywords
      * @return array
      * @throws \Exception
      */
-    public static function store($title, $workspace)
+    public static function store($title, $workspace, $public, $description, $keywords)
     {
         try {
             if ((!isset($_FILES[self::FILE_IDENT])) || ($_FILES[self::FILE_IDENT]['error'] !== UPLOAD_ERR_OK)) {
@@ -36,14 +39,15 @@ class PhotoModel extends \Asatru\Database\Model {
                 throw new \Exception('createThumbFile failed');
             }
 
-            static::raw('INSERT INTO `@THIS` (title, workspace, ident, slug, thumb, full) VALUES(?, ?, ?, ?, ?, ?)', [
-                $title, $workspace, $ident, $slug, $file_name . '_thumb.' . $file_ext, $file_name . '.' . $file_ext
+            static::raw('INSERT INTO `@THIS` (title, workspace, ident, slug, thumb, full, public, description, keywords) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)', [
+                $title, $workspace, $ident, $slug, $file_name . '_thumb.' . $file_ext, $file_name . '.' . $file_ext, $public, $description, $keywords
             ]);
 
             return [
                 'ident' => $ident,
                 'url' => url('/p/' . $slug),
-                'asset' => asset('img/photos/' . $file_name . '_thumb.' . $file_ext)
+                'asset' => asset('img/photos/' . $file_name . '_thumb.' . $file_ext),
+                'public' => $public
             ];
         } catch (Exception $e) {
             throw $e;
@@ -88,6 +92,47 @@ class PhotoModel extends \Asatru\Database\Model {
             return static::where('slug', '=', $slug)->first();
         } catch (\Exception $e) {
             throw $e;
+        }
+    }
+
+    /**
+     * @param $paginate
+     * @param $tag
+     * @return mixed
+     * @throws \Exception
+     */
+    public static function fetchPublicContent($paginate = null, $tag = null)
+    {
+        try {
+            if ($paginate === null) {
+                if ($tag === null) {
+                    return static::raw('SELECT * FROM `@THIS` WHERE public = 1 ORDER BY id DESC LIMIT 12');
+                } else {
+                    return static::raw('SELECT * FROM `@THIS` WHERE public = 1 AND keywords LIKE ? ORDER BY id DESC LIMIT 12', ['%' . $tag . '%']);
+                }
+            } else {
+                if ($tag === null) {
+                    return static::raw('SELECT * FROM `@THIS` WHERE public = 1 AND id < ? ORDER BY id DESC LIMIT 12', [$paginate]);
+                } else {
+                    return static::raw('SELECT * FROM `@THIS` WHERE public = 1 AND id < ? AND keywords LIKE ? ORDER BY id DESC LIMIT 12', [$paginate, '%' . $tag . '%']);
+                }
+            }
+        } catch (\Exception $e) {
+            throw $e;
+        }
+    }
+
+    /**
+     * @param $public
+     * @return int
+     * @throws \Exception
+     */
+    public static function getFirstItemId($public = true)
+    {
+        try {
+            return static::where('public', '=', $public)->first()->get('id');
+        } catch (\Exception $e) {
+            return 0;
         }
     }
 }
