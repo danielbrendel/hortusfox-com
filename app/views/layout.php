@@ -172,6 +172,10 @@
                 @if (env('APP_ENABLE_PHOTO_SHARE'))
                 let elCommunity = document.getElementById('community-content');
                 if (elCommunity) {
+                    @if (isset($_GET['tag']))
+                        window.vue.communityPhotoFilterTag = '{{ $_GET['tag'] }}';
+                    @endif
+
                     window.vue.fetchCommunityPhotos(elCommunity);
                 }
                 @endif

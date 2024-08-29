@@ -25,7 +25,10 @@ class CommunityController extends BaseController {
 	public function index($request)
 	{
 		return parent::view(['content', 'community'], [
-			'show_header' => false
+			'show_header' => false,
+			'_meta_title' => 'Community Photos',
+			'_meta_description' => 'View plant photos from the workspaces of our community',
+			'_meta_url' => url('/community'),
 		]);
 	}
 
@@ -42,7 +45,7 @@ class CommunityController extends BaseController {
             $tag = $request->params()->query('tag', null);
 
             $data = PhotoModel::fetchPublicContent($paginate, $tag)->asArray();
-            $first = PhotoModel::getFirstItemId();
+            $first = PhotoModel::getFirstItemId($tag);
 
             foreach ($data as $key => &$item) {
                 if ((is_string($item['keywords'])) && (strlen($item['keywords']) > 0)) {

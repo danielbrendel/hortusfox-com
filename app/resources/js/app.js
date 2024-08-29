@@ -16,6 +16,7 @@ window.vue = new Vue({
         bShowPreviewImageModal: false,
         clsLastImagePreviewAspect: '',
         communityPhotoPaginate: null,
+        communityPhotoFilterTag: null,
     },
 
     methods: {
@@ -119,7 +120,7 @@ window.vue = new Vue({
         fetchCommunityPhotos: function(target) {
             target.innerHTML += '<div id="spinner"><i class="fas fa-spinner fa-spin"></i></div>';
 
-            window.vue.ajaxRequest('post', window.location.origin + '/community/fetch', { paginate: window.vue.communityPhotoPaginate }, function(response) {
+            window.vue.ajaxRequest('post', window.location.origin + '/community/fetch', { paginate: window.vue.communityPhotoPaginate, tag: window.vue.communityPhotoFilterTag }, function(response) {
                 if (response.code == 200) {
                     let spinner = document.getElementById('spinner');
                     if (spinner) {
@@ -131,7 +132,9 @@ window.vue = new Vue({
                             <div class="community-item">
                                 <div class="community-item-title">` + elem.title + `</div>
                                 
-                                <div class="community-item-photo" style="background-image: url('` + window.location.origin + '/img/photos/' + elem.thumb + `');"></div>
+                                <div class="community-item-photo">
+                                    <img src="` + window.location.origin + '/img/photos/' + elem.thumb + `" alt="` + elem.title + `"/>
+                                </div>
 
                                 <div class="community-item-description">
                                      ` + ((elem.description) ? elem.description : '<i>No description provided</i>') + `

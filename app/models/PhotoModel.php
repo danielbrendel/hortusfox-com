@@ -123,14 +123,21 @@ class PhotoModel extends \Asatru\Database\Model {
     }
 
     /**
+     * @param $tag
      * @param $public
      * @return int
      * @throws \Exception
      */
-    public static function getFirstItemId($public = true)
+    public static function getFirstItemId($tag = null, $public = true)
     {
         try {
-            return static::where('public', '=', $public)->first()->get('id');
+            $query = static::where('public', '=', $public);
+            
+            if ((is_string($tag)) && (strlen($tag) > 0)) {
+                $query = $query->where('keywords', 'LIKE', '%' . $tag . '%');
+            }
+
+            return $query->first()->get('id');
         } catch (\Exception $e) {
             return 0;
         }
