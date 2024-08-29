@@ -465,6 +465,26 @@ div.page-downloads {
     vertical-align: middle;
 }
 
+.page-downloads-latest {
+    @media screen and (max-width: 489px) {
+        position: relative;
+        display: inline-block;
+        left: -10px;
+        margin-top: 10px;
+    }
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    padding-top: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 4px;
+    background-color: rgb(145, 100, 190);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
+    border: 1px solid rgb(220, 190, 250);
+    border-radius: 5px;
+}
+
 .is-centered {
     text-align: center;
 }

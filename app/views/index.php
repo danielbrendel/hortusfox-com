@@ -127,7 +127,7 @@
 				@foreach ($downloads as $download)
 				<tr>
 					<td><strong>{{ $download->get('name') }}</strong></td>
-					<td>{{ $download->get('version') }}</td>
+					<td>{{ $download->get('version') }} {!! (($download->get('latest')) ? '<span class="page-downloads-latest">Latest</span>': '') !!}</td>
 					<td class="is-centered"><a class="button is-link" href="{{ $download->get('resource') }}"><i class="fas fa-download"></i>&nbsp;Download</a></td>
 				</tr>
 				@endforeach
