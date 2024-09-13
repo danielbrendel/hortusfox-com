@@ -25,6 +25,6 @@
    <p class="is-font-medium margin-top-gap">Made a cool theme that you want to share?</p>
 
     <p>
-        <a class="button is-link button-stretched" href="mailto:{{ env('APP_CONTACT') }}">Contact Us</a>
+        <a class="button is-link button-stretched" href="{{ env('LINK_THEMES') }}">Contribute</a>
     </p>
 </div>
