@@ -39,5 +39,6 @@ return [
     array('/admin/newsletter/go', 'POST', 'admin@send_newsletter'),
     array('/admin/newsletter/process', 'ANY', 'admin@process_newsletter'),
     array('/admin/newsletter/preview', 'POST', 'admin@preview_newsletter'),
+    array('/hortusgame', 'GET', 'index@game'),
     array('$404', 'ANY', 'error404@index')
 ];

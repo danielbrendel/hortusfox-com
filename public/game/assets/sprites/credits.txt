@@ -1,0 +1,2 @@
+sky: bart (https://opengameart.org/content/sky-backdrop)
+heart: Flixberry Entertainment (https://opengameart.org/content/heart-pixel-art)
