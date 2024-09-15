@@ -11,11 +11,49 @@
 		
         <title>{{ (isset($_meta_title)) ? env('APP_NAME') . ' - ' . $_meta_title : env('APP_NAME') }}</title>
 
+		<link rel="icon" type="image/png" href="{{ asset('img/logo.png') }}"/>
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/bulma.css') }}"/>
+
+		<style>
+			.action-go-back {
+				position: fixed;
+				z-index: 5;
+				top: 10px;
+				left: 10px;
+			}
+
+			.action-go-back-inner {
+				padding-top: 10px;
+				padding-left: 15px;
+				padding-right: 15px;
+				padding-bottom: 10px;
+				background-color: rgb(80, 80, 80);
+				border-radius: 50%;
+			}
+
+			.action-go-back-inner a {
+				color: rgb(200, 200, 200);
+			}
+
+			.action-go-back-inner a:hover {
+				color: rgb(230, 230, 230);
+			}
+		</style>
+
+		<script src="{{ asset('js/fontawesome.js') }}"></script>
 		<script src="{{ asset('js/app.js') }}"></script>
 		<script src="{{ asset('game/game.js') }}"></script>
 	</head>
 	
 	<body>
+		<div class="action-go-back">
+			<div class="action-go-back-inner">
+				<a href="{{ url('/') }}">
+					<i class="fas fa-arrow-left fa-2x"></i>
+				</a>
+			</div>
+		</div>
+
         <script>
             gameconfig.physics.arcade.debug = {{ env('APP_DEBUG') ? 'true' : 'false' }};
 
