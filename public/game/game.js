@@ -1,5 +1,6 @@
 const PLAYER_MAX_HEALTH = 3;
 const PLAYER_HEALTH_UP = 10;
+const SPEED_STEPS = 250;
 
 class TestGame extends Phaser.Scene {
     preload()
@@ -7,6 +8,7 @@ class TestGame extends Phaser.Scene {
         this.load.setBaseURL(window.location.origin);
 
         this.load.image('sky', 'game/assets/sprites/sky.png');
+        this.load.image('clouds', 'game/assets/sprites/clouds.png');
         this.load.image('ground', 'game/assets/sprites/grass.png');
         this.load.image('box', 'game/assets/sprites/box.png');
         this.load.image('button', 'game/assets/sprites/button.png');
@@ -22,6 +24,7 @@ class TestGame extends Phaser.Scene {
         this.load.audio('up', 'game/assets/sounds/up.wav');
 
         this.load.audio('monster_spawn', 'game/assets/sounds/monster_spawn.wav');
+        this.load.audio('monster_shoot', 'game/assets/sounds/monster_shoot.wav');
         this.load.audio('monster_dispose', 'game/assets/sounds/monster_dispose.wav');
 
         for (let i = 1; i <= PLAYER_MAX_HEALTH; i++) {
@@ -33,6 +36,14 @@ class TestGame extends Phaser.Scene {
         this.hearts = [];
         this.playerScore = 0;
         this.playerHealth = PLAYER_MAX_HEALTH;
+        this.tmSpawnSpeed = {
+            min: 2000,
+            max: 5000
+        };
+        this.tmGameTime = {
+            start: Date.now(),
+            current: Date.now()
+        };
 
         this.cursors = this.input.keyboard.createCursorKeys();
     }
@@ -42,6 +53,9 @@ class TestGame extends Phaser.Scene {
         let self = this;
 
         this.add.image(0, 0, 'sky').setOrigin(0, 0);
+
+        this.clouds = this.add.tileSprite(0, 0, gameconfig.scale.width, 300, 'clouds').setOrigin(0, 0);
+        this.clouds.y += 50;
 
         for (let i = 0; i < this.playerHealth; i++) {
             this.hearts.push(this.add.image(55 + i * 50, 40, 'heart' + (i + 1)));
@@ -87,13 +101,32 @@ class TestGame extends Phaser.Scene {
         });
 
         this.obstTimer = this.time.addEvent({
-            delay: self.genRandBetween(2000, 5000),
+            delay: self.genRandBetween(self.tmSpawnSpeed.min, self.tmSpawnSpeed.max),
             loop: true,
             callback: self.spawnEnemyObstacle,
             callbackScope: self
         });
 
-        this.txtScore = this.add.text(gameconfig.scale.width - 40, 25, 'Score: 0', { rtl: true, fontSize: '24px' });
+        this.obstDifficulty = this.time.addEvent({
+            delay: 10000,
+            loop: true,
+            callback: function() {
+                if (self.tmSpawnSpeed >= 0) {
+                    self.tmSpawnSpeed.min -= SPEED_STEPS;
+                }
+
+                if (self.tmSpawnSpeed.max >= 500) {
+                    self.tmSpawnSpeed.max -= SPEED_STEPS;
+                }
+            },
+            callbackScope: self
+        });
+
+        this.txtTime = this.add.text(gameconfig.scale.width / 2 - 40, 25, 'Time: 0', { fontSize: '24px' });
+        this.txtScore = this.add.text(gameconfig.scale.width - 40, 25, 'Score: 0', { rtl: true, fontSize: '24px', color: 'rgb(255, 255, 0)' });
+        
+        this.rectOverlay = this.add.rectangle(0, 0, gameconfig.scale.width, gameconfig.scale.height, 0x000000, 150).setOrigin(0, 0).setVisible(false);
+
         this.txtGameOver = this.add.text(gameconfig.scale.width / 2 - 55, gameconfig.scale.height / 2, 'GAME OVER!', {
             color: 'rgb(255, 0, 0)',
             fontSize: '32px',
@@ -118,7 +151,14 @@ class TestGame extends Phaser.Scene {
         this.sndExplosion = this.sound.add('explosion');
         this.sndUp = this.sound.add('up');
         this.sndMonsterSpawn = this.sound.add('monster_spawn');
+        this.sndMonsterShoot = this.sound.add('monster_shoot');
         this.sndMonsterDispose = this.sound.add('monster_dispose');
+
+        this.children.bringToTop(this.txtScore);
+
+        for (let i = 0; i < this.playerHealth; i++) {
+            this.children.bringToTop(this.hearts[i]);
+        }
 
         this.sndTheme.loop = true;
         this.sndTheme.play();
@@ -127,24 +167,13 @@ class TestGame extends Phaser.Scene {
     update()
     {
         if (this.playerHealth <= 0) {
-            this.player.setVelocity(0, 0);
-
-            if (!this.txtGameOver.visible) {
-                this.txtGameOver.setVisible(true);
-            }
-
-            if (!this.rectRestart.visible) {
-                this.rectRestart.setVisible(true);
-            }
-
-            if (!this.btnRestart.visible) {
-                this.btnRestart.setVisible(true);
-
-                this.clearGameObjects();
-            }
+            this.finishGame();
 
             return;
         }
+
+        this.tmGameTime.current = Date.now();
+        this.txtTime.setText(this.getFormattedGameTime());
 
         if (this.cursors.left.isDown) {
             this.player.setVelocityX(-330);
@@ -159,6 +188,8 @@ class TestGame extends Phaser.Scene {
             this.player.setVelocityY(-530);
             this.sndJump.play();
         }
+
+        this.clouds.tilePositionX += 0.5;
 
         this.updateObstacles();
         this.updateBullets();
@@ -232,6 +263,8 @@ class TestGame extends Phaser.Scene {
                         self.bullets.slice(bulIndex, 1);
                         bullet.destroy();
                     });
+
+                    self.sndMonsterShoot.play();
                 },
                 callbackScope: self
             })
@@ -346,9 +379,41 @@ class TestGame extends Phaser.Scene {
         this.bullets = [];
     }
 
+    finishGame()
+    {
+        if (this.playerHealth > 0) {
+            return;
+        }
+
+        this.player.setVelocity(0, 0);
+
+        if (!this.rectOverlay.visible) {
+            this.rectOverlay.setVisible(true);
+        }
+
+        if (!this.txtGameOver.visible) {
+            this.txtGameOver.setVisible(true);
+            this.children.bringToTop(this.txtGameOver);
+        }
+
+        if (!this.rectRestart.visible) {
+            this.rectRestart.setVisible(true);
+            this.children.bringToTop(this.rectRestart);
+        }
+
+        if (!this.btnRestart.visible) {
+            this.btnRestart.setVisible(true);
+            this.children.bringToTop(this.btnRestart);
+
+            this.clearGameObjects();
+        }
+    }
+
     restartGame()
     {
-        this.clearGameObjects();
+        location.reload();
+
+        /*this.clearGameObjects();
 
         this.playerScore = 0;
         this.playerHealth = 3;
@@ -358,7 +423,7 @@ class TestGame extends Phaser.Scene {
 
         this.txtGameOver.setVisible(false);
         this.rectRestart.setVisible(false);
-        this.btnRestart.setVisible(false);
+        this.btnRestart.setVisible(false);*/
     }
 
     removeObstacle(index, withBullet = false)
@@ -392,6 +457,20 @@ class TestGame extends Phaser.Scene {
             this.bullets[index].bullet.destroy();
             this.obstacles.slice(index, 1);
         }
+    }
+
+    getFormattedGameTime()
+    {
+        let curms = (this.tmGameTime.current - this.tmGameTime.start);
+        let cursecs = Math.round((curms % 60000) / 1000);
+        let curmins = Math.floor(curms / 60000).toFixed(0);
+
+        if (cursecs >= 60) {
+            cursecs = 0;
+            curmins++;
+        }
+
+        return ((curmins < 10) ? '0' + curmins : curmins) + ':' + ((cursecs < 10) ? '0' + cursecs : cursecs);
     }
 
     genRandBetween(min, max)

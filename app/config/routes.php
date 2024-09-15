@@ -22,6 +22,7 @@ return [
     array('/tutorials', 'GET', 'index@tutorials'),
     array('/faq', 'GET', 'index@faq'),
     array('/demo', 'GET', 'index@demo'),
+    array('/hortusgame', 'GET', 'index@game'),
     array('/community', 'GET', 'community@index'),
     array('/community/fetch', 'POST', 'community@fetch'),
     array('/support', 'GET', 'index@support'),
@@ -39,6 +40,5 @@ return [
     array('/admin/newsletter/go', 'POST', 'admin@send_newsletter'),
     array('/admin/newsletter/process', 'ANY', 'admin@process_newsletter'),
     array('/admin/newsletter/preview', 'POST', 'admin@preview_newsletter'),
-    array('/hortusgame', 'GET', 'index@game'),
     array('$404', 'ANY', 'error404@index')
 ];
