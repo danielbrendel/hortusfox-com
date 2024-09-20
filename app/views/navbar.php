@@ -29,6 +29,14 @@
             </div>
             @endif
 
+            @if (env('GAME_ENABLE'))
+            <div class="navbar-item">
+                <a class="button is-warning" href="javascript:void(0);" onclick="window.vue.scrollTo('a[name=game]');">
+                    Game
+                </a>
+            </div>
+            @endif
+
             <a class="navbar-item" href="{{ url('/screenshots') }}">
                 Screenshots
             </a>

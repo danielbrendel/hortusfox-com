@@ -718,3 +718,10 @@ div.page-downloads {
     width: 150px;
     height: 32px;
 }
+
+.medium-image-size {
+    width: 100%;
+    @media screen and (min-width: 768px) {
+        width: 73%;
+    }
+}

@@ -145,6 +145,24 @@
 		</p>
 	@endif
 
+	@if (env('GAME_ENABLE'))
+		<hr/>
+
+		<a name="game"></a>
+
+		<p class="is-font-medium">
+			Can you help the little fox against the mutant plants?
+		</p>
+
+		<p>
+			<img class="medium-image-size" src="{{ asset('img/screenshots/screenshot-game.png') }}" alt="screenshot"/>
+		</p>
+
+		<p>
+			<a class="button is-warning" href="{{ url('/hortusgame') }}">Play the game</a>
+		</p>
+	@endif
+
 	@if (env('APP_ENABLESPONSORING'))
 		<hr/>
 
