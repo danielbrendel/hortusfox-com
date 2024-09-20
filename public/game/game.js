@@ -118,7 +118,7 @@ class TestGame extends Phaser.Scene {
         });
 
         this.obstTimer = this.time.addEvent({
-            delay: self.genRandBetween(self.tmSpawnSpeed.min, self.tmSpawnSpeed.max),
+            delay: Phaser.Math.Between(self.tmSpawnSpeed.min, self.tmSpawnSpeed.max),
             loop: true,
             callback: self.spawnEnemyObstacle,
             callbackScope: self
@@ -223,7 +223,7 @@ class TestGame extends Phaser.Scene {
         let self = this;
 
         let posx = gameconfig.scale.width - 20;
-        let posy = this.genRandBetween(150, gameconfig.scale.height - 100);
+        let posy = Phaser.Math.Between(150, gameconfig.scale.height - 100);
 
         let box = this.physics.add.sprite(posx, posy, 'box');
         let plant = this.physics.add.sprite(posx, posy - 85, 'plant').setScale(0.2).refreshBody();
@@ -234,10 +234,10 @@ class TestGame extends Phaser.Scene {
             ident: ident,
             box: box,
             plant: plant,
-            speed: self.genRandBetween(1, 3),
+            speed: Phaser.Math.Between(1, 3),
             destruction: false,
             shoot: self.time.addEvent({
-                delay: self.genRandBetween(2000, 5000),
+                delay: Phaser.Math.Between(2000, 5000),
                 loop: true,
                 callback: function() {
                     if (self.playerHealth <= 0) {
@@ -509,11 +509,6 @@ class TestGame extends Phaser.Scene {
         }
 
         return ((curmins < 10) ? '0' + curmins : curmins) + ':' + ((cursecs < 10) ? '0' + cursecs : cursecs);
-    }
-
-    genRandBetween(min, max)
-    {
-        return Math.floor(Math.random() * (max - min + 1) + min)
     }
 }
 
