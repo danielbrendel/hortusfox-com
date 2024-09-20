@@ -20,8 +20,8 @@ class TestGame extends Phaser.Scene {
         this.load.image('button', 'game/assets/sprites/button.png');
         this.load.spritesheet('fox', 'game/assets/sprites/fox.png', { frameWidth: 48, frameHeight: 26 });
         this.load.spritesheet('plant', 'game/assets/sprites/plant.png', { frameWidth: 376, frameHeight: 500 });
+        this.load.spritesheet('bullet', 'game/assets/sprites/bullet.png', { frameWidth: 64, frameHeight: 64 });
         this.load.spritesheet('boom', 'game/assets/sprites/explosion.png', { frameWidth: 512, frameHeight: 512 });
-        this.load.spritesheet('ball', 'game/assets/sprites/ball.png', { frameWidth: 64, frameHeight: 64 });
         this.load.spritesheet('puff', 'game/assets/sprites/puff.png', { frameWidth: 32, frameHeight: 32 });
 
         this.load.audio('theme', 'game/assets/sounds/theme.ogg');
@@ -107,13 +107,6 @@ class TestGame extends Phaser.Scene {
         });
 
         this.anims.create({
-            key: 'ball',
-            frames: this.anims.generateFrameNumbers('ball', { start: 0, end: 3 }),
-            frameRate: 25,
-            repeat: -1
-        });
-
-        this.anims.create({
             key: 'boom',
             frames: this.anims.generateFrameNumbers('boom', { start: 0, end: 63 }),
             frameRate: 25,
@@ -155,7 +148,7 @@ class TestGame extends Phaser.Scene {
         this.rectOverlay = this.add.rectangle(0, 0, gameconfig.scale.width, gameconfig.scale.height, 0x000000, 150).setOrigin(0, 0).setVisible(false);
 
         this.txtGameOver = this.add.text(gameconfig.scale.width / 2 - 55, gameconfig.scale.height / 2, 'GAME OVER!', {
-            color: 'rgb(255, 0, 0)',
+            color: 'rgb(255, 255, 255)',
             fontSize: '32px',
 
         }).setVisible(false);
@@ -254,7 +247,7 @@ class TestGame extends Phaser.Scene {
                         return;
                     }
 
-                    let bullet = this.physics.add.sprite(plant.x - 20, plant.y, 'ball');
+                    let bullet = self.physics.add.sprite(plant.x - 20, plant.y, 'bullet');
                     
                     self.bullets.push({
                         bullet: bullet,
@@ -266,7 +259,7 @@ class TestGame extends Phaser.Scene {
                         parent: ident,
                         tStart: Date.now(),
                         tNow: Date.now(),
-                        tLifeTime: 4000
+                        tLifeTime: 5000
                     });
 
                     let bulIndex = self.bullets.length - 1;
@@ -280,15 +273,11 @@ class TestGame extends Phaser.Scene {
                             self.hearts[self.playerHealth].setVisible(false);
                         }
 
-                        self.bullets[bulIndex].destruction = true;
-                        self.bullets.slice(bulIndex, 1);
-                        bullet.destroy();
+                        self.removeBullet(bulIndex);
                     });
 
                     self.physics.add.collider(self.platforms, bullet, function() {
-                        self.bullets[bulIndex].destruction = true;
-                        self.bullets.slice(bulIndex, 1);
-                        bullet.destroy();
+                        self.removeBullet(bulIndex);
                     });
 
                     self.sndMonsterShoot.play();
@@ -343,8 +332,8 @@ class TestGame extends Phaser.Scene {
 
                 this.obstacles[i].plant.anims.play('chew', true);
 
-                if (this.obstacles[i].box.x <= -100) {
-                    this.obstacles.splice(i, 1);
+                if (this.obstacles[i].box.x <= -50) {
+                    this.removeObstacle(i, true);
                 }
             }
         }
@@ -363,7 +352,6 @@ class TestGame extends Phaser.Scene {
                     continue;
                 }
 
-                this.bullets[i].bullet.anims.play('ball', true);
                 this.physics.moveTo(this.bullets[i].bullet, this.bullets[i].target.x, this.bullets[i].target.y, 200);
             }
         }
@@ -414,6 +402,7 @@ class TestGame extends Phaser.Scene {
 
         if (!this.txtGameOver.visible) {
             this.txtGameOver.setVisible(true);
+            this.txtGameOver.postFX.addGlow(0x00FF00, 4, 0, true, 0.1, 10);
             this.children.bringToTop(this.txtGameOver);
         }
 
