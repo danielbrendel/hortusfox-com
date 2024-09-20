@@ -1,6 +1,6 @@
 const PLAYER_MAX_HEALTH = 3;
-const PLAYER_HEALTH_UP = 10;
 const SPEED_STEPS = 250;
+const SUPPLY_MAXRAND = 5;
 
 class TestGame extends Phaser.Scene {
     preload()
@@ -22,6 +22,7 @@ class TestGame extends Phaser.Scene {
         this.load.spritesheet('plant', 'game/assets/sprites/plant.png', { frameWidth: 376, frameHeight: 500 });
         this.load.spritesheet('boom', 'game/assets/sprites/explosion.png', { frameWidth: 512, frameHeight: 512 });
         this.load.spritesheet('ball', 'game/assets/sprites/ball.png', { frameWidth: 64, frameHeight: 64 });
+        this.load.spritesheet('puff', 'game/assets/sprites/puff.png', { frameWidth: 32, frameHeight: 32 });
 
         this.load.audio('theme', 'game/assets/sounds/theme.ogg');
         this.load.audio('jump', 'game/assets/sounds/jump.wav');
@@ -32,6 +33,8 @@ class TestGame extends Phaser.Scene {
         this.load.audio('monster_spawn', 'game/assets/sounds/monster_spawn.wav');
         this.load.audio('monster_shoot', 'game/assets/sounds/monster_shoot.wav');
         this.load.audio('monster_dispose', 'game/assets/sounds/monster_dispose.wav');
+
+        this.load.image('heart', 'game/assets/sprites/heart.png');
 
         for (let i = 1; i <= PLAYER_MAX_HEALTH; i++) {
             this.load.image('heart' + i, 'game/assets/sprites/heart.png');
@@ -114,6 +117,13 @@ class TestGame extends Phaser.Scene {
             key: 'boom',
             frames: this.anims.generateFrameNumbers('boom', { start: 0, end: 63 }),
             frameRate: 25,
+            repeat: 0
+        });
+
+        this.anims.create({
+            key: 'puff',
+            frames: this.anims.generateFrameNumbers('puff', { start: 0, end: 9 }),
+            frameRate: 50,
             repeat: 0
         });
 
@@ -294,15 +304,9 @@ class TestGame extends Phaser.Scene {
 
             self.sndMonsterDispose.play();
 
-            if ((self.playerScore % PLAYER_HEALTH_UP) === 0) {
-                if (self.playerHealth < PLAYER_MAX_HEALTH) {
-                    self.hearts[self.playerHealth].setVisible(true);
-                    self.playerHealth++;
-                    self.sndUp.play();
-                }
-            }
-
             self.spawnExplosion(box.x, box.y);
+            self.checkSupplySpawn(box.x, box.y);
+
             if (typeof self.obstacles[obstIndex] !== 'undefined') {
                 let parentIdent = self.obstacles[obstIndex].ident;
                 self.obstacles[obstIndex].shoot.paused = true;
@@ -495,6 +499,61 @@ class TestGame extends Phaser.Scene {
         };
 
         this.trees.push(tree);
+    }
+
+    checkSupplySpawn(x, y)
+    {
+        if (this.playerHealth < PLAYER_MAX_HEALTH) {
+            let rndSpawnSupply = Phaser.Math.Between(1, SUPPLY_MAXRAND);
+            if (rndSpawnSupply === SUPPLY_MAXRAND) {
+                this.spawnHealthSupply(x, y);
+            }
+        }
+    }
+
+    spawnHealthSupply(x, y)
+    {
+        let self = this;
+
+        let supply = this.physics.add.sprite(x, y, 'heart');
+
+        supply.setGravityY(200);
+        supply.setGravityX(Phaser.Math.Between(-100, 100));
+        supply.setCollideWorldBounds(true);
+        supply.setBounce(0.5, 0.5);
+
+        self.time.addEvent({
+            delay: 5000,
+            loop: false,
+            callback: function() {
+                self.spawnPuff(supply.x, supply.y);
+                supply.destroy();
+            },
+            callbackScope: self
+        });
+
+        this.physics.add.collider(supply, this.platforms);
+
+        this.physics.add.collider(this.player, supply, function() {
+            if (self.playerHealth < PLAYER_MAX_HEALTH) {
+                self.hearts[self.playerHealth].setVisible(true);
+                self.playerHealth++;
+                self.sndUp.play();
+            }
+
+            supply.destroy();
+        });
+    }
+
+    spawnPuff(x, y)
+    {
+        let puff = this.physics.add.sprite(x, y, 'puff');
+        puff.setScale(2.0, 2.0);
+        puff.anims.play('puff', true);
+
+        puff.on('animationcomplete', function() {
+            puff.destroy();
+        });
     }
 
     getFormattedGameTime()
