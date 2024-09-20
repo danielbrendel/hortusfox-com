@@ -186,7 +186,7 @@
                         workspace: '{{ env('HELPREALM_WORKSPACE') }}',
                         apiKey: '{{ env('HELPREALM_WIDGET_TOKEN') }}',
                         header: '{{ asset('img/background.jpg') }}',
-                        logo: '{{ asset('img/logo_black_bg.png') }}',
+                        logo: '{{ asset('img/logo_circle.png') }}',
                         button: null,
                         fileUpload: false,
                         lang: {
