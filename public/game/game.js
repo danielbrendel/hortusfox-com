@@ -10,6 +10,12 @@ class TestGame extends Phaser.Scene {
         this.load.image('sky', 'game/assets/sprites/sky.png');
         this.load.image('clouds', 'game/assets/sprites/clouds.png');
         this.load.image('ground', 'game/assets/sprites/grass.png');
+        this.load.image('tree_bottom', 'game/assets/sprites/tree_bottom.png');
+        this.load.image('tree_stem', 'game/assets/sprites/tree_stem.png');
+        this.load.image('tree_top', 'game/assets/sprites/tree_top.png');
+        this.load.image('flower', 'game/assets/sprites/flower.png');
+        this.load.image('shrooms', 'game/assets/sprites/shrooms.png');
+        this.load.image('bush', 'game/assets/sprites/bush.png');
         this.load.image('box', 'game/assets/sprites/box.png');
         this.load.image('button', 'game/assets/sprites/button.png');
         this.load.spritesheet('fox', 'game/assets/sprites/fox.png', { frameWidth: 48, frameHeight: 26 });
@@ -31,6 +37,7 @@ class TestGame extends Phaser.Scene {
             this.load.image('heart' + i, 'game/assets/sprites/heart.png');
         }
 
+        this.trees = [];
         this.obstacles = [];
         this.bullets = [];
         this.hearts = [];
@@ -63,6 +70,16 @@ class TestGame extends Phaser.Scene {
 
         this.platforms = this.physics.add.staticGroup();
         this.platforms.create(50, gameconfig.scale.height - 25, 'ground').setScale(50, 1).refreshBody();
+
+        this.addTree(200, gameconfig.scale.height - 80);
+        this.addTree(gameconfig.scale.width - 190, gameconfig.scale.height - 80);
+
+        this.add.image(455, gameconfig.scale.height - 105, 'flower').setScale(0.5, 0.5);
+        this.add.image(635, gameconfig.scale.height - 105, 'flower').setScale(0.5, 0.5);
+        this.add.image(375, gameconfig.scale.height - 86, 'shrooms').setScale(0.75, 0.75);
+        this.add.image(535, gameconfig.scale.height - 86, 'shrooms').setScale(0.75, 0.75);
+        this.add.image(50, gameconfig.scale.height - 79, 'bush').setScale(0.75, 0.75);
+        this.add.image(gameconfig.scale.width - 40, gameconfig.scale.height - 79, 'bush').setScale(0.75, 0.75);
 
         this.player = this.physics.add.sprite(50, gameconfig.scale.height - 80, 'fox').setScale(1.5).refreshBody();
 
@@ -457,6 +474,27 @@ class TestGame extends Phaser.Scene {
             this.bullets[index].bullet.destroy();
             this.obstacles.slice(index, 1);
         }
+    }
+
+    addTree(x, y)
+    {
+        let bottom = this.add.image(x, y - 30, 'tree_bottom');
+        let stem1 = this.add.image(x - 5, y - 145, 'tree_stem');
+        let stem2 = this.add.image(x - 5, y - 270, 'tree_stem');
+        let top = this.add.image(x - 20, y - 415, 'tree_top');
+
+        bottom.setScale(0.5, 0.5);
+        stem1.setScale(0.5, 0.5);
+        stem2.setScale(0.5, 0.5);
+        top.setScale(0.75, 0.75);
+
+        let tree = {
+            bottom: bottom,
+            stems: [stem1, stem2],
+            top: top
+        };
+
+        this.trees.push(tree);
     }
 
     getFormattedGameTime()
