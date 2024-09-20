@@ -203,8 +203,27 @@ class TestGame extends Phaser.Scene {
             this.player.anims.play('walk', true);
         }
 
-        if (this.cursors.up.isDown && this.player.body.touching.down)
-        {
+        if (this.input.activePointer.isDown) {
+            if (this.input.activePointer.worldX < this.player.getCenter().x) {
+                this.player.setVelocityX(-330);
+                this.player.anims.play('walk', true);
+                
+                if (this.player.body.touching.down) {
+                    this.player.setVelocityY(-530);
+                    this.sndJump.play();
+                }
+            } else {
+                this.player.setVelocityX(330);
+                this.player.anims.play('walk', true);
+
+                if (this.player.body.touching.down) {
+                    this.player.setVelocityY(-530);
+                    this.sndJump.play();
+                }
+            }
+        }
+
+        if (this.cursors.up.isDown && this.player.body.touching.down) {
             this.player.setVelocityY(-530);
             this.sndJump.play();
         }
