@@ -39,8 +39,10 @@ class PhotoModel extends \Asatru\Database\Model {
                 throw new \Exception('createThumbFile failed');
             }
 
+            $keywords = trim(strtolower($keywords));
+
             static::raw('INSERT INTO `@THIS` (title, workspace, ident, slug, thumb, full, public, description, keywords) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)', [
-                $title, $workspace, $ident, $slug, $file_name . '_thumb.' . $file_ext, $file_name . '.' . $file_ext, $public, $description, $keywords
+                trim($title), $workspace, $ident, $slug, $file_name . '_thumb.' . $file_ext, $file_name . '.' . $file_ext, $public, trim($description), $keywords
             ]);
 
             return [
