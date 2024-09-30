@@ -2,6 +2,8 @@ import { Client, GatewayIntentBits, REST, Routes } from 'discord.js';
 import 'dotenv/config';
 import axios from 'axios';
 import { createCache } from 'cache-manager';
+import fs from 'fs';
+import path from 'path';
 
 var SOFTWARE_VERSION = 'Unknown';
 var GITHUB_STATS = 'Unknown';
@@ -55,6 +57,14 @@ function cmd_plant(interaction)
     interaction.reply(`:potted_plant:`);
 }
 
+var quotes = null;
+function cmd_quote(interaction)
+{
+    const quote = quotes.items[Math.floor(Math.random() * quotes.items.length)];
+
+    interaction.reply(quote);
+}
+
 const commands = [
     {
         name: 'url',
@@ -90,6 +100,11 @@ const commands = [
         name: 'plant',
         description: 'Shows a lovely plant emoji',
         handler: cmd_plant
+    },
+    {
+        name: 'quote',
+        description: 'Lovely plant quotes to light up your mood',
+        handler: cmd_quote
     }
 ];
 
@@ -117,6 +132,11 @@ const cache = createCache();
 
 client.once('ready', () => {
     console.log(`Logged in: ${client.user.tag} on ${client.guilds.cache.size} servers`);
+
+    quotes = JSON.parse(fs.readFileSync(
+        path.join(process.cwd(), 'quotes.json'),
+        'utf-8'
+    ));
 
     rest.put(
         Routes.applicationGuildCommands(process.env.CLIENT_ID, process.env.GUILD_ID), { body: commands }
