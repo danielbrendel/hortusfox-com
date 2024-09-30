@@ -4,6 +4,9 @@ import axios from 'axios';
 import fs from 'fs';
 import path from 'path';
 
+var quotes = null;
+var latestPhoto = null;
+
 function cmd_url(interaction)
 {
     interaction.reply(`${process.env.WEB_BACKEND}`);
@@ -49,7 +52,6 @@ function cmd_plant(interaction)
     interaction.reply(`:potted_plant:`);
 }
 
-var quotes = null;
 function cmd_quote(interaction)
 {
     const quote = quotes.items[Math.floor(Math.random() * quotes.items.length)];
@@ -134,6 +136,14 @@ const client = new Client({
 
 const rest = new REST({ version: '10' }).setToken(process.env.BOT_TOKEN);
 
+function sendChannelMessage(chanId, chanMsg)
+{
+    const channel = client.channels.cache.get(chanId);
+    if (channel) {
+        channel.send(chanMsg);
+    }
+}
+
 client.once('ready', () => {
     console.log(`Logged in: ${client.user.tag} on ${client.guilds.cache.size} servers`);
 
@@ -141,6 +151,16 @@ client.once('ready', () => {
         path.join(process.cwd(), 'quotes.json'),
         'utf-8'
     ));
+
+    setInterval(() => {
+        axios.get(`${process.env.WEB_BACKEND}/community/fetch/latest`).then(function(response) {
+            if ((response.data.code == 200) && (latestPhoto !== response.data.data.thumb)) {
+                latestPhoto = response.data.data.thumb;
+
+                sendChannelMessage(process.env.PHOTO_CHANNEL, `New community photo: ${process.env.WEB_BACKEND}/img/photos/${latestPhoto}`);
+            }
+        });
+    }, process.env.TIMER_INTERVAL);
 
     rest.put(
         Routes.applicationGuildCommands(process.env.CLIENT_ID, process.env.GUILD_ID), { body: commands }

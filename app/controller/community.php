@@ -90,4 +90,29 @@ class CommunityController extends BaseController {
             ]);
         }
 	}
+
+	/**
+	 * Handles URL: /community/fetch/latest
+	 * 
+	 * @param Asatru\Controller\ControllerArg $request
+	 * @return Asatru\View\JsonHandler
+	 */
+	public function latest($request)
+	{
+		try {
+            $latest_item = PhotoModel::getLatestPublicPhoto();
+
+			header('Access-Control-Allow-Origin: *');
+
+            return json([
+                'code' => 200,
+                'data' => $latest_item?->asArray()
+            ]);
+        } catch (\Exception $e) {
+            return json([
+                'code' => 500,
+                'msg' => $e->getMessage()
+            ]);
+        }
+	}
 }

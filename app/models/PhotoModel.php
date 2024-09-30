@@ -157,4 +157,17 @@ class PhotoModel extends \Asatru\Database\Model {
             throw $e;
         }
     }
+
+    /**
+     * @return mixed
+     * @throws \Exception
+     */
+    public static function getLatestPublicPhoto()
+    {
+        try {
+            return static::raw('SELECT * FROM `@THIS` WHERE public = 1 ORDER BY id DESC LIMIT 1')->first();
+        } catch (\Exception $e) {
+            throw $e;
+        }
+    }
 }
