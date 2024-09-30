@@ -34,7 +34,7 @@ function cmd_demo(interaction)
 function cmd_sponsor(interaction)
 {
     interaction.reply({
-        content: `GitHub Sponsoring: ${process.env.SPONSOR_GITHUB} | Buy Me A Coffee: ${process.env.SPONSOR_COFFEE}`,
+        content: `GitHub Sponsoring: ${process.env.SPONSOR_GITHUB}\nBuy Me A Coffee: ${process.env.SPONSOR_COFFEE}`,
         ephemeral: true
     });
 }
@@ -45,7 +45,7 @@ async function cmd_version(interaction)
 
     axios.get(process.env.WEB_BACKEND + '/software/version').then(function(response) {
         if (response.data.code == 200) {
-            interaction.editReply(`Current software version: ${response.data.version}`);
+            interaction.editReply(`Current HortusFox release version: ${response.data.version}`);
         }
     });
 }
@@ -191,12 +191,12 @@ client.once('ready', () => {
 
     setInterval(() => {
         axios.get(`${process.env.WEB_BACKEND}/community/fetch/latest`).then(function(response) {
-            if ((response.data.code == 200) && (latestPhoto !== response.data.data.thumb)) {
-                latestPhoto = response.data.data.thumb;
+            if ((response.data.code == 200) && (latestPhoto !== response.data.data.slug)) {
+                latestPhoto = response.data.data.slug;
 
                 saveLatestPhoto(latestPhoto);
 
-                sendChannelMessage(process.env.PHOTO_CHANNEL, `New community photo: ${process.env.WEB_BACKEND}/img/photos/${latestPhoto}`);
+                sendChannelMessage(process.env.PHOTO_CHANNEL, `:potted_plant: New community photo :potted_plant:\n${process.env.WEB_BACKEND}/p/${latestPhoto}`);
             }
         });
     }, process.env.TIMER_INTERVAL);
