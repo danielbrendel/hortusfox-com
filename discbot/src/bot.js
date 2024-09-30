@@ -177,8 +177,22 @@ function saveLatestPhoto(info)
     );
 }
 
+function abort(msg)
+{
+    console.error(`\x1b[31m${msg}\x1b[0m`);
+    process.exit(1);
+}
+
+function success(msg)
+{
+    console.log(`\x1b[32m${msg}\x1b[0m`);
+}
+
 client.once('ready', () => {
-    console.log(`Logged in: ${client.user.tag} on ${client.guilds.cache.size} servers`);
+    const guilds = client.guilds.cache.map(guild => guild.id);
+    if (!guilds.includes(process.env.GUILD_ID)) {
+        abort('Unknown Guild: Please specify correct guild in .env');
+    }
 
     quotes = JSON.parse(fs.readFileSync(
         path.join(process.cwd(), FILE_QUOTES),
@@ -207,6 +221,8 @@ client.once('ready', () => {
     rest.put(
         Routes.applicationGuildCommands(process.env.CLIENT_ID, process.env.GUILD_ID), { body: commands }
     );
+
+    success(`Logged in: ${client.user.tag}. Bot is now ready.`);
 });
 
 client.on('interactionCreate', async (interaction) => {
