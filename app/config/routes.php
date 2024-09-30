@@ -26,6 +26,7 @@ return [
     array('/hortusgame', 'GET', 'index@game'),
     array('/community', 'GET', 'community@index'),
     array('/community/fetch', 'POST', 'community@fetch'),
+    array('/community/fetch/random', 'ANY', 'community@random'),
     array('/support', 'GET', 'index@support'),
     array('/support', 'POST', 'index@support_request'),
     array('/software/version', 'GET', 'version@get_version'),

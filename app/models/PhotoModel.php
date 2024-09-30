@@ -144,4 +144,17 @@ class PhotoModel extends \Asatru\Database\Model {
             return 0;
         }
     }
+
+    /**
+     * @return mixed
+     * @throws \Exception
+     */
+    public static function getRandomPublicPhoto()
+    {
+        try {
+            return static::raw('SELECT * FROM `@THIS` WHERE public = 1 ORDER BY RAND() LIMIT 1')->first();
+        } catch (\Exception $e) {
+            throw $e;
+        }
+    }
 }

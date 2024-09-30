@@ -65,4 +65,29 @@ class CommunityController extends BaseController {
             ]);
         }
 	}
+
+	/**
+	 * Handles URL: /community/fetch/random
+	 * 
+	 * @param Asatru\Controller\ControllerArg $request
+	 * @return Asatru\View\JsonHandler
+	 */
+	public function random($request)
+	{
+		try {
+            $random_item = PhotoModel::getRandomPublicPhoto();
+
+			header('Access-Control-Allow-Origin: *');
+
+            return json([
+                'code' => 200,
+                'data' => $random_item?->asArray()
+            ]);
+        } catch (\Exception $e) {
+            return json([
+                'code' => 500,
+                'msg' => $e->getMessage()
+            ]);
+        }
+	}
 }

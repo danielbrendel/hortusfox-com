@@ -1,12 +1,8 @@
 import { Client, GatewayIntentBits, REST, Routes } from 'discord.js';
 import 'dotenv/config';
 import axios from 'axios';
-import { createCache } from 'cache-manager';
 import fs from 'fs';
 import path from 'path';
-
-var SOFTWARE_VERSION = 'Unknown';
-var GITHUB_STATS = 'Unknown';
 
 function cmd_url(interaction)
 {
@@ -28,28 +24,24 @@ function cmd_sponsor(interaction)
     interaction.reply(`GitHub Sponsoring: ${process.env.SPONSOR_GITHUB} | Buy Me A Coffee: ${process.env.SPONSOR_COFFEE}`);
 }
 
-function cmd_version(interaction)
+async function cmd_version(interaction)
 {
-    cache.wrap('software_version', async () => {
-        axios.get(process.env.WEB_BACKEND + '/software/version').then(function(response) {
-            if (response.data.code == 200) {
-                SOFTWARE_VERSION = response.data.version;
-            }
-        });
-    }, process.env.CACHE_TIME, process.env.CACHE_TIME);
+    await interaction.deferReply();
 
-    interaction.reply(`Current software version: ${SOFTWARE_VERSION}`);
+    axios.get(process.env.WEB_BACKEND + '/software/version').then(function(response) {
+        if (response.data.code == 200) {
+            interaction.editReply(`Current software version: ${response.data.version}`);
+        }
+    });
 }
 
-function cmd_stats(interaction)
+async function cmd_stats(interaction)
 {
-    cache.wrap('github_stats', async () => {
-        axios.get(process.env.WEB_REPO_API).then(function(response) {
-            GITHUB_STATS = `[GitHub Stats] Stars: ${response.data.stargazers_count} | Forks: ${response.data.forks_count} | Open Issues: ${response.data.open_issues}`;
-        });
-    }, process.env.CACHE_TIME, process.env.CACHE_TIME);
+    await interaction.deferReply();
 
-    interaction.reply(GITHUB_STATS);
+    axios.get(process.env.WEB_REPO_API).then(function(response) {
+        interaction.editReply(`[GitHub Stats] Stars: ${response.data.stargazers_count} | Forks: ${response.data.forks_count} | Open Issues: ${response.data.open_issues}`);
+    });
 }
 
 function cmd_plant(interaction)
@@ -63,6 +55,15 @@ function cmd_quote(interaction)
     const quote = quotes.items[Math.floor(Math.random() * quotes.items.length)];
 
     interaction.reply(quote);
+}
+
+async function cmd_photo(interaction)
+{
+    await interaction.deferReply();
+
+    axios.get(`${process.env.WEB_BACKEND}/community/fetch/random`).then(function(response) {
+        interaction.editReply(`${process.env.WEB_BACKEND}/img/photos/${response.data.data.thumb}`);
+    });
 }
 
 const commands = [
@@ -105,6 +106,11 @@ const commands = [
         name: 'quote',
         description: 'Lovely plant quotes to light up your mood',
         handler: cmd_quote
+    },
+    {
+        name: 'photo',
+        description: 'View a random selection from public community photos',
+        handler: cmd_photo
     }
 ];
 
@@ -127,8 +133,6 @@ const client = new Client({
 });
 
 const rest = new REST({ version: '10' }).setToken(process.env.BOT_TOKEN);
-
-const cache = createCache();
 
 client.once('ready', () => {
     console.log(`Logged in: ${client.user.tag} on ${client.guilds.cache.size} servers`);
