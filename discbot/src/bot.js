@@ -22,6 +22,11 @@ function cmd_version(interaction)
     interaction.reply(`Current software version: ${SOFTWARE_VERSION}`);
 }
 
+function cmd_url(interaction)
+{
+    interaction.reply(`${process.env.WEB_BACKEND}`);
+}
+
 const commands = [
     {
         name: 'plant',
@@ -32,6 +37,11 @@ const commands = [
         name: 'version',
         description: 'Show current release version',
         handler: cmd_version
+    },
+    {
+        name: 'url',
+        description: 'Show project URL',
+        handler: cmd_url
     }
 ];
 
