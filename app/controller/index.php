@@ -106,6 +106,17 @@ class IndexController extends BaseController {
 	}
 
 	/**
+	 * Handles URL: /documentation
+	 * 
+	 * @param Asatru\Controller\ControllerArg $request
+	 * @return Asatru\View\RedirectHandler
+	 */
+	public function documentation($request)
+	{
+		return redirect(env('LINK_DOCUMENTATION'));
+	}
+
+	/**
 	 * Handles URL: /demo
 	 * 
 	 * @param Asatru\Controller\ControllerArg $request
