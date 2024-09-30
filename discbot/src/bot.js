@@ -27,6 +27,16 @@ function cmd_url(interaction)
     interaction.reply(`${process.env.WEB_BACKEND}`);
 }
 
+function cmd_documentation(interaction)
+{
+    interaction.reply(`${process.env.WEB_BACKEND}/documentation`);
+}
+
+function cmd_demo(interaction)
+{
+    interaction.reply(`${process.env.WEB_BACKEND}/demo`);
+}
+
 const commands = [
     {
         name: 'plant',
@@ -42,7 +52,17 @@ const commands = [
         name: 'url',
         description: 'Show project URL',
         handler: cmd_url
-    }
+    },
+    {
+        name: 'documentation',
+        description: 'Show link to the documentation',
+        handler: cmd_documentation
+    },
+    {
+        name: 'demo',
+        description: 'Show link to the demo workspace',
+        handler: cmd_demo
+    },
 ];
 
 function handleCommand(interaction)
