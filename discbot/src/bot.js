@@ -21,6 +21,11 @@ function cmd_demo(interaction)
     interaction.reply(`${process.env.WEB_BACKEND}/demo`);
 }
 
+function cmd_sponsor(interaction)
+{
+    interaction.reply(`GitHub Sponsoring: ${process.env.SPONSOR_GITHUB} | Buy Me A Coffee: ${process.env.SPONSOR_COFFEE}`);
+}
+
 function cmd_version(interaction)
 {
     cache.wrap('software_version', async () => {
@@ -65,6 +70,11 @@ const commands = [
         name: 'demo',
         description: 'Show link to the demo workspace',
         handler: cmd_demo
+    },
+    {
+        name: 'sponsor',
+        description: 'Resources on how to support the project',
+        handler: cmd_sponsor
     },
     {
         name: 'version',
