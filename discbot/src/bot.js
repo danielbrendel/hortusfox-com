@@ -4,6 +4,9 @@ import axios from 'axios';
 import fs from 'fs';
 import path from 'path';
 
+const FILE_PHOTO = 'photo.tmp';
+const FILE_QUOTES = 'quotes.json';
+
 var quotes = null;
 var latestPhoto = null;
 
@@ -165,7 +168,7 @@ function sendChannelMessage(chanId, chanMsg)
 function saveLatestPhoto(info)
 {
     fs.writeFileSync(
-        path.join(process.cwd(), 'photo.tmp'),
+        path.join(process.cwd(), FILE_PHOTO),
         info,
         {
             encoding: 'utf8',
@@ -178,13 +181,13 @@ client.once('ready', () => {
     console.log(`Logged in: ${client.user.tag} on ${client.guilds.cache.size} servers`);
 
     quotes = JSON.parse(fs.readFileSync(
-        path.join(process.cwd(), 'quotes.json'),
+        path.join(process.cwd(), FILE_QUOTES),
         'utf8'
     ));
 
-    if (fs.existsSync('photo.tmp')) {
+    if (fs.existsSync(FILE_PHOTO)) {
         latestPhoto = fs.readFileSync(
-            path.join(process.cwd(), 'photo.tmp'),
+            path.join(process.cwd(), FILE_PHOTO),
             'utf8'
         );
     }
