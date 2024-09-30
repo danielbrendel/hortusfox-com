@@ -144,18 +144,39 @@ function sendChannelMessage(chanId, chanMsg)
     }
 }
 
+function saveLatestPhoto(info)
+{
+    fs.writeFileSync(
+        path.join(process.cwd(), 'photo.tmp'),
+        info,
+        {
+            encoding: 'utf8',
+            flag: 'w'
+        }
+    );
+}
+
 client.once('ready', () => {
     console.log(`Logged in: ${client.user.tag} on ${client.guilds.cache.size} servers`);
 
     quotes = JSON.parse(fs.readFileSync(
         path.join(process.cwd(), 'quotes.json'),
-        'utf-8'
+        'utf8'
     ));
+
+    if (fs.existsSync('photo.tmp')) {
+        latestPhoto = fs.readFileSync(
+            path.join(process.cwd(), 'photo.tmp'),
+            'utf8'
+        );
+    }
 
     setInterval(() => {
         axios.get(`${process.env.WEB_BACKEND}/community/fetch/latest`).then(function(response) {
             if ((response.data.code == 200) && (latestPhoto !== response.data.data.thumb)) {
                 latestPhoto = response.data.data.thumb;
+
+                saveLatestPhoto(latestPhoto);
 
                 sendChannelMessage(process.env.PHOTO_CHANNEL, `New community photo: ${process.env.WEB_BACKEND}/img/photos/${latestPhoto}`);
             }
