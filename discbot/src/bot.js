@@ -9,22 +9,34 @@ var latestPhoto = null;
 
 function cmd_url(interaction)
 {
-    interaction.reply(`${process.env.WEB_BACKEND}`);
+    interaction.reply({
+        content: `${process.env.WEB_BACKEND}`,
+        ephemeral: true
+    });
 }
 
 function cmd_documentation(interaction)
 {
-    interaction.reply(`${process.env.WEB_BACKEND}/documentation`);
+    interaction.reply({
+        content: `${process.env.WEB_BACKEND}/documentation`,
+        ephemeral: true
+    });
 }
 
 function cmd_demo(interaction)
 {
-    interaction.reply(`${process.env.WEB_BACKEND}/demo`);
+    interaction.reply({
+        content: `${process.env.WEB_BACKEND}/demo`,
+        ephemeral: true
+    });
 }
 
 function cmd_sponsor(interaction)
 {
-    interaction.reply(`GitHub Sponsoring: ${process.env.SPONSOR_GITHUB} | Buy Me A Coffee: ${process.env.SPONSOR_COFFEE}`);
+    interaction.reply({
+        content: `GitHub Sponsoring: ${process.env.SPONSOR_GITHUB} | Buy Me A Coffee: ${process.env.SPONSOR_COFFEE}`,
+        ephemeral: true
+    });
 }
 
 async function cmd_version(interaction)
@@ -49,19 +61,25 @@ async function cmd_stats(interaction)
 
 function cmd_plant(interaction)
 {
-    interaction.reply(`:potted_plant:`);
+    interaction.reply({
+        content: `:potted_plant:`,
+        ephemeral: true
+    });
 }
 
 function cmd_quote(interaction)
 {
     const quote = quotes.items[Math.floor(Math.random() * quotes.items.length)];
 
-    interaction.reply(quote);
+    interaction.reply({
+        content: quote,
+        ephemeral: true
+    });
 }
 
 async function cmd_photo(interaction)
 {
-    await interaction.deferReply();
+    await interaction.deferReply({ ephemeral: true });
 
     axios.get(`${process.env.WEB_BACKEND}/community/fetch/random`).then(function(response) {
         interaction.editReply(`${process.env.WEB_BACKEND}/img/photos/${response.data.data.thumb}`);
