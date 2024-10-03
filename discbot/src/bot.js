@@ -145,7 +145,7 @@ const commands = [
     },
     {
         name: 'plant',
-        description: 'Shows a lovely plant emoji',
+        description: 'Shows lovely plant GIFs or stickers randomly',
         handler: cmd_plant
     },
     {
