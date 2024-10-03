@@ -7,10 +7,29 @@ import path from 'path';
 const FILE_PHOTO = 'photo.tmp';
 const FILE_QUOTES = 'quotes.json';
 const FILE_PLANTS = 'plants.json';
+const FILE_LOG = 'history.log';
 
 var quotes = null;
 var plants = null;
 var latestPhoto = null;
+
+function log(content, timestamp = true)
+{
+    if (parseInt(process.env.LOG_ENABLE)) {
+        if (timestamp) {
+            content = '[' + (new Date).toLocaleString('en-US') + '] ' + content;
+        }
+
+        fs.writeFileSync(
+            path.join(process.cwd(), FILE_LOG),
+            content,
+            {
+                encoding: 'utf8',
+                flag: 'a'
+            }
+        );
+    }
+}
 
 function cmd_url(interaction)
 {
@@ -146,6 +165,7 @@ function handleCommand(interaction)
     for (let i = 0; i < commands.length; i++) {
         if (interaction.commandName === commands[i].name) {
             commands[i].handler(interaction);
+            log(`${interaction.user.username} has issued the command /${interaction.commandName}\n`);
         }
     }
 }
@@ -230,7 +250,7 @@ client.once('ready', () => {
     rest.put(
         Routes.applicationGuildCommands(process.env.CLIENT_ID, process.env.GUILD_ID), { body: commands }
     );
-
+    
     success(`Logged in: ${client.user.tag}. Bot is now ready.`);
 });
 
