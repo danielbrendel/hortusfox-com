@@ -6,8 +6,10 @@ import path from 'path';
 
 const FILE_PHOTO = 'photo.tmp';
 const FILE_QUOTES = 'quotes.json';
+const FILE_PLANTS = 'plants.json';
 
 var quotes = null;
+var plants = null;
 var latestPhoto = null;
 
 function cmd_url(interaction)
@@ -64,8 +66,10 @@ async function cmd_stats(interaction)
 
 function cmd_plant(interaction)
 {
+    const plant = plants.items[Math.floor(Math.random() * plants.items.length)];
+
     interaction.reply({
-        content: `:potted_plant:`,
+        content: plant,
         ephemeral: true
     });
 }
@@ -196,6 +200,11 @@ client.once('ready', () => {
 
     quotes = JSON.parse(fs.readFileSync(
         path.join(process.cwd(), FILE_QUOTES),
+        'utf8'
+    ));
+
+    plants = JSON.parse(fs.readFileSync(
+        path.join(process.cwd(), FILE_PLANTS),
         'utf8'
     ));
 
