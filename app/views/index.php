@@ -135,7 +135,35 @@
 		</table>
 	</div>
 
+	<hr/>
+
+	<div class="mention-section">
+		<p>As seen in</p>
+
+		<a href="https://news.ycombinator.com/item?id=38887579">
+			<div class="mention-item">
+				<div class="mention-item-logo">
+					<img src="{{ asset('img/ycombinator.png') }}" alt="logo">
+				</div>
+
+				<div class="mention-item-name">HackerNews</div>
+			</div>
+		</a>
+
+		<a href="https://awesome-selfhosted.net/#hortusfox">
+			<div class="mention-item">
+				<div class="mention-item-logo">
+					<img src="{{ asset('img/awesome-selfhosted.png') }}" alt="logo">
+				</div>
+
+				<div class="mention-item-name">Awesome Selfhosted</div>
+			</div>
+		</a>
+	</div>
+
 	@if (env('DEMO_ENABLE'))
+		<hr/>
+
 		<p class="is-font-medium">
 			Do you want to try the app before installing?
 		</p>
