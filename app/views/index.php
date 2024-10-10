@@ -140,10 +140,20 @@
 	<div class="mention-section">
 		<p>As seen in</p>
 
+		<a href="https://selfh.st/newsletter/2024-03-08/">
+			<div class="mention-item">
+				<div class="mention-item-logo">
+					<img src="{{ asset('img/selfh-st.png') }}" alt="logo">
+				</div>
+
+				<div class="mention-item-name">selfh.st</div>
+			</div>
+		</a>
+
 		<a href="https://news.ycombinator.com/item?id=38887579">
 			<div class="mention-item">
 				<div class="mention-item-logo">
-					<img src="{{ asset('img/ycombinator.png') }}" alt="logo">
+					<img src="{{ asset('img/hacker-news.png') }}" alt="logo">
 				</div>
 
 				<div class="mention-item-name">HackerNews</div>
@@ -157,6 +167,16 @@
 				</div>
 
 				<div class="mention-item-name">Awesome Selfhosted</div>
+			</div>
+		</a>
+
+		<a href="https://alternativeto.net/software/hortusfox/about/">
+			<div class="mention-item">
+				<div class="mention-item-logo">
+					<img src="{{ asset('img/alternativeto.png') }}" alt="logo">
+				</div>
+
+				<div class="mention-item-name">AlternativeTo</div>
 			</div>
 		</a>
 	</div>
