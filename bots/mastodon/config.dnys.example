@@ -1,0 +1,5 @@
+# Configuration variables script file
+
+const MASTODONBOT_SERVER_INSTANCE string <= "https://mastodon.social";
+const MASTODONBOT_ACCESS_TOKEN string <= "mastodon-access-token-here";
+const HORTUSFOX_BACKEND string <= "https://www.hortusfox.com";
