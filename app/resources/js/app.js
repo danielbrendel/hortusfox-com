@@ -131,19 +131,17 @@ window.vue = new Vue({
 
                     response.data.forEach(function(elem, index) {
                         target.innerHTML += `
-                            <div class="community-item">
-                                <div class="community-item-title">` + elem.title + `</div>
-                                
-                                <div class="community-item-photo">
-                                    <img src="` + window.location.origin + '/img/photos/' + elem.thumb + `" alt="` + elem.title + `"/>
-                                </div>
+                            <div class="community-item" style="background-image: url('` + window.location.origin + '/img/photos/' + elem.thumb + `');" onmouseover="document.getElementById('community-item-info-` + elem.id + `').style.display = 'block';" onmouseout="document.getElementById('community-item-info-` + elem.id + `').style.display = 'none';" onclick="window.open('` + window.location.origin + '/p/' + elem.slug + `');">
+                                <div class="community-item-info fade-in" id="community-item-info-` + elem.id + `">
+                                    <div class="community-item-title">` + elem.title + `</div>
 
-                                <div class="community-item-description">
-                                     ` + ((elem.description) ? elem.description : '<i>No description provided</i>') + `
-                                </div>
+                                    <div class="community-item-description">
+                                        ` + ((elem.description) ? elem.description : '<i>No description provided</i>') + `
+                                    </div>
 
-                                <div class="community-item-keywords">
-                                     ` + window.vue.formattedKeywords(elem.keywords) + `
+                                    <div class="community-item-keywords">
+                                        ` + window.vue.formattedKeywords(elem.keywords) + `
+                                    </div>
                                 </div>
                             </div>
                         `;
@@ -170,7 +168,7 @@ window.vue = new Vue({
             keywords.forEach(function(elem, index) {
                 result += `
                     <div class="community-item-keywords-tag">
-                        <a href="` + window.location.origin + '/community?tag=' + elem + `">` + elem + `</a>
+                        <a href="javascript:void(0);" onclick="event.stopPropagation(); location.href = '` + window.location.origin + '/community?tag=' + elem + `';">` + elem + `</a>
                     </div>
                 `;
             });
