@@ -52,25 +52,25 @@
 
 	<div class="page-features">
 		<div class="page-features-block">
-			<div class="page-feature-item"><i class="fas fa-star"></i>&nbsp;Plant management</div>
-			<div class="page-feature-item"><i class="fas fa-star"></i>&nbsp;Custom locations</div>
-			<div class="page-feature-item"><i class="fas fa-star"></i>&nbsp;Tasks system</div>
-			<div class="page-feature-item"><i class="fas fa-star"></i>&nbsp;Inventory system</div>
-			<div class="page-feature-item"><i class="fas fa-star"></i>&nbsp;Calendar system</div>
-			<div class="page-feature-item"><i class="fas fa-star"></i>&nbsp;Search feature</div>
-			<div class="page-feature-item"><i class="fas fa-star"></i>&nbsp;History feature</div>
-			<div class="page-feature-item"><i class="fas fa-star"></i>&nbsp;Weather feature</div>
+			<div class="page-feature-item">🪴&nbsp;Plant management</div>
+			<div class="page-feature-item">🏠&nbsp;Custom locations</div>
+			<div class="page-feature-item">📜&nbsp;Tasks system</div>
+			<div class="page-feature-item">📖&nbsp;Inventory system</div>
+			<div class="page-feature-item">📆&nbsp;Calendar system</div>
+			<div class="page-feature-item">🔍&nbsp;Search feature</div>
+			<div class="page-feature-item">🕰️&nbsp;History feature</div>
+			<div class="page-feature-item">🌦️&nbsp;Weather feature</div>
 		</div>
 
 		<div class="page-features-block page-features-block-fix">
-			<div class="page-feature-item"><i class="fas fa-star"></i>&nbsp;Group chat</div>
-			<div class="page-feature-item"><i class="fas fa-star"></i>&nbsp;Profile management</div>
-			<div class="page-feature-item"><i class="fas fa-star"></i>&nbsp;Themes</div>
-			<div class="page-feature-item"><i class="fas fa-star"></i>&nbsp;Admin dashboard</div>
-			<div class="page-feature-item"><i class="fas fa-star"></i>&nbsp;Reminders</div>
-			<div class="page-feature-item"><i class="fas fa-star"></i>&nbsp;Backups</div>
-			<div class="page-feature-item"><i class="fas fa-star"></i>&nbsp;REST API</div>
-			<div class="page-feature-item"><i class="fas fa-star"></i>&nbsp;Plant identification</div>
+			<div class="page-feature-item">💬&nbsp;Group chat</div>
+			<div class="page-feature-item">⚙️&nbsp;Profile management</div>
+			<div class="page-feature-item">🦋&nbsp;Themes</div>
+			<div class="page-feature-item">🔑&nbsp;Admin dashboard</div>
+			<div class="page-feature-item">📢&nbsp;Reminders</div>
+			<div class="page-feature-item">💾&nbsp;Backups</div>
+			<div class="page-feature-item">💻&nbsp;REST API</div>
+			<div class="page-feature-item">🔬&nbsp;Plant identification</div>
 		</div>
 	</div>
 
