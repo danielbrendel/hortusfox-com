@@ -52,25 +52,25 @@
 
 	<div class="page-features">
 		<div class="page-features-block">
-			<div class="page-feature-item"><i class="fas fa-star"></i>&nbsp;Dashboard</div>
-			<div class="page-feature-item"><i class="fas fa-star"></i>&nbsp;Unlimited locations</div>
-			<div class="page-feature-item"><i class="fas fa-star"></i>&nbsp;Unlimited plants</div>
-			<div class="page-feature-item"><i class="fas fa-star"></i>&nbsp;Plant attributes</div>
-			<div class="page-feature-item"><i class="fas fa-star"></i>&nbsp;Thumbnails & Gallery</div>
+			<div class="page-feature-item"><i class="fas fa-star"></i>&nbsp;Plant management</div>
+			<div class="page-feature-item"><i class="fas fa-star"></i>&nbsp;Custom locations</div>
 			<div class="page-feature-item"><i class="fas fa-star"></i>&nbsp;Tasks system</div>
-			<div class="page-feature-item"><i class="fas fa-star"></i>&nbsp;Inventory management</div>
-			<div class="page-feature-item"><i class="fas fa-star"></i>&nbsp;Group Chat</div>
+			<div class="page-feature-item"><i class="fas fa-star"></i>&nbsp;Inventory system</div>
+			<div class="page-feature-item"><i class="fas fa-star"></i>&nbsp;Calendar system</div>
+			<div class="page-feature-item"><i class="fas fa-star"></i>&nbsp;Search feature</div>
+			<div class="page-feature-item"><i class="fas fa-star"></i>&nbsp;History feature</div>
+			<div class="page-feature-item"><i class="fas fa-star"></i>&nbsp;Weather feature</div>
 		</div>
 
 		<div class="page-features-block page-features-block-fix">
+			<div class="page-feature-item"><i class="fas fa-star"></i>&nbsp;Group chat</div>
 			<div class="page-feature-item"><i class="fas fa-star"></i>&nbsp;Profile management</div>
-			<div class="page-feature-item"><i class="fas fa-star"></i>&nbsp;Tags system</div>
-			<div class="page-feature-item"><i class="fas fa-star"></i>&nbsp;Search feature</div>
-			<div class="page-feature-item"><i class="fas fa-star"></i>&nbsp;Plants history</div>
-			<div class="page-feature-item"><i class="fas fa-star"></i>&nbsp;Log history</div>
-			<div class="page-feature-item"><i class="fas fa-star"></i>&nbsp;Theme system</div>
-			<div class="page-feature-item"><i class="fas fa-star"></i>&nbsp;Admin section</div>
-			<div class="page-feature-item"><i class="fas fa-star"></i>&nbsp;Docker ready</div>
+			<div class="page-feature-item"><i class="fas fa-star"></i>&nbsp;Themes</div>
+			<div class="page-feature-item"><i class="fas fa-star"></i>&nbsp;Admin dashboard</div>
+			<div class="page-feature-item"><i class="fas fa-star"></i>&nbsp;Reminders</div>
+			<div class="page-feature-item"><i class="fas fa-star"></i>&nbsp;Backups</div>
+			<div class="page-feature-item"><i class="fas fa-star"></i>&nbsp;REST API</div>
+			<div class="page-feature-item"><i class="fas fa-star"></i>&nbsp;Plant identification</div>
 		</div>
 	</div>
 
