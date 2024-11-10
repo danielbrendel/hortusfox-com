@@ -44,10 +44,10 @@
 
 	<hr/>
 
-	<h2>Lightweight But Effective Features</h2>
+	<h2>Extensive List of leafy Features</h2>
 
 	<p class="is-font-medium">
-		HortusFox provides you with simple but effective features
+		HortusFox offers a wide range of different features
 	</p>
 
 	<div class="page-features">
