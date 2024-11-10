@@ -289,8 +289,8 @@ a.is-default-link:hover {
     width: 230px;
     height: 305px;
     background-repeat: no-repeat;
-    background-size: contain;
-    background-position: left center;
+    background-size: cover;
+    background-position: center;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
     border-radius: 4px;
     margin-left: 5px;
@@ -305,6 +305,7 @@ a.is-default-link:hover {
     @media screen and (max-width: 1087px) {
         display: block;
     }
+    width: 100%;
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.69);
     text-align: left;
