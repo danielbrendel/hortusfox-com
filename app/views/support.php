@@ -40,6 +40,13 @@
             </div>
 
             <div class="control">
+                <label class="label">{{ $captcha[0] }} + {{ $captcha[1] }} = ?</label>
+                <div class="field">
+                    <input type="text" class="input" name="captcha" required/>
+                </div>
+            </div>
+
+            <div class="control">
                 <div class="field">
                     <input type="checkbox" name="consent" value="1" required>&nbsp;&nbsp;I am aware that a response can take up to 5 business days.
                 </div>

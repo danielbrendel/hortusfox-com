@@ -13,6 +13,11 @@ class IndexController extends BaseController {
 	const INDEX_LAYOUT = 'layout';
 
 	/**
+	 * @var array
+	 */
+	private $captcha = [];
+
+	/**
 	 * Perform base initialization
 	 * 
 	 * @return void
@@ -20,6 +25,11 @@ class IndexController extends BaseController {
 	public function __construct()
 	{
 		parent::__construct(self::INDEX_LAYOUT);
+
+		if ($_SERVER['REQUEST_METHOD'] === 'GET') { 
+			$this->captcha = CaptchaModel::createSum(session_id());
+			setGlobalCaptcha($this->captcha);
+		}
 	}
 
 	/**
@@ -157,7 +167,7 @@ class IndexController extends BaseController {
 	{
 		//Generate and return a view by using the helper
 		return parent::view(['content', 'support'], [
-			'faqs' => FaqModel::getEntries(),
+			'captcha' => $this->captcha,
 			'_meta_title' => 'Get Support',
 			'_meta_description' => 'Are you having problems? Something is not working? Contact us!',
 			'_meta_url' => url('/support'),
@@ -181,7 +191,13 @@ class IndexController extends BaseController {
 			$email = $request->params()->query('email');
 			$subject = $request->params()->query('subject');
 			$message = $request->params()->query('message');
+			$captcha = $request->params()->query('captcha');
 			$consent = (bool)$request->params()->query('consent', 0);
+
+			$sum = CaptchaModel::querySum(session_id());
+			if ($sum !== $captcha) {
+				throw new \Exception('Please enter the correct captcha');
+			}
 			
 			if (!$consent) {
 				throw new \Exception('Please consent to our support conditions.');
