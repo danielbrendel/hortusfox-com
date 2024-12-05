@@ -106,17 +106,19 @@ class PhotoModel extends \Asatru\Database\Model {
     public static function fetchPublicContent($paginate = null, $tag = null)
     {
         try {
+            $limit = env('APP_PHOTOS_PACKCOUNT', 12);
+
             if ($paginate === null) {
                 if ($tag === null) {
-                    return static::raw('SELECT * FROM `@THIS` WHERE public = 1 ORDER BY id DESC LIMIT 12');
+                    return static::raw('SELECT * FROM `@THIS` WHERE public = 1 ORDER BY id DESC LIMIT ' . $limit);
                 } else {
-                    return static::raw('SELECT * FROM `@THIS` WHERE public = 1 AND keywords LIKE ? ORDER BY id DESC LIMIT 12', ['%' . $tag . '%']);
+                    return static::raw('SELECT * FROM `@THIS` WHERE public = 1 AND keywords LIKE ? ORDER BY id DESC LIMIT ' . $limit, ['%' . $tag . '%']);
                 }
             } else {
                 if ($tag === null) {
-                    return static::raw('SELECT * FROM `@THIS` WHERE public = 1 AND id < ? ORDER BY id DESC LIMIT 12', [$paginate]);
+                    return static::raw('SELECT * FROM `@THIS` WHERE public = 1 AND id < ? ORDER BY id DESC LIMIT ' . $limit, [$paginate]);
                 } else {
-                    return static::raw('SELECT * FROM `@THIS` WHERE public = 1 AND id < ? AND keywords LIKE ? ORDER BY id DESC LIMIT 12', [$paginate, '%' . $tag . '%']);
+                    return static::raw('SELECT * FROM `@THIS` WHERE public = 1 AND id < ? AND keywords LIKE ? ORDER BY id DESC LIMIT ' . $limit, [$paginate, '%' . $tag . '%']);
                 }
             }
         } catch (\Exception $e) {
