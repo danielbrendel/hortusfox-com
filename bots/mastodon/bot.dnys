@@ -122,6 +122,8 @@ global bStorageResult bool;
 
 call fetchLatestPost() => szLatestPostContent;
 
+s_replace szLatestPostContent " " "%20";
+
 call filterJsonValue("%szLatestPostContent", "slug") => szPostSlug;
 call filterJsonValue("%szLatestPostContent", "full") => szPostImage;
 call filterJsonValue("%szLatestPostContent", "title") => szPostLabel;
@@ -129,6 +131,9 @@ call filterJsonValue("%szLatestPostContent", "description") => szPostDescription
 
 call getLatestPost() => szLatestPostIdent;
 if (%szLatestPostIdent, -nt, %szPostImage) {
+    s_replace szPostLabel "%20" " ";
+    s_replace szPostDescription "%20" " ";
+
     print "New post: %szPostLabel: %szPostDescription | %HORTUSFOX_BACKEND/img/photos/%szPostImage";
 
     sys {curl -o "%szPostImage" "%HORTUSFOX_BACKEND/img/photos/%szPostImage" --silent};
