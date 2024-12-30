@@ -88,6 +88,7 @@ class IndexController extends BaseController {
 	 */
 	public function tutorials($request)
 	{
+		$categories = TutorialsModel::getCategories();
 		$videos = TutorialsModel::getAll();
 		
 		//Generate and return a view by using the helper
@@ -95,6 +96,7 @@ class IndexController extends BaseController {
 			'_meta_title' => 'Tutorials',
 			'_meta_description' => 'Get familiar with the app',
 			'_meta_url' => url('/tutorials'),
+			'categories' => $categories,
 			'videos' => $videos
 		]);
 	}

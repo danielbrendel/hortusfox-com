@@ -7,6 +7,19 @@
         We got you covered!
     </p>
 
+    <div class="is-margin-bottom-10">
+        <a href="{{ env('LINK_YOUTUBE') }}" target="_blank"><img src="https://img.shields.io/badge/youtube-red?style=for-the-badge" alt="social-youtube"></a>&nbsp;
+        <a href="{{ env('LINK_FOSSVIDEO') }}" target="_blank"><img src="https://img.shields.io/badge/foss.video-purple?style=for-the-badge" alt="social-peertube"></a>
+    </div>
+
+    <div class="is-margin-bottom-10">
+        <ul>
+            @foreach ($categories as $category)
+            <li><a class="is-default-link" href="{{ url('/tutorials#' . $category->get('category')) }}">{{ $category->get('category') }}</a></li>
+            @endforeach
+        </ul>
+    </div>
+
     <div class="tutorials">
         <?php $lastCat = ''; ?>
 
@@ -19,7 +32,7 @@
 
                     $lastCat = $install_video->get('category');
 
-                    echo '<div class="tutorial-section"><h3>' . ucfirst($install_video->get('category')) . '</h3>';
+                    echo '<div class="tutorial-section"><a name="' . $install_video->get('category') . '"></a><h3>' . ucfirst($install_video->get('category')) . '</h3>';
                 }
             ?>
 

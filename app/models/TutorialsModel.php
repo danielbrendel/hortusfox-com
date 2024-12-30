@@ -30,4 +30,17 @@ class TutorialsModel extends \Asatru\Database\Model {
             throw $e;
         }
     }
+
+    /**
+     * @return mixed
+     * @throws \Exception
+     */
+    public static function getCategories()
+    {
+        try {
+            return static::raw('SELECT DISTINCT category FROM `@THIS` ORDER BY category ASC');
+        } catch (\Exception $e) {
+            throw $e;
+        }
+    }
 }
