@@ -19,7 +19,7 @@
 
         <ul>
             @foreach ($categories as $category)
-            <li><a class="is-default-link" href="{{ url('/tutorials#' . $category->get('category')) }}">{{ $category->get('category') }}</a></li>
+            <li><a class="is-default-link" href="{{ url('/tutorials#' . $category->get('category')) }}">{{ ucfirst($category->get('category')) }}</a></li>
             @endforeach
         </ul>
     </div>
