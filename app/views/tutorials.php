@@ -12,7 +12,11 @@
         <a href="{{ env('LINK_FOSSVIDEO') }}" target="_blank"><img src="https://img.shields.io/badge/foss.video-purple?style=for-the-badge" alt="social-peertube"></a>
     </div>
 
-    <div class="is-margin-bottom-10">
+    <div><hr/></div>
+
+    <div class="tutorials-list">
+        <p>Table of Contents</p>
+
         <ul>
             @foreach ($categories as $category)
             <li><a class="is-default-link" href="{{ url('/tutorials#' . $category->get('category')) }}">{{ $category->get('category') }}</a></li>
