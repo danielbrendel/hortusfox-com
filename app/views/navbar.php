@@ -61,7 +61,7 @@
                 GitHub
             </a>
 
-            @if (env('HELPREALM_RESTAPI_ENABLE'))
+            @if ((env('HELPREALM_RESTAPI_ENABLE')) || (env('DISCORD_SUPPORT_ENABLE')))
             <a class="navbar-item" href="{{ url('/support') }}">
                 <i class="fas fa-headset"></i>&nbsp;Support
             </a>

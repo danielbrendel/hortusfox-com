@@ -8,6 +8,7 @@
     @include('flashmsg.php')
 
     <div class="support">
+        @if (env('HELPREALM_RESTAPI_ENABLE'))
         <form method="POST" action="{{ url('/support') }}" enctype="multipart/form-data">
             @csrf
 
@@ -58,5 +59,10 @@
                 </div>
             </div>
         </form>
+        @elseif (env('DISCORD_SUPPORT_ENABLE'))
+            <iframe class="discord-widget" src="{{ env('DISCORD_SUPPORT_URL') }}" width="350" height="500" frameborder="0" sandbox="allow-same-origin allow-scripts allow-popups"></iframe>
+        @else
+            <b>Warning: misconfigured support endpoints detected</b>
+        @endif
     </div>
 </div>
