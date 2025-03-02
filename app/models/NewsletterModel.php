@@ -4,9 +4,11 @@
  * This class extends the base model class and represents your associated table
  */ 
 class NewsletterModel extends \Asatru\Database\Model {
+    const EMAIL_CONFIRMED = '_confirmed';
+
     /**
      * @param $email
-     * @return string
+     * @return array
      * @throws \Exception
      */
     public static function subscribe($email)
@@ -16,12 +18,32 @@ class NewsletterModel extends \Asatru\Database\Model {
             if ($count != 0) {
                 throw new \Exception('You have already subscribed to our newsletter!');
             }
-
+            
+            $confirmation = md5(random_bytes(55) . date('Y-m-d H:i:s') . $email);
             $token = md5(random_bytes(55) . date('Y-m-d H:i:s') . $email);
 
-            static::raw('INSERT INTO `@THIS` (email, token) VALUES(?, ?)', [$email, $token]);
+            static::raw('INSERT INTO `@THIS` (email, confirmation, token) VALUES(?, ?, ?)', [$email, $confirmation, $token]);
 
-            return $token;
+            return ['confirmation' => $confirmation, 'token' => $token];
+        } catch (\Exception $e) {
+            throw $e;
+        }
+    }
+
+    /**
+     * @param $confirmation
+     * @return void
+     * @throws \Exception
+     */
+    public static function confirm($confirmation)
+    {
+        try {
+            $item = static::raw('SELECT * FROM `@THIS` WHERE confirmation = ?', [$confirmation])->first();
+            if (!$item) {
+                throw new \Exception('Invalid confirmation token specified.');
+            }
+
+            static::raw('UPDATE `@THIS` SET confirmation = ? WHERE id = ?', [self::EMAIL_CONFIRMED, $item->get('id')]);
         } catch (\Exception $e) {
             throw $e;
         }
@@ -55,7 +77,7 @@ class NewsletterModel extends \Asatru\Database\Model {
     public static function getProcessUsers($process, $limit = 5)
     {
         try {
-            return static::raw('SELECT * FROM `@THIS` WHERE process <> ? OR process IS NULL LIMIT ' . $limit, [$process]);
+            return static::raw('SELECT * FROM `@THIS` WHERE confirmation = ? AND (process <> ? OR process IS NULL) LIMIT ' . $limit, [self::EMAIL_CONFIRMED, $process]);
         } catch (\Exception $e) {
             throw $e;
         }

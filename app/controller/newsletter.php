@@ -15,16 +15,38 @@ class NewsletterController extends BaseController {
         try {
             $email = $request->params()->query('email', null);
 
-            $token = NewsletterModel::subscribe($email);
+            $data = NewsletterModel::subscribe($email);
 
             $mail = new Asatru\SMTPMailer\SMTPMailer();
             $mail->setRecipient($email);
             $mail->setSubject('Welcome to the HortusFox newsletter');
-            $mail->setView('mail/newsletter_subscribe', [], ['token' => $token]);
+            $mail->setView('mail/newsletter_subscribe', [], ['token' => $data['token'], 'confirmation' => $data['confirmation']]);
             $mail->setProperties(mail_properties());
             $mail->send();
 
             FlashMessage::setMsg('success', 'You have successfully subscribed to our newsletter!');
+
+            return redirect('/#info');
+        } catch (\Exception $e) {
+            FlashMessage::setMsg('error', $e->getMessage());
+            return redirect('/#info');
+        }
+    }
+
+    /**
+	 * Handles URL: /newsletter/confirm
+	 * 
+	 * @param Asatru\Controller\ControllerArg $request
+	 * @return Asatru\View\RedirectHandler
+	 */
+    public function confirm($request)
+    {
+        try {
+            $confirm_token = $request->params()->query('confirm_token', null);
+
+            $data = NewsletterModel::confirm($confirm_token);
+
+            FlashMessage::setMsg('success', 'You have successfully verified your e-mail address. Have fun with our newsletter!');
 
             return redirect('/#info');
         } catch (\Exception $e) {

@@ -103,6 +103,15 @@
 				to stay updated on the development process of HortusFox. We will occassionally
 				inform you about upcoming events, development milestones and any other news!
 			</p>
+
+			<p>
+				Just one more thing: Please verify your e-mail address, so we can be sure that it is you that want
+				to recieve the newsletter. Please click the following link in order to confirm your e-mail address.
+			</p>
+
+			<p>
+				<a href="{{ url('/newsletter/confirm?confirm_token=' . $confirmation) }}">Confirm E-Mail address</a>
+			</p>
 			
 			<p>
 				Of course we greatly appreciate your support. And we welcome you to contribute as well.
