@@ -13,7 +13,7 @@
         <meta name="og:url" property="og:url" content="{{ (isset($_meta_url)) ? $_meta_url : url('/') }}">
         <meta name="og:image" property="og:image" content="{{ asset('img/screenshots/screenshot-desktop.png') }}">
 		
-        <title>{{ (isset($_meta_title)) ? env('APP_NAME') . ' - ' . $_meta_title : env('APP_NAME') }}</title>
+        <title>{{ (isset($_meta_title)) ? env('APP_NAME') . ' - ' . $_meta_title : env('APP_NAME') . ' - ' . env('APP_LABEL') }}</title>
 
         <link rel="icon" type="image/png" href="{{ asset('img/logo.png') }}"/>
         <link rel="stylesheet" type="text/css" href="{{ asset('css/bulma.css') }}"/>
