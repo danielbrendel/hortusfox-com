@@ -125,4 +125,26 @@ class AdminController extends BaseController {
 
         return view('mail/newsletter_base', [], ['subject' => $subject, 'content' => $content]);
     }
+
+    /**
+	 * Handles URL: /admin/newsletter/clean
+	 * 
+	 * @param Asatru\Controller\ControllerArg $request
+	 * @return Asatru\View\JsonHandler
+	 */
+    public function cleanup_unconfirmed($request)
+    {
+        try {
+            NewsletterModel::cleanUnconfirmed();
+
+            return json([
+                'code' => 200
+            ]);
+        } catch (\Exception $e) {
+            return json([
+                'code' => 500,
+                'msg' => $e->getMessage()
+            ]);
+        }
+    }
 }

@@ -5,6 +5,8 @@
  */ 
 class NewsletterModel extends \Asatru\Database\Model {
     const EMAIL_CONFIRMED = '_confirmed';
+    const EMAIL_DEFCONFTIME = 72;
+    const EMAIL_DEFCONFLIMIT = 100;
 
     /**
      * @param $email
@@ -93,6 +95,26 @@ class NewsletterModel extends \Asatru\Database\Model {
     {
         try {
             static::raw('UPDATE `@THIS` SET process = ? WHERE id = ?', [$process, $id]);
+        } catch (\Exception $e) {
+            throw $e;
+        }
+    }
+
+    /**
+     * @return void
+     * @throws \Exception
+     */
+    public static function cleanUnconfirmed()
+    {
+        try {
+            $hours = env('APP_NEWSLETTERCONFTIME', self::EMAIL_DEFCONFTIME);
+            $limit = env('APP_NEWSLETTERCONFLIMIT', self::EMAIL_DEFCONFLIMIT);
+
+            $unconfirmed_subscribers = static::raw('SELECT * FROM `@THIS` WHERE confirmation <> ? AND created_at <= NOW() - INTERVAL ' . $hours . ' HOUR LIMIT ' . $limit, [self::EMAIL_CONFIRMED]);
+            
+            foreach ($unconfirmed_subscribers as $subscriber) {
+                static::raw('DELETE FROM `@THIS` WHERE id = ?', [$subscriber->get('id')]);
+            }
         } catch (\Exception $e) {
             throw $e;
         }
