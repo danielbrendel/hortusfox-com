@@ -147,6 +147,13 @@
 					&nbsp;|&nbsp;
 				@endif
 
+				@if (env('LINK_PIXELFED'))
+					<a href="{{ env('LINK_PIXELFED') }}" target="_blank">
+						Pixelfed
+					</a>
+					&nbsp;|&nbsp;
+				@endif
+
 				@if (env('LINK_INSTAGRAM'))
 					<a href="{{ env('LINK_INSTAGRAM') }}" target="_blank">
 						Instagram

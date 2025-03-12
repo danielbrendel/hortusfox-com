@@ -118,6 +118,14 @@
                         </span>
                         @endif
 
+                        @if (env('LINK_PIXELFED'))
+                        <span>
+                            <a href="{{ env('LINK_PIXELFED') }}" target="_blank">
+                                <i class="fab fa-camera fa-2x"></i>
+                            </a>
+                        </span>
+                        @endif
+
                         @if (env('LINK_INSTAGRAM'))
                         <span>
                             <a href="{{ env('LINK_INSTAGRAM') }}" target="_blank">
