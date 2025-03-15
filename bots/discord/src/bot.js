@@ -3,6 +3,9 @@ import 'dotenv/config';
 import axios from 'axios';
 import fs from 'fs';
 import path from 'path';
+import FormData from 'form-data';
+import fetch from 'node-fetch';
+import { Exception } from 'sass';
 
 const FILE_PHOTO = 'photo.tmp';
 const FILE_QUOTES = 'quotes.json';
@@ -258,6 +261,62 @@ client.on('interactionCreate', async (interaction) => {
     if (!interaction.isChatInputCommand()) return;
 
     handleCommand(interaction);
+});
+
+client.on('messageCreate', async (message) => {
+    if ((process.env.PLANTNET_APIKEY.length > 0) && (!message.author.bot) && (message.channel.id === process.env.IDENT_CHANNEL)) {
+        if (message.attachments.size > 0) {
+            const imageAttachment = message.attachments.first();
+
+            if (imageAttachment) {
+                const reply = await message.reply('🔄 Processing your image...');
+
+                try {
+                    const fileUrl = imageAttachment.url.replace("media.discordapp.net", "cdn.discordapp.com");
+                    
+                    const fileType = imageAttachment.contentType;
+
+                    const response = await fetch(fileUrl);
+                    const arrayBuffer = await response.arrayBuffer();
+                    const buffer = Buffer.from(arrayBuffer);
+
+                    let finalImagePath = `downloaded-image.${fileType.includes('jpeg') ? 'jpg' : 'png'}`;;
+
+                    fs.writeFileSync(finalImagePath, buffer);
+                  
+                    const formData = new FormData();
+                    formData.append('organs', 'auto');
+                    formData.append('images', fs.createReadStream(finalImagePath));
+
+                    const apiQuery = await axios.post('https://my-api.plantnet.org/v2/identify/all?api-key=' + process.env.PLANTNET_APIKEY, formData, {
+                        headers: formData.getHeaders()
+                    });
+                    
+                    if (typeof apiQuery.data.statusCode !== 'undefined') {
+                        throw new Error('Error: server returned with status ' + apiQuery.data.statusCode);
+                    }
+
+                    if ((typeof apiQuery.data.results === 'undefined') || (apiQuery.data.results.length == 0)) {
+                        throw new Error('Plant could not be identified.');
+                    }
+
+                    let resultStr = '';
+                    
+                    for (let i = 0; i < apiQuery.data.results.length; i++) {
+                        resultStr += apiQuery.data.results[i].species.scientificNameWithoutAuthor + ' (' + (apiQuery.data.results[i].score * 100).toFixed(2) + '%)\n';
+                    }
+
+                    await reply.edit('✅ Processing complete! Results:\n\n' + resultStr);
+
+                    if (fs.existsSync(finalImagePath)) {
+                        fs.unlinkSync(finalImagePath);
+                    }
+                } catch (error) {
+                    await reply.edit('❌ Error: ' + error);
+                }
+            }
+        }
+    }
 });
 
 client.login(process.env.BOT_TOKEN);
