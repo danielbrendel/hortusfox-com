@@ -10,7 +10,7 @@
         @foreach ($faqs as $faq)
             <div class="faq-item">
                 <strong><i class="fas fa-question-circle"></i>&nbsp;{{ $faq->get('question') }}</strong>
-                <small>{{ $faq->get('answer') }}</small>
+                <small>{!! $faq->get('answer') !!}</small>
             </div>
         @endforeach
     </div>
