@@ -1,0 +1,6 @@
+# Configuration variables script file
+
+const PIXELFED_SERVER_INSTANCE string <= "https://pixelfed.social";
+const PIXELFED_ACCESS_TOKEN string <= "mastodon-access-token-here";
+const HORTUSFOX_BACKEND string <= "https://www.hortusfox.com";
+const STATUS_HASHTAGS string <= "";

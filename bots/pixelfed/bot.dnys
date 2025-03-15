@@ -1,0 +1,148 @@
+# Fetch latest community photo from HortusFox server and post it to Pixelfed if not already
+
+require "strings";
+require "fileio";
+
+exec "config.dnys";
+
+function filterJsonValue string(szContent string, szKey string)
+{
+    local iKeyLen int;
+    local iStrPos int;
+    local iStrStart int;
+    local iLoop int;
+    local bLoop bool;
+    local strCurChar string;
+    local szResultValue string;
+
+    result "";
+
+    s_find "%szContent" {%szKey:} iStrPos;
+    if (%iStrPos, -gre, 1) {
+        s_getlen {%szKey:} iKeyLen;
+
+        set iStrStart <= %iStrPos;
+        += iStrStart %iKeyLen;
+
+        set iLoop <= %iStrStart;
+        set bLoop <= true;
+        
+        while (%bLoop, -eq, true) {
+            s_getchar "%szContent" %iLoop strCurChar;
+            
+            if (%strCurChar, -eq, ",") {
+                set bLoop <= false;
+            } else {
+                s_append szResultValue %strCurChar;
+            };
+            
+            ++ iLoop;
+        };
+
+        result "%szResultValue";
+    };
+};
+
+function getLatestPost string()
+{
+    local hFile int;
+    local bOpened bool;
+    local szFileLine string;
+
+    result "";
+
+    fopen "latest.txt" false hFile;
+    fisopen %hFile bOpened;
+    if (%bOpened, -eq, true) {
+        freadline %hFile szFileLine;
+        fclose %hFile;
+
+        result %szFileLine;
+    };
+};
+
+function storeLatestPost bool(szToken string)
+{
+    local hFile int;
+    local bOpened bool;
+
+    result false;
+
+    fopen "latest.txt" false hFile;
+    fisopen %hFile bOpened;
+    if (%bOpened, -eq, true) {
+        fwriteline %hFile "%szToken";
+        fclose %hFile;
+
+        result true;
+    };
+};
+
+function postToFeed bool(szImageFile string, szStatusText string)
+{
+    local strResult string;
+    local strStatusIdent string;
+
+    result false;
+
+    sys {curl -X POST -F "file=@%szImageFile" -F "status=%szStatusText" -F "sensitive=false" -F "visibility=public" -H "Authorization: Bearer %PIXELFED_ACCESS_TOKEN" -H "Accept: application/json" -H "Content-Type: multipart/form-data" "%PIXELFED_SERVER_INSTANCE/api/v1.1/status/create" --silent} strResult;
+
+    call filterJsonValue("%strResult", "id") => strStatusIdent;
+
+    if (%strStatusIdent, -nt, "") {
+        result true;
+    };
+};
+
+function fetchLatestPost string()
+{
+    local strResult string;
+
+    result "";
+
+    sys {curl "%HORTUSFOX_BACKEND/community/fetch/latest" --silent} strResult;
+
+    result %strResult;
+};
+
+global szLatestPostContent string;
+global szPostSlug string;
+global szPostImage string;
+global szPostLabel string;
+global szPostDescription string;
+global szLatestPostIdent string;
+global bPostToFeedResult bool;
+global bFileRemoval bool;
+global bStorageResult bool;
+
+call fetchLatestPost() => szLatestPostContent;
+
+s_replace szLatestPostContent " " "%20";
+
+call filterJsonValue("%szLatestPostContent", "slug") => szPostSlug;
+call filterJsonValue("%szLatestPostContent", "full") => szPostImage;
+call filterJsonValue("%szLatestPostContent", "title") => szPostLabel;
+call filterJsonValue("%szLatestPostContent", "description") => szPostDescription;
+
+call getLatestPost() => szLatestPostIdent;
+if (%szLatestPostIdent, -nt, %szPostImage) {
+    s_replace szPostLabel "%20" " ";
+    s_replace szPostDescription "%20" " ";
+
+    print "New post: %szPostLabel: %szPostDescription | %HORTUSFOX_BACKEND/img/photos/%szPostImage";
+
+    sys {curl -o "%szPostImage" "%HORTUSFOX_BACKEND/img/photos/%szPostImage" --silent};
+
+    call postToFeed("%szPostImage", "[Community Photo] %szPostLabel | %HORTUSFOX_BACKEND/p/%szPostSlug | %STATUS_HASHTAGS") => bPostToFeedResult;
+    if (%bPostToFeedResult, -eq, true) {
+        print "Successfully posted to Pixelfed feed";
+    } else {
+        print "Failed to post to Pixelfed feed";
+    };
+
+    fremove "%szPostImage" bFileRemoval;
+
+    call storeLatestPost("%szPostImage") => bStorageResult;
+} else {
+    print "No new post. Nothing to do...";
+};
