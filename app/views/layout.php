@@ -126,14 +126,6 @@
                         </span>
                         @endif
 
-                        @if (env('LINK_INSTAGRAM'))
-                        <span>
-                            <a href="{{ env('LINK_INSTAGRAM') }}" target="_blank">
-                                <i class="fab fa-instagram fa-2x"></i>
-                            </a>
-                        </span>
-                        @endif
-
                         <span>
                             <a href="mailto:{{ env('APP_CONTACT') }}" target="_blank">
                                 <i class="fas fa-envelope fa-2x"></i>

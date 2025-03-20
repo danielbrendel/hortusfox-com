@@ -154,13 +154,6 @@
 					&nbsp;|&nbsp;
 				@endif
 
-				@if (env('LINK_INSTAGRAM'))
-					<a href="{{ env('LINK_INSTAGRAM') }}" target="_blank">
-						Instagram
-					</a>
-                    &nbsp;|&nbsp;
-				@endif
-
                 <a href="mailto:{{ env('APP_CONTACT') }}" target="_blank">
                     Contact
                 </a>
