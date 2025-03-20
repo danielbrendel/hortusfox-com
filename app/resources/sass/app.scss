@@ -100,7 +100,7 @@ a.navbar-burger:hover {
     position: relative;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.63);
+    background-color: rgba(0, 0, 0, 0.69);
 }
 
 .page-header-content {
@@ -122,6 +122,10 @@ a.navbar-burger:hover {
     margin-bottom: 20px;
 }
 
+.page-header-buttons {
+    margin-top: 35px;
+}
+
 .page-header-buttons div {
     display: inline-block;
     width: 45%;
@@ -137,7 +141,7 @@ a.navbar-burger:hover {
 }
 
 .page-header-badges {
-    margin-bottom: 25px;
+    margin-top: 35px;
 }
 
 .page-header-badges img {
