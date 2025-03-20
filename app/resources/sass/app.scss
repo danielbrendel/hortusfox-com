@@ -94,6 +94,7 @@ a.navbar-burger:hover {
     margin-top: 52px;
     background-repeat: no-repeat;
     background-size: cover;
+    mask-image: linear-gradient(to bottom, rgb(30, 30, 30) 95%, rgba(30, 30, 30, 0) 100%);
 }
 
 .page-header-overlay {
@@ -114,16 +115,23 @@ a.navbar-burger:hover {
 .page-header-content h1 {
     color: rgb(230, 230, 230);
     font-size: 2.5em;
+    @media screen and (max-width: 768px) {
+        font-size: 2.0em;
+    }
 }
 
 .page-header-content h2 {
     color: rgb(220, 220, 220);
-    font-size: 1.5em;
     margin-bottom: 20px;
+    font-size: 1.5em;
+    @media screen and (max-width: 768px) {
+        margin-top: 15px;
+        font-size: 1.3em;
+    }
 }
 
 .page-header-buttons {
-    margin-top: 35px;
+    margin-top: 50px;
 }
 
 .page-header-buttons div {
@@ -141,7 +149,7 @@ a.navbar-burger:hover {
 }
 
 .page-header-badges {
-    margin-top: 35px;
+    margin-top: 50px;
 }
 
 .page-header-badges img {
