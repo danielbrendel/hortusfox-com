@@ -168,6 +168,13 @@
         <script>
             document.addEventListener('DOMContentLoaded', function() {
                 window.vue.initNavbar();
+
+                if (document.body.clientWidth < 786) {
+                    let badges = document.querySelector('.page-header-badges');
+                    for (let i = 0; i < badges.children.length; i++) {
+                        badges.children[i].src = badges.children[i].src.replace('for-the-badge', 'flat');
+                    }
+                }
                 
                 document.body.addEventListener('scroll', function() {
                     if ((document.body.scrollTop > document.getElementsByClassName('navbar')[0].offsetHeight + 10) || (document.documentElement.scrollTop > document.getElementsByClassName('navbar')[0].offsetHeight + 10)) {
