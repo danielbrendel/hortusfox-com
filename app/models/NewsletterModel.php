@@ -119,4 +119,17 @@ class NewsletterModel extends \Asatru\Database\Model {
             throw $e;
         }
     }
+
+    /**
+     * @return int
+     * @throws \Exception
+     */
+    public static function getSubscriberCount()
+    {
+        try {
+            return static::raw('SELECT COUNT(*) AS `count` FROM `@THIS` WHERE confirmation = ?', [self::EMAIL_CONFIRMED])->first()->get('count');
+        } catch (\Exception $e) {
+            throw $e;
+        }
+    }
 }

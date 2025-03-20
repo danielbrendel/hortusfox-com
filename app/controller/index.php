@@ -44,7 +44,8 @@ class IndexController extends BaseController {
 		return parent::view(['content', 'index'], [
 			'show_header' => true,
 			'downloads' => DownloadsModel::getDownloads(),
-			'showcase' => config('showcase')
+			'showcase' => config('showcase'),
+			'subscribers' => CacheModel::remember('newsletter.count', getCacheableHours(24), function() { return NewsletterModel::getSubscriberCount(); })
 		]);
 	}
 

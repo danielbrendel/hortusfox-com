@@ -39,6 +39,10 @@
 					</div>
 				</div>
 			</form>
+
+			@if (env('APP_NEWSLETTERSTATS'))
+			<div class="newsletter-stats">There are already <b>{{ $subscribers }}</b> users subscribed</div>
+			@endif
 		</div>
 	@endif
 

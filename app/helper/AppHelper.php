@@ -32,3 +32,12 @@ function getGlobalCaptcha()
     global $global_captcha;
     return $global_captcha;
 }
+
+/**
+ * @param $hours
+ * @return int
+ */
+function getCacheableHours($hours)
+{
+    return $hours * 60 * 60;
+}
