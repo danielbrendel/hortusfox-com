@@ -70,67 +70,83 @@
                     </div>
 
                     <div class="column is-3 is-desktop-right is-span-margin-bottom">
-                        @if (env('LINK_GITHUB'))
-                        <span>
-                            <a href="{{ env('LINK_GITHUB') }}" target="_blank">
-                                <i class="fab fa-github fa-2x"></i>
-                            </a>
-                        </span>
-                        @endif
+                        <div>
+                            @if (env('LINK_GITHUB'))
+                            <span>
+                                <a href="{{ env('LINK_GITHUB') }}" target="_blank">
+                                    <i class="fab fa-github fa-2x"></i>
+                                </a>
+                            </span>
+                            @endif
 
-                        @if (env('LINK_DISCORD'))
-                        <span>
-                            <a href="{{ env('LINK_DISCORD') }}" target="_blank">
-                                <i class="fab fa-discord fa-2x"></i>
-                            </a>
-                        </span>
-                        @endif
+                            @if (env('LINK_DISCORD'))
+                            <span>
+                                <a href="{{ env('LINK_DISCORD') }}" target="_blank">
+                                    <i class="fab fa-discord fa-2x"></i>
+                                </a>
+                            </span>
+                            @endif
 
-                        @if (env('LINK_REDDIT'))
-                        <span>
-                            <a href="{{ env('LINK_REDDIT') }}" target="_blank">
-                                <i class="fab fa-reddit fa-2x"></i>
-                            </a>
-                        </span>
-                        @endif
+                            @if (env('LINK_REDDIT'))
+                            <span>
+                                <a href="{{ env('LINK_REDDIT') }}" target="_blank">
+                                    <i class="fab fa-reddit fa-2x"></i>
+                                </a>
+                            </span>
+                            @endif
 
-                        @if (env('LINK_YOUTUBE'))
-                        <span>
-                            <a href="{{ env('LINK_YOUTUBE') }}" target="_blank">
-                                <i class="fab fa-youtube fa-2x"></i>
-                            </a>
-                        </span>
-                        @endif
+                            @if (env('LINK_YOUTUBE'))
+                            <span>
+                                <a href="{{ env('LINK_YOUTUBE') }}" target="_blank">
+                                    <i class="fab fa-youtube fa-2x"></i>
+                                </a>
+                            </span>
+                            @endif
 
-                        @if (env('LINK_FOSSVIDEO'))
-                        <span>
-                            <a href="{{ env('LINK_FOSSVIDEO') }}" target="_blank">
-                                <i class="fas fa-video fa-2x"></i>
-                            </a>
-                        </span>
-                        @endif
+                            @if (env('LINK_FOSSVIDEO'))
+                            <span>
+                                <a href="{{ env('LINK_FOSSVIDEO') }}" target="_blank">
+                                    <i class="fas fa-video fa-2x"></i>
+                                </a>
+                            </span>
+                            @endif
 
-                        @if (env('LINK_MASTODON'))
-                        <span>
-                            <a href="{{ env('LINK_MASTODON') }}" target="_blank">
-                                <i class="fab fa-mastodon fa-2x"></i>
-                            </a>
-                        </span>
-                        @endif
+                            @if (env('LINK_MASTODON'))
+                            <span>
+                                <a href="{{ env('LINK_MASTODON') }}" target="_blank">
+                                    <i class="fab fa-mastodon fa-2x"></i>
+                                </a>
+                            </span>
+                            @endif
 
-                        @if (env('LINK_PIXELFED'))
-                        <span>
-                            <a href="{{ env('LINK_PIXELFED') }}" target="_blank">
-                                <i class="fas fa-camera fa-2x"></i>
-                            </a>
-                        </span>
-                        @endif
+                            @if (env('LINK_PIXELFED'))
+                            <span>
+                                <a href="{{ env('LINK_PIXELFED') }}" target="_blank">
+                                    <i class="fas fa-camera fa-2x"></i>
+                                </a>
+                            </span>
+                            @endif
 
-                        <span>
-                            <a href="mailto:{{ env('APP_CONTACT') }}" target="_blank">
-                                <i class="fas fa-envelope fa-2x"></i>
-                            </a>
-                        </span>
+                            <span>
+                                <a href="mailto:{{ env('APP_CONTACT') }}" target="_blank">
+                                    <i class="fas fa-envelope fa-2x"></i>
+                                </a>
+                            </span>
+                        </div>
+
+                        <div class="page-footer-resources">
+                            <div>
+                                <strong>Resources</strong>
+                            </div>
+
+                            <div>
+                                <a href="{{ env('LINK_DOCUMENTATION') }}">Documentation</a>
+                            </div>
+
+                            <div>
+                                <a href="{{ env('LINK_DISCORDBOT') }}">HortusBuddy</a>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="column is-3"></div>

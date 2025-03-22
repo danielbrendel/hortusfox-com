@@ -719,6 +719,22 @@ div.page-downloads {
     margin-left: 10px;
 }
 
+.page-footer-resources {
+    margin-top: 10px;
+}
+
+.page-footer-resources strong {
+    color: rgb(200, 200, 200);
+}
+
+.page-footer-resources a {
+    color: rgb(200, 200, 200);
+}
+
+.page-footer-resources a:hover {
+    color: rgb(200, 200, 200);
+}
+
 .is-desktop-right {
     @media screen and (min-width: 768px) {
         text-align: right;
