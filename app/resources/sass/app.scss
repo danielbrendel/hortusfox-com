@@ -16,6 +16,9 @@ body {
 .navbar {
     background-color: transparent;
     transition: .3s ease-in-out;
+    @media screen and (min-width: 1087px) {
+        padding: 15px;
+    }
 }
 
 .navbar-no-transition {
@@ -24,6 +27,12 @@ body {
 
 .navbar-item-brand img {
     border-radius: 50%;
+}
+
+.navbar-item-brand.is-font-title {
+    @media screen and (min-width: 1087px) {
+        font-size: 1.4em;
+    }
 }
 
 .navbar-background-color {
@@ -43,6 +52,13 @@ a.navbar-item:hover, a.navbar-item.is-active, .navbar-link:hover, .navbar-link.i
 
 .navbar-item, .navbar-burger, .navbar-link {
     color: rgb(230, 230, 230);
+}
+
+.navbar-item-padding {
+    @media screen and (min-width: 1087px) {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
 }
 
 .navbar-dropdown {

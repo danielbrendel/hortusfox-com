@@ -30,39 +30,39 @@
             @endif
 
             @if (env('GAME_ENABLE'))
-            <div class="navbar-item">
+            <div class="navbar-item navbar-item-padding">
                 <a class="button is-warning" href="javascript:void(0);" onclick="window.vue.scrollTo('a[name=game]');">
                     Game
                 </a>
             </div>
             @endif
 
-            <a class="navbar-item" href="{{ url('/screenshots') }}">
+            <a class="navbar-item navbar-item-padding" href="{{ url('/screenshots') }}">
                 Screenshots
             </a>
 
-            <a class="navbar-item" href="{{ url('/themes') }}">
+            <a class="navbar-item navbar-item-padding" href="{{ url('/themes') }}">
                 Themes
             </a>
 
-            <a class="navbar-item" href="{{ env('LINK_DOCUMENTATION') }}">
+            <a class="navbar-item navbar-item-padding" href="{{ env('LINK_DOCUMENTATION') }}">
                 Documentation
             </a>
 
-            <a class="navbar-item" href="{{ url('/tutorials') }}">
+            <a class="navbar-item navbar-item-padding" href="{{ url('/tutorials') }}">
                 Tutorials
             </a>
 
-            <a class="navbar-item" href="{{ url('/faq') }}">
+            <a class="navbar-item navbar-item-padding" href="{{ url('/faq') }}">
                 FAQ
             </a>
 
-            <a class="navbar-item" href="{{ env('LINK_GITHUB') }}">
+            <a class="navbar-item navbar-item-padding" href="{{ env('LINK_GITHUB') }}">
                 GitHub
             </a>
 
             @if ((env('HELPREALM_RESTAPI_ENABLE')) || (env('DISCORD_SUPPORT_ENABLE')))
-            <a class="navbar-item" href="{{ url('/support') }}">
+            <a class="navbar-item navbar-item-padding" href="{{ url('/support') }}">
                 <i class="fas fa-headset"></i>&nbsp;Support
             </a>
             @endif
