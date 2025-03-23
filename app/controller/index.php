@@ -47,7 +47,10 @@ class IndexController extends BaseController {
 			'showcase' => config('showcase'),
 			'subscribers' => CacheModel::remember('newsletter.count', getCacheableHours(24), function() { 
 				return NewsletterModel::getSubscriberCount(); 
-			})
+			}),
+			'flags' => json_decode(CacheModel::remember('flags.list', getCacheableHours(24), function() {
+				return json_encode(FlagsModule::get());
+			}))
 		]);
 	}
 

@@ -110,6 +110,18 @@
 
 	<hr/>
 
+	@if ((env('APP_ENABLELANGFLAGS')) && (count($flags) > 0))
+	<h2>Available in multiple languages</h2>
+
+	@foreach ($flags as $flag)
+		<div class="flag-item">
+			<img src="{{ $flag->asset }}" alt="{{ $flag->ident }}"/>
+		</div>
+	@endforeach
+
+	<hr/>
+	@endif
+
 	<h2>Download HortusFox</h2>
 
 	<a name="downloads"></a>
