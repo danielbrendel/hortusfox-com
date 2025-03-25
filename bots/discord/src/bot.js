@@ -4,9 +4,10 @@ import axios from 'axios';
 import fs from 'fs';
 import path from 'path';
 import FormData from 'form-data';
-import fetch from 'node-fetch';
 import mysql from 'mysql2';
 import Game from './game.js';
+
+const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 
 const FILE_PHOTO = 'photo.tmp';
 const FILE_QUOTES = 'quotes.json';
