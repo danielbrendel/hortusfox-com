@@ -4,7 +4,7 @@ import axios from 'axios';
 import fs from 'fs';
 import path from 'path';
 import FormData from 'form-data';
-import mysql from 'mysql2';
+import mysql from 'mysql2/promise';
 import Game from './game.js';
 
 const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
@@ -215,19 +215,14 @@ const client = new Client({
 
 const rest = new REST({ version: '10' }).setToken(process.env.BOT_TOKEN);
 
-const db = mysql.createConnection({
+const db = mysql.createPool({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
-    database: process.env.DB_DATABASE
-});
-
-db.connect(err => {
-    if (err) {
-        abort('Could not connect to MariaDB:' + err);
-    }
-
-    success('Connected to database!');
+    database: process.env.DB_DATABASE,
+    waitForConnections: true,
+    connectionLimit: 10,
+    queueLimit: 0
 });
 
 function sendChannelMessage(chanId, chanMsg)

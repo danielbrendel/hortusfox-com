@@ -55,16 +55,13 @@ export default class Game {
         this.gamestatus = status;
     }
 
-    acquirePlant()
+    async acquirePlant()
     {
-        this.sql.query('SELECT * FROM `plants` ORDER BY RAND() LIMIT 1', [], (err, results) => {
-            if (err) {
-                console.log(err);
-                return;
-            }
+        try {
+            var [rows] = await this.sql.query('SELECT * FROM `plants` ORDER BY RAND() LIMIT 1', []);
 
-            if (results.length == 1) {
-                this.gameSelection = results[0];
+            if (rows.length == 1) {
+                this.gameSelection = rows[0];
                 this.curSession = randomUUID();
 
                 const chanMsg = `**🪴 A wild plant has appeared!**\n➡️ Guess the name via \`/guess <plant name>\` to earn ${this.gameSelection.points} points!\n`;
@@ -72,7 +69,9 @@ export default class Game {
 
                 this.gameChannel.send({ content: chanMsg, files: [attachment] });
             }
-        });
+        } catch (err) {
+            console.log(err);
+        }
     }
 
     async guess(interaction)
@@ -83,21 +82,23 @@ export default class Game {
             await interaction.deferReply();
 
             if (plantName.toLowerCase().trim() == this.gameSelection.name.toLowerCase().trim()) {
-                this.sql.query('SELECT * FROM `guesses` WHERE member_id = ? AND session_id = ?', [interaction.member.id, this.curSession], (err, results) => {
-                    if (results.length == 0) {
-                        this.sql.query('SELECT * FROM `scores` WHERE member_id = ?', [interaction.member.id], (err, results) => {
-                            if (results.length == 0) {
-                                this.sql.query('INSERT INTO `scores` (member_id, points) VALUES(?, 0)', [interaction.member.id], (err, results) => {});
-                                this.updatePoints(interaction);
-                                return;
-                            }
-                        });
+                try {
+                    var [rows] = await this.sql.query('SELECT * FROM `guesses` WHERE member_id = ? AND session_id = ?', [interaction.member.id, this.curSession]);
+
+                    if (rows.length == 0) {
+                        [rows] = await this.sql.query('SELECT * FROM `scores` WHERE member_id = ?', [interaction.member.id]);
+
+                        if (rows.length == 0) {
+                            await this.sql.query('INSERT INTO `scores` (member_id, points) VALUES(?, 0)', [interaction.member.id]);
+                        }
             
                         this.updatePoints(interaction);
                     } else {
                         interaction.editReply(`😏 Hey, you've already scored for this plant!`);
                     }
-                });
+                } catch (err) {
+                    console.log(err);
+                }
             } else {
                 interaction.editReply(`🥲 Oops! You guessed wrong!`);
             }
@@ -106,36 +107,45 @@ export default class Game {
         }
     }
 
-    updatePoints(interaction)
+    async updatePoints(interaction)
     {
-        this.sql.query('UPDATE `scores` SET points = points + ? WHERE member_id = ?', [this.gameSelection.points, interaction.member.id], (err, results) => {
-            interaction.editReply(`🎯 Correct! You earned +${this.gameSelection.points} points!`);
-        });
+        try {
+            await this.sql.query('UPDATE `scores` SET points = points + ? WHERE member_id = ?', [this.gameSelection.points, interaction.member.id]);
+            await this.sql.query('INSERT INTO `guesses` (member_id, session_id) VALUES(?, ?)', [interaction.member.id, this.curSession]);
 
-        this.sql.query('INSERT INTO `guesses` (member_id, session_id) VALUES(?, ?)', [interaction.member.id, this.curSession], (err, results) => {});
+            interaction.editReply(`🎯 Correct! You earned +${this.gameSelection.points} points!`);
+        } catch (err) {
+            console.log(err);
+        }
     }
 
     async memberPoints(interaction)
     {
         await interaction.deferReply({ flags: MessageFlags.Ephemeral });
 
-        this.sql.query('SELECT * FROM `scores` WHERE member_id = ?', [interaction.member.id], (err, results) => {
-            if (results.length > 0) {
-                interaction.editReply(`🌟 You have currently earned ${results[0].points} points 🌟`);
+        try {
+            var [rows] = await this.sql.query('SELECT * FROM `scores` WHERE member_id = ?', [interaction.member.id]);
+
+            if (rows.length > 0) {
+                interaction.editReply(`🌟 You have currently earned ${rows[0].points} points 🌟`);
             } else {
                 interaction.editReply(`Looks like you haven't played yet!`);
             }
-        });
+        } catch (err) {
+            console.log(err);
+        }
     }
 
-    leaderboard()
+    async leaderboard()
     {
-        this.sql.query('SELECT * FROM `scores` WHERE points > 0 ORDER BY points DESC LIMIT 10', [], async (err, results) => {
-            const guildObj = this.client.guilds.cache.get(process.env.GUILD_ID);
+        try {
+            var [rows] = await this.sql.query('SELECT * FROM `scores` WHERE points > 0 ORDER BY points DESC LIMIT 10', []);
+
+            const guildObj = await this.client.guilds.cache.get(process.env.GUILD_ID);
             var chanMsg = `🏆 Here are the current top plant gamers!\n\n`;
 
-            for (var i = 0; i < results.length; i++) {
-                const member = await guildObj.members.fetch(results[i].member_id);
+            for (var i = 0; i < rows.length; i++) {
+                const member = await guildObj.members.fetch(rows[i].member_id);
 
                 var trophy = '';
                 if (i === 0) {
@@ -148,16 +158,18 @@ export default class Game {
                     trophy = `🏅`;
                 }
 
-                chanMsg += `#${i+1} ${trophy} ${member.user.username} (${results[i].points} points)\n`;
+                chanMsg += `#${i+1} ${trophy} ${member.user.username} (${rows[i].points} points)\n`;
             }
 
             chanMsg += `\n➡️ The scores have been reset. New round is active!\n`;
 
-            this.sql.query('UPDATE `scores` SET points = 0', [], (err, results) => {});
+            await this.sql.query('UPDATE `scores` SET points = 0', []);
 
             setTimeout(() => {
                 this.gameChannel.send(chanMsg);
-            }, 250000);
-        });
+            }, 100000);
+        } catch (err) {
+            console.log(err);
+        }
     }
 }
