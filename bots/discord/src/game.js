@@ -68,7 +68,7 @@ export default class Game {
                 this.curSession = randomUUID();
 
                 const chanMsg = `**🪴 A wild plant has appeared!**\n➡️ Guess the name via \`/guess <plant name>\` to earn ${this.gameSelection.points} points!\n`;
-                const attachment = new AttachmentBuilder(`${dirname(dirname(fileURLToPath(import.meta.url)))}\\img\\${this.gameSelection.photo}`);
+                const attachment = new AttachmentBuilder(`${dirname(dirname(fileURLToPath(import.meta.url)))}/img/${this.gameSelection.photo}`);
 
                 this.gameChannel.send({ content: chanMsg, files: [attachment] });
             }
