@@ -136,15 +136,11 @@
 
                         <div class="page-footer-resources">
                             <div>
-                                <strong>Resources</strong>
-                            </div>
-
-                            <div>
                                 <a href="{{ env('LINK_DOCUMENTATION') }}">Documentation</a>
                             </div>
 
                             <div>
-                                <a href="{{ env('LINK_DISCORDBOT') }}">HortusBuddy</a>
+                                <a href="{{ url('/support') }}">Support</a>
                             </div>
                         </div>
                     </div>
