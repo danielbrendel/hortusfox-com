@@ -1,17 +1,19 @@
-import { Client, GatewayIntentBits, REST, Routes } from 'discord.js';
+import { Client, GatewayIntentBits, REST, Routes, ApplicationCommandOptionType } from 'discord.js';
 import 'dotenv/config';
 import axios from 'axios';
 import fs from 'fs';
 import path from 'path';
 import FormData from 'form-data';
 import fetch from 'node-fetch';
-import { Exception } from 'sass';
+import mysql from 'mysql2';
+import Game from './game.js';
 
 const FILE_PHOTO = 'photo.tmp';
 const FILE_QUOTES = 'quotes.json';
 const FILE_PLANTS = 'plants.json';
 const FILE_LOG = 'history.log';
 
+var game = null;
 var quotes = null;
 var plants = null;
 var latestPhoto = null;
@@ -115,6 +117,16 @@ async function cmd_photo(interaction)
     });
 }
 
+async function cmd_guess(interaction)
+{
+    await game.guess(interaction);
+}
+
+async function cmd_scores(interaction)
+{
+    await game.memberPoints(interaction);
+}
+
 const commands = [
     {
         name: 'url',
@@ -160,6 +172,24 @@ const commands = [
         name: 'photo',
         description: 'View a random selection from public community photos',
         handler: cmd_photo
+    },
+    {
+        name: 'guess',
+        description: 'Try to catch a plant via guessing its name',
+        options: [
+            {
+              name: 'name',
+              type: ApplicationCommandOptionType.String,
+              description: 'Name of the assumed plant',
+              required: true
+            }
+        ],
+        handler: cmd_guess
+    },
+    {
+        name: 'scores',
+        description: 'See your current game score',
+        handler: cmd_scores
     }
 ];
 
@@ -183,6 +213,21 @@ const client = new Client({
 });
 
 const rest = new REST({ version: '10' }).setToken(process.env.BOT_TOKEN);
+
+const db = mysql.createConnection({
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_DATABASE
+});
+
+db.connect(err => {
+    if (err) {
+        abort('Could not connect to MariaDB:' + err);
+    }
+
+    success('Connected to database!');
+});
 
 function sendChannelMessage(chanId, chanMsg)
 {
@@ -220,6 +265,9 @@ client.once('ready', () => {
     if (!guilds.includes(process.env.GUILD_ID)) {
         abort('Unknown Guild: Please specify correct guild in .env');
     }
+
+    game = new Game(client, db, process.env.GAME_CHANNEL);
+    game.setGameStatus(process.env.GAME_ENABLE);
 
     quotes = JSON.parse(fs.readFileSync(
         path.join(process.cwd(), FILE_QUOTES),
