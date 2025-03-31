@@ -1,10 +1,10 @@
 <div class="page-content margin-fix">
-    <h2>Video Tutorials</h2>
+    <h2>Videos</h2>
 
     <p class="is-font-medium">
-        Here you can find video tutorials around HortusFox. 
+        Here you can find video content on HortusFox. 
         Want to get to know how to setup the product? Want to learn more about the usage? 
-        We got you covered!
+        We've got you covered!
     </p>
 
     <div class="is-margin-bottom-10">

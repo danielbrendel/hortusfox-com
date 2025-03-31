@@ -19,7 +19,7 @@ return [
     array('/', 'GET', 'index@index'),
     array('/screenshots', 'GET', 'index@screenshots'),
     array('/themes', 'GET', 'index@themes'),
-    array('/tutorials', 'GET', 'index@tutorials'),
+    array('/videos', 'GET', 'index@videos'),
     array('/faq', 'GET', 'index@faq'),
     array('/demo', 'GET', 'index@demo'),
     array('/documentation', 'GET', 'index@documentation'),

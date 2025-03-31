@@ -49,8 +49,8 @@
                 Documentation
             </a>
 
-            <a class="navbar-item navbar-item-padding" href="{{ url('/tutorials') }}">
-                Tutorials
+            <a class="navbar-item navbar-item-padding" href="{{ url('/videos') }}">
+                Videos
             </a>
 
             <a class="navbar-item navbar-item-padding" href="{{ url('/faq') }}">

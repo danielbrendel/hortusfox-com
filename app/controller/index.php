@@ -87,21 +87,21 @@ class IndexController extends BaseController {
 	}
 
 	/**
-	 * Handles URL: /tutorials
+	 * Handles URL: /videos
 	 * 
 	 * @param Asatru\Controller\ControllerArg $request
 	 * @return Asatru\View\ViewHandler
 	 */
-	public function tutorials($request)
+	public function videos($request)
 	{
 		$categories = TutorialsModel::getCategories();
 		$videos = TutorialsModel::getAll();
 		
 		//Generate and return a view by using the helper
-		return parent::view(['content', 'tutorials'], [
-			'_meta_title' => 'Tutorials',
-			'_meta_description' => 'Get familiar with the app',
-			'_meta_url' => url('/tutorials'),
+		return parent::view(['content', 'videos'], [
+			'_meta_title' => 'Videos',
+			'_meta_description' => 'Watch videos on HortusFox',
+			'_meta_url' => url('/videos'),
 			'categories' => $categories,
 			'videos' => $videos
 		]);
