@@ -74,6 +74,7 @@
         <script>
             document.addEventListener('DOMContentLoaded', function() {
                 window.vue.initNavbar();
+                window.hljs.highlightAll();
 
                 if (document.body.clientWidth < 786) {
                     let badges = document.querySelector('.page-header-badges');
