@@ -222,25 +222,6 @@ class IndexController extends BaseController {
 	}
 
 	/**
-	 * Handles URL: /game
-	 * 
-	 * @param Asatru\Controller\ControllerArg $request
-	 * @return Asatru\View\ViewHandler|Asatru\View\RedirectHandler
-	 */
-	public function game($request)
-	{
-		if (!env('GAME_ENABLE')) {
-			return redirect('/');
-		}
-
-		return view('game', [], [
-			'_meta_title' => 'HortusGame',
-			'_meta_description' => 'Help the little Fox against these mutant plants',
-			'_meta_url' => url('/game'),
-		]);
-	}
-
-	/**
 	 * Handles URL: /sitemap
 	 * 
 	 * @param Asatru\Controller\ControllerArg $request

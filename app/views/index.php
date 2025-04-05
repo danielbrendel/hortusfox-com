@@ -185,7 +185,7 @@
 		<a name="game"></a>
 
 		<p class="is-font-medium">
-			Can you help the little fox against the mutant plants?
+			Can you help the little fox against the monsters?
 		</p>
 
 		<p>
@@ -193,7 +193,7 @@
 		</p>
 
 		<p>
-			<a class="button is-warning" href="{{ url('/hortusgame') }}">Play the game</a>
+			<a class="button is-warning" href="{{ env('GAME_LINK') }}" target="_blank">Play the game</a>
 		</p>
 	@endif
 

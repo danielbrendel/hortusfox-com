@@ -23,7 +23,6 @@ return [
     array('/faq', 'GET', 'index@faq'),
     array('/demo', 'GET', 'index@demo'),
     array('/documentation', 'GET', 'index@documentation'),
-    array('/hortusgame', 'GET', 'index@game'),
     array('/community', 'GET', 'community@index'),
     array('/community/fetch', 'POST', 'community@fetch'),
     array('/community/fetch/random', 'ANY', 'community@random'),
