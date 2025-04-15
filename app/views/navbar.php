@@ -29,9 +29,9 @@
             </div>
             @endif
 
-            @if (env('GAME_ENABLE'))
+            @if ((env('GAME_ENABLE')) && (env('GAME_MENUITEM')))
             <div class="navbar-item navbar-item-padding">
-                <a class="button is-warning" href="javascript:void(0);" onclick="window.vue.scrollTo('a[name=game]'); document.querySelector('.navbar-burger').click();">
+                <a class="button is-warning" href="javascript:void(0);" onclick="window.vue.scrollTo('a[name=game]');1">
                     Game
                 </a>
             </div>
