@@ -163,6 +163,7 @@
 
 	<hr/>
 
+	@if (env('APP_ENABLEASSEENON'))
 	<div class="mention-section">
 		<p>As seen on</p>
 
@@ -178,6 +179,7 @@
 		</a>
 		@endforeach
 	</div>
+	@endif
 
 	<div class="powered-by-section">
 		<p> Powered by</p>
