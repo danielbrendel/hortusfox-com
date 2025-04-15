@@ -181,6 +181,7 @@
 	</div>
 	@endif
 
+	@if (env('APP_ENABLEPOWEREDBY'))
 	<div class="powered-by-section">
 		<p> Powered by</p>
 
@@ -188,6 +189,7 @@
 			<img src="{{ asset('img/PhpStorm-white.png') }}" alt="PhpStorm logo"/>
 		</a>
 	</div>
+	@endif
 
 	@if (env('GAME_ENABLE'))
 		<hr/>
