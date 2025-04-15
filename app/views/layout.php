@@ -68,6 +68,12 @@
             @if (env('HELPREALM_WIDGET_ENABLE'))
                 <div id="support-widget"></div>
             @endif
+
+            <div class="scroll-to-top">
+                <div class="scroll-to-top-inner">
+                    <a href="javascript:void(0);" onclick="document.querySelector('#app').scrollIntoView({behavior: 'smooth'});"><i class="fas fa-arrow-up fa-2x up-color"></i></a>
+                </div>
+            </div>
         </div>
 
         <script src="{{ asset('js/app.js', true) }}"></script>

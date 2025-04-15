@@ -917,3 +917,33 @@ iframe.discord-widget {
     margin-left: 5px;
     margin-right: 5px;
 }
+
+.scroll-to-top {
+    position: fixed;
+    z-index: 3;
+    bottom: 25px;
+    right: 25px;
+}
+
+.scroll-to-top-inner {
+    background-color: rgb(100, 100, 100);
+    border-radius: 50%;
+    padding-top: 12px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 12px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.scroll-to-top-inner a {
+    color: rgb(200, 200, 200);
+}
+
+.scroll-to-top-inner a:hover {
+    color: rgb(230, 230, 230);
+}
+
+.helprealm-widget-openaction {
+    bottom: 90px !important;
+    right: 23px !important;
+}
