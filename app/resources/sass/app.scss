@@ -907,6 +907,16 @@ pre code.hljs {
     }
 }
 
+.powered-by-section {
+    position: relative;
+    margin-top: 50px;
+}
+
+.powered-by-section p {
+    font-size: 2.3em;
+    margin-bottom: 20px;
+}
+
 iframe.discord-widget {
     height: 500px !important;
 }

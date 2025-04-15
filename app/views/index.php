@@ -179,6 +179,14 @@
 		@endforeach
 	</div>
 
+	<div class="powered-by-section">
+		<p> Powered by</p>
+
+		<a href="https://jb.gg/OpenSourceSupport">
+			<img src="{{ asset('img/PhpStorm-white.png') }}" alt="PhpStorm logo"/>
+		</a>
+	</div>
+
 	@if (env('GAME_ENABLE'))
 		<hr/>
 
