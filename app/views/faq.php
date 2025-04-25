@@ -9,8 +9,13 @@
     <div class="faq">
         @foreach ($faqs as $faq)
             <div class="faq-item">
-                <strong><i class="fas fa-question-circle"></i>&nbsp;{{ $faq->get('question') }}</strong>
-                <small>{!! $faq->get('answer') !!}</small>
+                <a name="{{ slug($faq->get('question')) }}"></a>
+                <div class="faq-item-header">
+                    <div class="faq-item-question"><strong><i class="fas fa-question-circle"></i>&nbsp;{{ $faq->get('question') }}</strong></div>
+                    <div class="faq-item-action"><a class="is-default-link" href="javascript:void(0);" onclick="window.vue.copyToClipboard('{{ url('/faq#' . slug($faq->get('question'))) }}', 'Link to FAQ item was copied to clipboard');"><i class="far fa-copy"></i></a></div>
+                </div>
+
+                <div class="faq-item-content"><small>{!! $faq->get('answer') !!}</small></div>
             </div>
         @endforeach
     </div>

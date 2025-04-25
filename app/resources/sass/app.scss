@@ -608,7 +608,7 @@ div.page-downloads {
     margin-bottom: 35px;
 }
 
-.faq-item strong {
+.faq-item-header {
     position: relative;
     display: block;
     color: rgb(200, 200, 200);
@@ -618,7 +618,26 @@ div.page-downloads {
     border-top-right-radius: 4px;
 }
 
-.faq-item small {
+.faq-item-question {
+    position: relative;
+    display: inline-block;
+    width: 97%;
+    @media screen and (max-width: 675px) {
+        width: 93%;
+    }
+}
+
+.faq-item-action {
+    position: relative;
+    display: inline-block;
+    float: right;
+}
+
+.faq-item-header strong {
+    color: rgb(200, 200, 200);
+}
+
+.faq-item-content {
     position: relative;
     display: block;
     padding: 20px;

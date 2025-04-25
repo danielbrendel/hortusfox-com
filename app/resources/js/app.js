@@ -188,5 +188,15 @@ window.vue = new Vue({
 
             return result;
         },
+
+        copyToClipboard: function(text, info = 'Text was copied to clipboard') {
+            const el = document.createElement('textarea');
+            el.value = text;
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+            alert(info);
+        },
     }
 });
