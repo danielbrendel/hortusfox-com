@@ -9,6 +9,7 @@ import Game from './game.js';
 
 const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 
+const FILE_VERSION = 'hfver.txt';
 const FILE_PHOTO = 'photo.tmp';
 const FILE_QUOTES = 'quotes.json';
 const FILE_PLANTS = 'plants.json';
@@ -18,6 +19,7 @@ var game = null;
 var quotes = null;
 var plants = null;
 var latestPhoto = null;
+var latestVersion = null;
 
 function log(content, timestamp = true)
 {
@@ -245,6 +247,18 @@ function saveLatestPhoto(info)
     );
 }
 
+function saveLatestVersion(version)
+{
+    fs.writeFileSync(
+        path.join(process.cwd(), FILE_VERSION),
+        version,
+        {
+            encoding: 'utf8',
+            flag: 'w'
+        }
+    );
+}
+
 function abort(msg)
 {
     console.error(`\x1b[31m${msg}\x1b[0m`);
@@ -282,6 +296,13 @@ client.once('ready', () => {
         );
     }
 
+    if (fs.existsSync(FILE_VERSION)) {
+        latestVersion = fs.readFileSync(
+            path.join(process.cwd(), FILE_VERSION),
+            'utf8'
+        );
+    }
+
     setInterval(() => {
         axios.get(`${process.env.WEB_BACKEND}/community/fetch/latest`).then(function(response) {
             if ((response.data.code == 200) && (latestPhoto !== response.data.data.slug)) {
@@ -290,6 +311,18 @@ client.once('ready', () => {
                 saveLatestPhoto(latestPhoto);
 
                 sendChannelMessage(process.env.PHOTO_CHANNEL, `:potted_plant: New community photo :potted_plant:\n${process.env.WEB_BACKEND}/p/${latestPhoto}`);
+            }
+        });
+    }, process.env.TIMER_INTERVAL);
+
+    setInterval(() => {
+        axios.get(`${process.env.WEB_BACKEND}/software/version`).then(function(response) {
+            if ((response.data.code == 200) && (latestVersion !== response.data.version)) {
+                latestVersion = response.data.version;
+
+                saveLatestVersion(latestVersion);
+
+                sendChannelMessage(process.env.NEWS_CHANNEL, `:rocket: HortusFox version ${latestVersion} released!\n\nView changelog here:\nhttps://github.com/danielbrendel/hortusfox-web/releases/tag/v${latestVersion}\n\n:green_heart: Thank you for flying with HortusFox\n`);
             }
         });
     }, process.env.TIMER_INTERVAL);
