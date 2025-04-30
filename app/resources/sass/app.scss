@@ -947,6 +947,90 @@ iframe.discord-widget {
     margin-right: 5px;
 }
 
+.affiliates {
+    position: fixed;
+    z-index: 5;
+    bottom: 10px;
+    left: 10px;
+    padding: 15px;
+    color: rgb(200, 200, 200);
+    background-color: #4b4b4b;
+    border-radius: 5px;
+    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.5);
+    @media screen and (max-width: 1087px) {
+        position: relative;
+        z-index: unset;
+        bottom: unset;
+        left: unset;
+        padding: unset;
+        color: unset;
+        background-color: unset;
+        border-radius: unset;
+        box-shadow: unset;
+    }
+}
+
+.affiliates h3 {
+    font-size: 1.4em;
+    margin-bottom: 25px;
+    @media screen and (max-width: 1087px) {
+        margin-top: 50px;
+        color: rgb(150, 150, 150);
+    }
+}
+
+.affiliate {
+    margin-bottom: 10px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.affiliate:hover {
+    background-color: rgb(100, 100, 100);
+    border-radius: 15px;
+}
+
+.affiliate-logo {
+    display: inline-block;
+    width: 64px;
+    height: 64px;
+}
+
+.affiliate-logo img {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+}
+
+.affiliate-info {
+    position: relative;
+    display: inline-block;
+    top: -14px;
+    margin-left: 10px;
+}
+
+.affiliate-label {
+    font-weight: bold;
+    text-align: left;
+}
+
+.affiliate-description {
+
+}
+
+.affiliate-moreinfo {
+    margin-top: 25px; 
+}
+
+.affiliates a {
+    color: rgb(235, 223, 90);
+    text-decoration: none;
+}
+
+.affiliates a:hover {
+    text-decoration: underline;
+}
+
 .scroll-to-top {
     position: fixed;
     z-index: 3;

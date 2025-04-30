@@ -230,4 +230,8 @@
 			</div>
 		</div>
 	@endif
+
+	@if (env('APP_ENABLEPARTNERSHIP'))
+		@include('affiliates.php')
+	@endif
 </div>
