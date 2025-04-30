@@ -643,6 +643,13 @@ div.page-downloads {
     padding: 20px;
 }
 
+.faq-item-content iframe {
+    height: 315px;
+    @media screen and (max-width: 555px) {
+        height: 185px;
+    }
+}
+
 .support {
     position: relative;
     margin-top: 50px;
