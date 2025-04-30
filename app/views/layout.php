@@ -95,6 +95,10 @@
                     } else {
                         document.getElementsByClassName('navbar')[0].classList.remove('navbar-background-color');
                     }
+
+                    if (window.innerWidth > 1087) {
+                        window.vue.handleAffiliatesWidget('#affiliates');
+                    }
                 });
 
                 @if (env('APP_ENABLE_PHOTO_SHARE'))

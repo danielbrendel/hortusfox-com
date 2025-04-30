@@ -1,5 +1,5 @@
 @if (AffiliateModel::getCount() > 0)
-    <div class="affiliates">
+    <div class="affiliates" id="affiliates">
         <h3>Affiliates & Partners</h3>
 
         @foreach (AffiliateModel::getList() as $affiliate)

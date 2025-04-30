@@ -189,6 +189,17 @@ window.vue = new Vue({
             return result;
         },
 
+        handleAffiliatesWidget: function(ident) {
+            const widget = document.querySelector(ident);
+            const scrolledPastHeader = document.body.scrollTop  > window.innerHeight - 400;
+            
+            if (scrolledPastHeader) {
+                widget.classList.add('visible');
+            } else {
+                widget.classList.remove('visible');
+            }
+        },
+
         copyToClipboard: function(text, info = 'Text was copied to clipboard') {
             const el = document.createElement('textarea');
             el.value = text;

@@ -957,6 +957,9 @@ iframe.discord-widget {
     background-color: #4b4b4b;
     border-radius: 5px;
     box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
     @media screen and (max-width: 1087px) {
         position: relative;
         z-index: unset;
@@ -967,7 +970,15 @@ iframe.discord-widget {
         background-color: unset;
         border-radius: unset;
         box-shadow: unset;
+        opacity: unset;
+        visibility: unset;
+        transition: unset;
     }
+}
+
+.affiliates.visible {
+    opacity: 1;
+    visibility: visible;
 }
 
 .affiliates h3 {
