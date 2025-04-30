@@ -29,6 +29,7 @@ return [
     array('/community/fetch/latest', 'ANY', 'community@latest'),
     array('/support', 'GET', 'index@support'),
     array('/support', 'POST', 'index@support_request'),
+    array('/partnership', 'GET', 'index@partnership'),
     array('/software/version', 'GET', 'version@get_version'),
     array('/api/photo/share', 'POST', 'api@share_photo'),
     array('/api/photo/remove', 'ANY', 'api@remove_photo'),

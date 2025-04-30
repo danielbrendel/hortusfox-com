@@ -222,6 +222,20 @@ class IndexController extends BaseController {
 	}
 
 	/**
+	 * Handles URL: /partnership
+	 * 
+	 * @param Asatru\Controller\ControllerArg $request
+	 * @return Asatru\View\ViewHandler
+	 */
+	public function partnership($request)
+	{
+		//Generate and return a view by using the helper
+		return parent::view(['content', 'partnership'], [
+			'show_header' => false
+		]);
+	}
+
+	/**
 	 * Handles URL: /sitemap
 	 * 
 	 * @param Asatru\Controller\ControllerArg $request

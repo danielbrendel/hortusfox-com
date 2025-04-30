@@ -85,11 +85,11 @@
 
             <div class="page-footer-resources">
                 <div>
-                    <a href="{{ env('LINK_DOCUMENTATION') }}">Documentation</a>
+                    <a href="{{ url('/support') }}">Support</a>
                 </div>
 
                 <div>
-                    <a href="{{ url('/support') }}">Support</a>
+                    <a href="{{ url('/partnership') }}">Partnership</a>
                 </div>
             </div>
         </div>
