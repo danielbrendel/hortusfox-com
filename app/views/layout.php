@@ -84,8 +84,10 @@
 
                 if (document.body.clientWidth < 786) {
                     let badges = document.querySelector('.page-header-badges');
-                    for (let i = 0; i < badges.children.length; i++) {
-                        badges.children[i].src = badges.children[i].src.replace('for-the-badge', 'flat');
+                    if (badges) {
+                        for (let i = 0; i < badges.children.length; i++) {
+                            badges.children[i].src = badges.children[i].src.replace('for-the-badge', 'flat');
+                        }
                     }
                 }
                 
