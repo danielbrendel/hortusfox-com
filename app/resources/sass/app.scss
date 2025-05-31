@@ -19,6 +19,9 @@ body {
     @media screen and (min-width: 1087px) {
         padding: 15px;
     }
+    @media screen and (max-width: 1087px) {
+        padding: 5px;
+    }
 }
 
 .navbar-no-transition {
@@ -32,6 +35,15 @@ body {
 .navbar-item-brand.is-font-title {
     @media screen and (min-width: 1087px) {
         font-size: 1.4em;
+    }
+    @media screen and (max-width: 1087px) {
+        font-size: 1.2em;
+    }
+}
+
+.navbar-burger {
+    @media screen and (max-width: 1087px) {
+        top: 4px;
     }
 }
 
