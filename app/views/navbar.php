@@ -45,7 +45,7 @@
                 Themes
             </a>
 
-            <a class="navbar-item navbar-item-padding" href="{{ env('LINK_DOCUMENTATION') }}">
+            <a class="navbar-item navbar-item-padding" href="{{ url('/documentation') }}">
                 Documentation
             </a>
 
