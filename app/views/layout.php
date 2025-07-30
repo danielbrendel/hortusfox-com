@@ -24,6 +24,7 @@
         <script src="{{ asset('js/vue.min.js') }}"></script>
         @endif
         <script src="{{ asset('js/fontawesome.js') }}"></script>
+        <script src="{{ asset('js/app.js', true) }}"></script>
         @if (env('HELPREALM_WIDGET_ENABLE'))
         <script src="{{ env('HELPREALM_URL') . '/js/widget.js' }}"></script>
         @endif
@@ -76,7 +77,6 @@
             </div>
         </div>
 
-        <script src="{{ asset('js/app.js', true) }}"></script>
         <script>
             document.addEventListener('DOMContentLoaded', function() {
                 window.vue.initNavbar();
