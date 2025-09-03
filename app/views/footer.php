@@ -60,6 +60,14 @@
                 </span>
                 @endif
 
+                @if (env('LINK_BLUESKY'))
+                <span>
+                    <a href="{{ env('LINK_BLUESKY') }}" target="_blank">
+                        <i class="fab fa-bluesky fa-2x"></i>
+                    </a>
+                </span>
+                @endif
+
                 @if (env('LINK_MASTODON'))
                 <span>
                     <a href="{{ env('LINK_MASTODON') }}" target="_blank">
