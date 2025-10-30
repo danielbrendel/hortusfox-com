@@ -9,7 +9,6 @@
 
     <div class="is-margin-bottom-10">
         <a href="{{ env('LINK_YOUTUBE') }}" target="_blank"><img src="https://img.shields.io/badge/youtube-red?style=for-the-badge" alt="social-youtube"></a>&nbsp;
-        <a href="{{ env('LINK_FOSSVIDEO') }}" target="_blank"><img src="https://img.shields.io/badge/foss.video-purple?style=for-the-badge" alt="social-peertube"></a>
     </div>
 
     <div><hr/></div>
