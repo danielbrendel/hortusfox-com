@@ -169,11 +169,14 @@ class IndexController extends BaseController {
 	 * Handles URL: /support
 	 * 
 	 * @param Asatru\Controller\ControllerArg $request
-	 * @return Asatru\View\ViewHandler
+	 * @return Asatru\View\ViewHandler|Asatru\View\RedirectHandler
 	 */
 	public function support($request)
 	{
-		//Generate and return a view by using the helper
+		if (env('FORUM_ENABLE')) {
+			return redirect(env('FORUM_LINK'));
+		}
+
 		return parent::view(['content', 'support'], [
 			'captcha' => $this->captcha,
 			'_meta_title' => 'Get Support',

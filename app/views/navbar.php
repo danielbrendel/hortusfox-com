@@ -71,7 +71,11 @@
 
             @if ((env('HELPREALM_RESTAPI_ENABLE')) || (env('DISCORD_SUPPORT_ENABLE')))
             <a class="navbar-item navbar-item-padding" href="{{ url('/support') }}">
-                <i class="fas fa-headset"></i>&nbsp;Support
+                @if (env('FORUM_ENABLE'))
+                    <i class="fas fa-comments"></i>&nbsp;Forum
+                @else
+                    <i class="fas fa-headset"></i>&nbsp;Support
+                @endif
             </a>
             @endif
         </div>
