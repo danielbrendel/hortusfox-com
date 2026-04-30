@@ -161,6 +161,18 @@
 		</p>
 	@endif
 
+	@if (env('HOSTING_ENABLE'))
+		<p><br/></p>
+
+		<p class="is-font-medium">
+			Don't want to deal with all the technical aspects? Try our hosting service!
+		</p>
+
+		<p>
+			<a class="button is-warning" href="{{ env('HOSTING_LINK') }}"><strong>Hosting Service</strong></a>
+		</p>
+	@endif
+
 	<hr/>
 
 	@if (env('APP_ENABLEASSEENON'))

@@ -37,6 +37,14 @@
             </div>
             @endif
 
+            @if ((env('HOSTING_ENABLE')) && (env('HOSTING_MENUITEM')))
+            <div class="navbar-item navbar-item-padding">
+                <a class="button is-warning" href="{{ env('HOSTING_LINK') }}">
+                    <strong>Hosting Service</strong>
+                </a>
+            </div>
+            @endif
+
             <a class="navbar-item navbar-item-padding" href="{{ url('/screenshots') }}">
                 Screenshots
             </a>
