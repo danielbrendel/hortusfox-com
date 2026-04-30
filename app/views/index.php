@@ -203,6 +203,23 @@
 	</div>
 	@endif
 
+	@if (env('APP_ENABLEFOSSPETITION'))
+		<hr/>
+	
+		<p class="is-font-medium">HortusFox supports the OpenSource Ehrenamt Petition</p>
+		
+		<p>
+			OpenSource work is not recognized as volunteering in germany. Please consider signing the
+			<a class="is-default-link" href="https://www.openpetition.de/petition/online/anerkennung-von-open-source-arbeit-als-ehrenamt-in-deutschland">petition</a> in order to support a change! Thank you in advance.
+		</p>
+		
+		<a href="https://www.ehrenamt-opensource.de/en">
+			<img src="{{ asset('img/ehrenamt-opensource-white-nobg.svg') }}" alt="PhpStorm logo"/>
+		</a>
+		
+		<p>Big thanks to <a class="is-default-link" href="https://bsky.app/profile/web-vision.bsky.social">Boris Hinzer</a> for initiating the petition.</p>
+	@endif
+
 	@if (env('GAME_ENABLE'))
 		<hr/>
 

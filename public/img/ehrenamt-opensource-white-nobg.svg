@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" id="Ebene_1" version="1.1" viewBox="0 0 980 260" style="background: transparent;">
+  <defs fill="#ffffff">
+    <style>
+      .st0, .st1 {
+        font-family: Helvetica-Bold, Helvetica;
+        font-size: 54px;
+        font-weight: 700;
+        isolation: isolate;
+        letter-spacing: 0em;
+      }
+
+      .st2 {
+        fill: none;
+        stroke: #ffffff;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 14px;
+      }
+
+      .st1 {
+        fill: #ffffff;
+      }
+    </style>
+  </defs>
+  <g>
+    <path class="st2" d="M130,202c-44-28-82-61-82-103s23-51,51-51,38,10,51,29c13-19,31-29,51-29s51,21,51,51-38,75-82,103l-20,12-20-12Z" fill="#ffffff"/>
+    <path class="st2" d="M123,136l-24-20,24-20" fill="#ffffff"/>
+    <path class="st2" d="M177,96l24,20-24,20" fill="#ffffff"/>
+    <path class="st2" d="M163,88l-26,56" fill="#ffffff"/>
+    <circle cx="70" cy="167" r="9" fill="#ffffff"/>
+    <circle cx="150" cy="234" r="9" fill="#ffffff"/>
+    <circle cx="230" cy="167" r="9" fill="#ffffff"/>
+  </g>
+  <g>
+    <text class="st1" transform="translate(287.7 157.5)" fill="#ffffff">
+      <tspan x="0" y="0" fill="#ffffff">Ehrenamt</tspan>
+    </text>
+    <text class="st0" transform="translate(559.3 158.5)" fill="#ffffff">
+      <tspan x="0" y="0" fill="#ffffff">OpenSource</tspan>
+    </text>
+  </g>
+</svg>
