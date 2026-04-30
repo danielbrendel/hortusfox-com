@@ -69,7 +69,7 @@
                 GitHub
             </a>
 
-            @if ((env('HELPREALM_RESTAPI_ENABLE')) || (env('DISCORD_SUPPORT_ENABLE')))
+            @if ((env('HELPREALM_RESTAPI_ENABLE')) || (env('DISCORD_SUPPORT_ENABLE')) || (env('FORUM_ENABLE')))
             <a class="navbar-item navbar-item-padding" href="{{ url('/support') }}">
                 @if (env('FORUM_ENABLE'))
                     <i class="fas fa-comments"></i>&nbsp;Forum
