@@ -1,4 +1,4 @@
-/*! Axios v1.8.4 Copyright (c) 2025 Matt Zabriskie and contributors */
+/*! Axios v1.15.2 Copyright (c) 2026 Matt Zabriskie and contributors */
 
 /**
  * @author       Ben Richards <benjamindrichards@gmail.com>
@@ -154,6 +154,12 @@
 /**
  * @author       samme
  * @copyright    2021 Photon Storm Ltd.
+ * @license      {@link https://opensource.org/licenses/MIT|MIT License}
+ */
+
+/**
+ * @author       samme
+ * @copyright    2025 Phaser Studio Inc.
  * @license      {@link https://opensource.org/licenses/MIT|MIT License}
  */
 
