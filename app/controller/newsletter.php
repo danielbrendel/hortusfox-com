@@ -17,13 +17,7 @@ class NewsletterController extends BaseController {
 
             $data = NewsletterModel::subscribe($email);
 
-            $mail = new Asatru\SMTPMailer\SMTPMailer();
-            $mail->setRecipient($email);
-            $mail->setSubject('Welcome to the HortusFox newsletter');
-            $mail->setView('mail/newsletter_subscribe', [], ['token' => $data['token'], 'confirmation' => $data['confirmation']]);
-            $mail->setProperties(mail_properties());
-            $mail->send();
-
+            MailerModule::send($email, 'Welcome to the HortusFox newsletter', view('mail/newsletter_subscribe', [], ['token' => $data['token'], 'confirmation' => $data['confirmation']])->out(true));
             FlashMessage::setMsg('success', 'You have successfully subscribed to our newsletter!');
 
             return redirect('/#info');

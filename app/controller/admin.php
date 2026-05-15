@@ -29,7 +29,7 @@ class AdminController extends BaseController {
 
         return parent::view(['content', 'admin'], [
 			'app_settings' => $app_settings
-		]);;
+		]);
     }
 
     /**

@@ -67,13 +67,7 @@ class AppModel extends \Asatru\Database\Model {
 
             $users = NewsletterModel::getProcessUsers($token, env('APP_NEWSLETTERLIMIT'));
             foreach ($users as $user) {
-                $mail = new Asatru\SMTPMailer\SMTPMailer();
-                $mail->setRecipient($user->get('email'));
-                $mail->setSubject($subject);
-                $mail->setView('mail/newsletter_base', [], ['subject' => $subject, 'content' => $content, 'token' => $user->get('token')]);
-                $mail->setProperties(mail_properties());
-                $mail->send();
-
+                MailerModule::send($user->get('email'), $subject, view('mail/newsletter_base', [], ['subject' => $subject, 'content' => $content, 'token' => $user->get('token')])->out(true));
                 NewsletterModel::updateUserProcess($user->get('id'), $token);
             }
         } catch (\Exception $e) {
