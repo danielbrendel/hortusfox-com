@@ -175,6 +175,8 @@ class IndexController extends BaseController {
 	{
 		if (env('FORUM_ENABLE')) {
 			return redirect(env('FORUM_LINK'));
+		} else if (env('EXTERNAL_SUPPORT')) {
+			return redirect(env('EXTERNAL_LINK'));
 		}
 
 		return parent::view(['content', 'support'], [
