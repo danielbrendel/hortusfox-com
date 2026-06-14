@@ -45,5 +45,7 @@ return [
     array('/admin/newsletter/process', 'ANY', 'admin@process_newsletter'),
     array('/admin/newsletter/preview', 'POST', 'admin@preview_newsletter'),
     array('/admin/newsletter/clean', 'ANY', 'admin@cleanup_unconfirmed'),
+    array('/admin/social/submit', 'POST', 'admin@social_submit'),
+    array('/admin/social/post', 'ANY', 'admin@social_post'),
     array('$404', 'ANY', 'error404@index')
 ];

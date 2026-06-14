@@ -59,4 +59,30 @@
     <p>
         <a href="{{ url('/admin/newsletter/toggle?token=' . $_GET['token']) }}" class="button {{ ((app('newsletter_enable')) ? 'is-danger' : 'is-success') }}">{{ ((app('newsletter_enable')) ? 'Disable' : 'Enable') }}</a>
     </p>
+
+    <hr/>
+
+    <h3>Post something on social media</h3>
+
+    <form method="POST" action="{{ url('/admin/social/submit?token=' . $_GET['token']) }}" enctype="multipart/form-data">
+        @csrf
+
+        <div class="field">
+            <div class="control">
+                <textarea class="textarea" name="content" placeholder="Enter your text here"></textarea>
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="control">
+                <input class="input" type="file" name="{{ SocialModel::FILE_IDENT }}"/>
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="control">
+                <input type="submit" class="button is-success" value="Submit"/>
+            </div>
+        </div>
+    </form>
 </div>

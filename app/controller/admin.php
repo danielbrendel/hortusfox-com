@@ -147,4 +147,41 @@ class AdminController extends BaseController {
             ]);
         }
     }
+
+    /**
+	 * Handles URL: /admin/social/submit
+	 * 
+	 * @param Asatru\Controller\ControllerArg $request
+	 * @return Asatru\View\RedirectHandler
+	 */
+    public function social_submit($request)
+    {
+        SocialModel::addPost($request->params()->query('content'));
+
+        FlashMessage::setMsg('success', 'Social media post has been added to queue!');
+
+        return redirect('/admin?token=' . $_GET['token']);
+    }
+
+    /**
+	 * Handles URL: /admin/social/post
+	 * 
+	 * @param Asatru\Controller\ControllerArg $request
+	 * @return Asatru\View\JsonHandler
+	 */
+    public function social_post($request)
+    {
+        try {
+            SocialModel::publishPost();
+
+            return json([
+                'code' => 200
+            ]);
+        } catch (\Exception $e) {
+            return json([
+                'code' => 500,
+                'msg' => $e->getMessage()
+            ]);
+        }
+    }
 }
