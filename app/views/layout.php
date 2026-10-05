@@ -114,6 +114,13 @@
                 }
                 @endif
 
+                @if ((isset($themes)) && (isset($highlight)))
+                    const themeElem = document.querySelector('a[name={{ slug($highlight) }}]');
+                    if (themeElem) {
+                        themeElem.scrollIntoView({ behavior: 'smooth' });
+                    }
+                @endif
+
                 @if (env('HELPREALM_WIDGET_ENABLE'))
                     let widget = new HelpRealmWidget({
                         elem: '#support-widget',

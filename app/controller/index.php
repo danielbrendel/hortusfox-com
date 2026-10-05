@@ -82,7 +82,8 @@ class IndexController extends BaseController {
 			'_meta_title' => 'Themes - The extra spice for your workspace',
 			'_meta_description' => 'Download additional themes to personalize your workspace',
 			'_meta_url' => url('/themes'),
-			'themes' => ThemeModel::getThemes()
+			'themes' => ThemeModel::getThemes(),
+			'highlight' => $request->params()->query('highlight', '')
 		]);
 	}
 

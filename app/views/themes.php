@@ -8,8 +8,8 @@
 
    <div class="themes">
         @foreach ($themes as $theme)
-            <a href="{{ asset('img/themes/' . $theme->get('preview')) }}">
-                <div class="theme" style="background-image: url('{{ asset('img/themes/' . $theme->get('preview')) }}');">
+            <a href="{{ asset('img/themes/' . $theme->get('preview')) }}" name="{{ slug($theme->get('name')) }}">
+                <div class="theme {{ (($highlight === slug($theme->get('name'))) ? 'theme-highlight' : '') }}" style="background-image: url('{{ asset('img/themes/' . $theme->get('preview')) }}');">
                     <div class="theme-info">
                         <div class="theme-info-title">{{ $theme->get('name') }}</div>
 

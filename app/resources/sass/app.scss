@@ -438,6 +438,14 @@ a.is-default-link:hover {
     box-shadow: 0 0 20px 0 rgba(55, 55, 55, 0.95);
 }
 
+.theme-highlight {
+    box-shadow: 0 0 5px 0 rgb(95, 255, 95);
+}
+
+.theme-highlight:hover {
+    box-shadow: 0 0 5px 0 rgb(95, 255, 95);
+}
+
 .theme-info {
     position: absolute;
     z-index: 3;
